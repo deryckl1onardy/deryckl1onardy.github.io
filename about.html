@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | Derrick Portfolio</title>
+    <meta
+      name="description"
+      content="About Derrick: background, current focus, and design approach."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="about.css" />
+  </head>
+  <body>
+    <div class="landing about-page">
+      <header class="masthead">
+        <nav class="pill-nav" aria-label="Primary">
+          <a class="nav-link" href="index.html#home">Home</a>
+          <a class="nav-link" href="index.html#work">Work</a>
+          <a class="nav-link is-active" href="about.html">About</a>
+        </nav>
+      </header>
+
+      <section class="about" id="about">
+        <div class="about-copy">
+          <h2>About Me.</h2>
+
+          <article class="about-entry">
+            <h3><span class="chip-dot" aria-hidden="true"></span>Origin</h3>
+            <p>
+              I grew up in Jakarta and studied Visual Communication Design at Universitas Multimedia Nusantara, majoring in Interactive Media Design. Even early on, I was drawn to things that felt alive,
+               where visuals and logic worked together to create something interactive.
+            </p>
+          </article>
+
+          <article class="about-entry">
+            <h3><span class="chip-dot" aria-hidden="true"></span>Early System</h3>
+            <p>
+              For my final thesis, I created an Android endless runner game inspired by Alto’s Adventure. I was fascinated by how that game made visual beauty and gameplay feel inseparable, 
+              and I wanted to explore that balance in something of my own.
+            </p>
+          </article>
+
+          <article class="about-entry">
+            <h3><span class="chip-dot" aria-hidden="true"></span>Early Signal</h3>
+            <p>
+              My first UX internship at Bridestory in late 2018 was the real beginning. It taught me almost everything I know about product design in practice, 
+              especially the parts college never really prepares you for.
+            </p>
+          </article>
+
+          <article class="about-entry">
+            <h3>
+              <span class="chip-dot" aria-hidden="true"></span>Current
+              State
+            </h3>
+            <p>
+              After that, I joined DANA and have been there ever since, 
+              growing from a junior role into Lead UI UX Designer. The biggest shift in my thinking has been understanding how strongly business decisions shape the user experience of an app.
+            </p>
+          </article>
+
+          <article class="about-entry">
+            <h3><span class="chip-dot" aria-hidden="true"></span>Design View</h3>
+            <p>
+              That perspective changed how I design. I think a good product is not just visually polished or easy to use, 
+              it also needs to make sense within the goals, constraints, and realities behind it.
+            </p>
+          </article>
+        </div>
+
+        <aside class="about-console" aria-label="Personal dashboard">
+          <span class="console-screw tl" aria-hidden="true"></span>
+          <span class="console-screw tr" aria-hidden="true"></span>
+          <span class="console-screw bl" aria-hidden="true"></span>
+          <span class="console-screw br" aria-hidden="true"></span>
+
+          <section class="console-panel identity-panel">
+            <div class="identity-avatar" aria-hidden="true">
+              <img src="avatar.svg" alt="" />
+            </div>
+            <div class="identity-meta">
+              <p class="identity-handle">Derrick Lionardy</p>
+              <p class="identity-location">Jakarta, Indonesia</p>
+            </div>
+            <span class="status-light" aria-hidden="true"></span>
+          </section>
+
+          <section class="console-panel now-playing">
+            <p class="panel-title">
+              <span class="chip-dot" aria-hidden="true"></span>
+              <span>Now Playing</span>
+              <span class="panel-info" aria-hidden="true">i</span>
+            </p>
+            <div class="track-card">
+              <div class="track-meta">
+                <div class="track-cover" aria-hidden="true"></div>
+                <div class="track-copy">
+                  <p class="track-name">Refining Weather UX</p>
+                  <p class="track-sub">ambient focus mode</p>
+                </div>
+                <span class="track-duration">00:56 - 2:34</span>
+              </div>
+              <div class="track-timeline-row" aria-hidden="true">
+                <span class="track-elapsed">00:56</span>
+                <div class="track-progress">
+                  <span></span>
+                </div>
+                <span class="track-dots">....</span>
+              </div>
+              <div class="console-controls" aria-hidden="true">
+                <button class="control-btn control-prev" type="button">
+                  <span class="control-icon" aria-hidden="true"></span>
+                </button>
+                <button class="control-btn control-pause is-active" type="button">
+                  <span class="control-icon" aria-hidden="true"></span>
+                </button>
+                <button class="control-btn control-next" type="button">
+                  <span class="control-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section
+            class="console-panel quote-panel"
+            aria-label="Contact preview"
+            data-chat-form-version="v2"
+          >
+            <div class="chat-thread">
+              <div class="chat-row chat-row-incoming">
+                <div class="chat-avatar" aria-hidden="true">
+                  <img src="avatar.svg" alt="" />
+                </div>
+                <div class="chat-bubble-group">
+                  <span class="chat-name">Derrick</span>
+                  <p class="chat-bubble chat-bubble-in">
+                    Wanna work together? what's your email?
+                  </p>
+                </div>
+              </div>
+
+              <p class="chat-bubble chat-bubble-out" id="chat-preview-bubble">
+                sounds good
+              </p>
+            </div>
+
+            <form
+              class="chat-compose-row chat-contact-form"
+              data-target-email="derrick@lionardy.com"
+              data-social-url="https://x.com/derycklionardy"
+              onsubmit="return false;"
+              novalidate
+            >
+              <div class="chat-shortcuts" aria-label="Quick actions">
+                <a class="chat-shortcut chat-shortcut-mail" href="#" aria-label="Mail">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="26"
+                    height="26"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M3 7.4c0-1 .8-1.8 1.8-1.8h14.4c1 0 1.8.8 1.8 1.8v9.2c0 1-.8 1.8-1.8 1.8H4.8c-1 0-1.8-.8-1.8-1.8V7.4Zm1.7 0 7.3 5.1 7.3-5.1"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </a>
+                <a
+                  class="chat-shortcut chat-shortcut-social"
+                  href="https://x.com/derycklionardy"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Social"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="26"
+                    height="26"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M5 5h3.3l3.2 4.5L15.6 5H19l-5.8 7.5L19 19h-3.3l-3.8-5.2L7.8 19H4.4l6.1-7.7L5 5Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+              <label class="chat-visually-hidden" for="chat-message-input">
+                Write your message
+              </label>
+              <div class="chat-input">
+                <input
+                  id="chat-message-input"
+                  class="chat-message-input"
+                  name="message"
+                  type="text"
+                  placeholder="iMessage"
+                  minlength="4"
+                  maxlength="500"
+                  required
+                />
+                <button class="chat-send" type="button" aria-label="Send message">
+                  &uarr;
+                </button>
+              </div>
+            </form>
+            <p class="chat-status" id="chat-status" role="status" aria-live="polite"></p>
+          </section>
+        </aside>
+      </section>
+    </div>
+    <script src="about.js"></script>
+  </body>
+</html>

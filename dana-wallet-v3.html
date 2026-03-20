@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DANA Wallet v3 Case Study | Derrick Portfolio</title>
+    <meta
+      name="description"
+      content="Case study for DANA Wallet v3 - a unified financial hub to improve trust, clarity, and user retention."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="dana-wallet-v3.css" />
+  </head>
+  <body>
+    <div class="case-page">
+      <header class="case-header">
+        <nav class="pill-nav" aria-label="Primary">
+          <a class="nav-link" href="index.html#home">Home</a>
+          <a class="nav-link is-active" href="index.html#work">Work</a>
+          <a class="nav-link" href="about.html">About</a>
+        </nav>
+      </header>
+
+      <section class="intro" id="summary">
+        <div class="intro-stage">
+          <div class="intro-media" aria-hidden="true">
+            <div class="intro-backdrop">
+              <img
+                src="https://www.figma.com/api/mcp/asset/5b313168-40e7-4048-99c7-dffbe7e2e7a2"
+                alt=""
+              />
+            </div>
+            <div class="intro-phone">
+              <img
+                src="https://www.figma.com/api/mcp/asset/8e78535e-2ac5-4290-ac50-3396cec34c35"
+                alt="DANA Wallet v3 screen preview"
+              />
+            </div>
+          </div>
+
+          <div class="intro-copy">
+            <h1>DANA Wallet v3</h1>
+            <p>
+              Unifying Experience to manage Payment Cards, Vouchers, Loyalty,
+              Investment, and more in one place.
+            </p>
+            <p class="intro-tags">
+              <span>Fintech</span>
+              <span aria-hidden="true">&bull;</span>
+              <span>2022</span>
+              <span aria-hidden="true">&bull;</span>
+              <span>iOS &amp; Android</span>
+            </p>
+            <a
+              class="prototype-btn"
+              href="https://www.figma.com/design/mM1LUEdO81T76i7hfyBkRK/Agent-Pocket?node-id=54-2247&t=lPB2de8m5VXEo2CC-4"
+              target="_blank"
+              rel="noopener noreferrer"
+              >See Prototype</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <div class="study-shell">
+        <aside class="overview-card">
+          <h2>Overview</h2>
+          <div class="overview-divider"></div>
+          <a class="overview-link" data-target="summary" href="#summary">Summary</a>
+          <a class="overview-link is-active" data-target="opportunity" href="#opportunity"
+            >Opportunity</a
+          >
+          <a class="overview-link" data-target="problem" href="#problem">Problem</a>
+          <a class="overview-link" data-target="evolution" href="#evolution">Evolution</a>
+          <a class="overview-link" data-target="goals" href="#goals">Goals</a>
+          <a class="overview-link" data-target="exploration" href="#exploration"
+            >Exploration</a
+          >
+          <a class="overview-link" data-target="final-solution" href="#final-solution"
+            >Final Solution</a
+          >
+          <a class="overview-link" data-target="impact" href="#impact">Impact</a>
+        </aside>
+
+        <main class="study-main">
+          <section class="study-section" id="opportunity">
+            <h2>The Opportunity</h2>
+            <p>
+              DANA already offered many wallet capabilities: add cards, buy
+              vouchers, track loyalty, and access other financial features. The
+              opportunity was not adding more features.
+            </p>
+            <p>
+              It was making the experience feel like one product: one mental
+              model, one set of interaction rules, and one predictable place to
+              manage wallet inventory.
+            </p>
+            <p>
+              <strong>Opportunity statement:</strong> Unify the wallet into a
+              cohesive hub so users can manage and choose payment options
+              without having to learn a new flow every time.
+            </p>
+          </section>
+
+          <section class="study-section" id="problem">
+            <h2>The Core Problem: Disjointed Flows</h2>
+            <p>
+              Even inside the wallet area, patterns were inconsistent: different
+              layouts and visual hierarchy per feature (cards vs vouchers vs
+              loyalty), different labeling conventions, and different navigation
+              depth and entry points.
+            </p>
+            <h3>What users experienced:</h3>
+            <p>
+              Instead of a single wallet, it felt like jumping between mini
+              apps. Users spent effort figuring out where things are before
+              doing the task.
+            </p>
+
+            <div class="problem-gallery">
+              <figure>
+                <img
+                  src="https://www.figma.com/api/mcp/asset/c5187b62-0e84-49e6-8f92-8eaa383b0f38"
+                  alt="Card management entry point"
+                />
+                <figcaption>Card Management</figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="https://www.figma.com/api/mcp/asset/46c8c611-48c2-4f73-9d5b-66c748984af9"
+                  alt="Pocket voucher entry point"
+                />
+                <figcaption>Pocket - Voucher</figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="https://www.figma.com/api/mcp/asset/cd82f849-f332-42fa-aa8c-3c648640f9f4"
+                  alt="Pocket loyalty entry point"
+                />
+                <figcaption>Pocket - Loyalty</figcaption>
+              </figure>
+            </div>
+
+            <h3>Why it matters:</h3>
+            <p>
+              Wallet actions happen close to payments. Confusion here increases
+              hesitation, errors, and drop-offs.
+            </p>
+          </section>
+
+          <section class="study-section" id="evolution">
+            <h2>The Evolution</h2>
+            <div class="evolution-gallery">
+              <figure>
+                <img
+                  src="https://www.figma.com/api/mcp/asset/ca45d7cf-dc34-4685-a883-034c035b6eeb"
+                  alt="Wallet v1 screen"
+                />
+                <figcaption>Wallet v1</figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="https://www.figma.com/api/mcp/asset/dc157777-bc01-4a3b-a8d1-47d9274c6bf4"
+                  alt="Wallet v2 screen"
+                />
+                <figcaption>Wallet v2</figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="https://www.figma.com/api/mcp/asset/83fadc8f-f677-4f84-815e-c14e402738e6"
+                  alt="Wallet v3 screen"
+                />
+                <figcaption>Wallet v3</figcaption>
+              </figure>
+            </div>
+
+            <div class="two-col">
+              <article>
+                <h3>V1 - Wallet as a list</h3>
+                <p>
+                  The earliest experience functioned like a stacked list of
+                  payment methods. It was straightforward, but scanning and
+                  management did not scale once users had many cards and
+                  products.
+                </p>
+                <p><strong>What worked:</strong> Everything visible in one list.</p>
+                <p>
+                  <strong>What did not:</strong> Low structure, hard to
+                  prioritize, management felt manual.
+                </p>
+              </article>
+              <article>
+                <h3>V2 - Structure begins</h3>
+                <p>
+                  V2 introduced clearer modules (balance, PayLater, cards). This
+                  improved hierarchy and reduced the pile-of-items feeling.
+                </p>
+                <p><strong>What worked:</strong> Stronger grouping and hierarchy.</p>
+                <p>
+                  <strong>What did not:</strong> It still felt fragmented,
+                  users had to remember where each feature lived and how it
+                  behaved.
+                </p>
+              </article>
+            </div>
+
+            <article class="single-highlight">
+              <h3>V3 - Wallet becomes a hub (+ SmartPay)</h3>
+              <p>
+                V3 brings wallet inventory into a unified hub: clearer grouping,
+                better scan, and a more consistent pattern language across cards
+                and wallet products. Search supports fast access, and SmartPay
+                helps reduce repetitive reordering.
+              </p>
+              <p>
+                <strong
+                  >Key shift: From "storage page" to "system that helps me
+                  pay".</strong
+                >
+              </p>
+            </article>
+          </section>
+
+          <section class="study-section" id="goals">
+            <h2>Goals</h2>
+            <div class="goal-grid">
+              <article class="goal-card">
+                Unify patterns so DANA Wallet feels like one cohesive system.
+              </article>
+              <article class="goal-card">
+                Improve scanability for users with multiple cards and products.
+              </article>
+              <article class="goal-card">
+                Create a scalable structure that supports future wallet products
+                without new entry-point chaos.
+              </article>
+              <article class="goal-card">
+                Maintain trust and control, especially for SmartPay behavior.
+              </article>
+            </div>
+          </section>
+
+          <section class="study-section" id="exploration">
+            <h2>Exploration</h2>
+            <p>
+              To unify the wallet, I explored different structures and control
+              models.
+            </p>
+
+            <div class="exploration-grid">
+              <article class="exploration-block">
+                <div class="small-gallery">
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/e861ac8e-bce8-4a8f-9ec7-f487980f6c8c"
+                    alt="First exploration - pocket structure screen 1"
+                  />
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/2932218c-5397-45fe-80c3-b3294c76797b"
+                    alt="First exploration - pocket structure screen 2"
+                  />
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/51e7b814-9700-4743-a0ae-ad71785fbd41"
+                    alt="First exploration - pocket structure screen 3"
+                  />
+                </div>
+                <p>
+                  First iteration: assets were grouped in small pockets and
+                  users had to open each pocket to see details.
+                </p>
+              </article>
+
+              <article class="exploration-block">
+                <div class="small-gallery">
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/81d1df85-3abd-414c-8d10-324433f9b443"
+                    alt="Second exploration screen 1"
+                  />
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/f43515c2-7f64-40de-943e-e2e193e39a2e"
+                    alt="Second exploration screen 2"
+                  />
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/41258359-0e0a-41ec-a46f-9e79316cfa34"
+                    alt="Second exploration screen 3"
+                  />
+                </div>
+                <p>
+                  Second iteration: highlighted favorite assets in the upper area
+                  to help users prioritize what matters most.
+                </p>
+              </article>
+            </div>
+
+            <article class="exploration-wide">
+              <div class="wide-gallery">
+                <img
+                  src="https://www.figma.com/api/mcp/asset/150e1c16-193a-49a2-aa1b-e691685a526a"
+                  alt="Third exploration concept image 1"
+                />
+                <img
+                  src="https://www.figma.com/api/mcp/asset/a2b4b093-dc9e-42e1-9297-18ad53a810d8"
+                  alt="Third exploration concept image 2"
+                />
+              </div>
+              <p>
+                Third iteration: toned down color intensity and polished the
+                favorite cards concept to feel clearer and calmer.
+              </p>
+            </article>
+          </section>
+
+          <section class="study-section" id="final-solution">
+            <h2>Final Solution</h2>
+            <div class="solution-gallery">
+              <img
+                src="https://www.figma.com/api/mcp/asset/172eade1-daab-489f-8a46-6b00c245f472"
+                alt="Final wallet interface screen 1"
+              />
+              <img
+                src="https://www.figma.com/api/mcp/asset/45be258d-753b-4b9c-8251-f228a0f863aa"
+                alt="Final wallet interface screen 2"
+              />
+              <img
+                src="https://www.figma.com/api/mcp/asset/48521393-780e-4177-9d21-62d44d25d20f"
+                alt="Final wallet interface screen 3"
+              />
+              <img
+                src="https://www.figma.com/api/mcp/asset/d8ae9178-85bd-4555-a9e3-844b1b167180"
+                alt="Final wallet interface screen 4"
+              />
+            </div>
+          </section>
+
+          <section class="study-section" id="impact">
+            <div class="impact-layout">
+              <div class="impact-top">
+                <div class="impact-col">
+                  <article class="impact-block">
+                    <h3>Make "Payment Methods" the anchor</h3>
+                    <p>
+                      Cards are high-frequency and trust-sensitive, so the
+                      wallet starts from how users pay.
+                    </p>
+                  </article>
+
+                  <article class="impact-block">
+                    <h3>Progressive disclosure</h3>
+                    <p>Users see what matters now, then drill down for detail:</p>
+                    <ul>
+                      <li>Top-level modules show key status and info.</li>
+                      <li>Management actions are one step deeper.</li>
+                    </ul>
+                  </article>
+                </div>
+
+                <div class="impact-col">
+                  <article class="impact-block">
+                    <h3>Reduce search confusion</h3>
+                    <p>
+                      Instead of separate search behavior per feature, the hub
+                      uses a consistent model:
+                    </p>
+                    <ul>
+                      <li>Search payment methods when adding.</li>
+                      <li>Search vouchers and tickets when browsing.</li>
+                      <li>Clear category framing avoids context mismatch.</li>
+                    </ul>
+                  </article>
+                </div>
+              </div>
+
+              <article class="impact-bottom">
+                <h3>Strong consistency in UI patterns</h3>
+                <p>
+                  Same card style rules, spacing, section headers, and CTA
+                  placement across cards, vouchers, loyalty, and investment. So
+                  it feels like one product.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="study-section reflection" id="reflection">
+            <h2>Reflection</h2>
+            <p>
+              This project reinforced a key fintech lesson for me: when products
+              deal with money, the UI's job is not only usability. It is also
+              trust, clarity, and control.
+            </p>
+            <p>
+              A wallet is not just a feature list, it is a system that must
+              feel stable and predictable. DANA had cards, vouchers, loyalty,
+              and investment, but the experience was fragmented across entry
+              points and inconsistent patterns.
+            </p>
+            <p>
+              I redesigned DANA Wallet into a unified financial hub by
+              restructuring information architecture, creating modular summary
+              sections, and standardizing interactions so users get a clear
+              overview and a predictable way to manage everything in one place.
+            </p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="dana-wallet-v3.js"></script>
+  </body>
+</html>
