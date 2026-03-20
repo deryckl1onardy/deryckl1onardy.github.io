@@ -785,3 +785,357 @@ a {
     gap: 16px;
   }
 }
+
+.weather-case-page .intro-media {
+  width: 358px;
+  height: 655px;
+  left: 140px;
+  top: 11px;
+}
+
+.weather-case-page .intro-backdrop {
+  width: 366.5px;
+  height: 338px;
+  top: 93px;
+  left: -62px;
+}
+
+.weather-case-page .intro-phone {
+  width: 358px;
+  height: 655px;
+}
+
+.weather-case-page .intro-phone img {
+  left: -63.44%;
+  top: -11.3%;
+  width: 228.11%;
+  height: 111.3%;
+}
+
+.weather-competitor-heading {
+  margin-top: 24px;
+}
+
+.weather-competitor-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #d6d6d6;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.weather-competitor-grid figure {
+  margin: 0;
+}
+
+.weather-competitor {
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-items: center;
+}
+
+.weather-competitor img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.weather-competitor-bmkg img {
+  aspect-ratio: 152 / 333;
+}
+
+.weather-competitor-weawow img {
+  aspect-ratio: 195 / 333;
+}
+
+.weather-competitor-wtf img {
+  aspect-ratio: 161 / 336;
+}
+
+.weather-competitor-windy img {
+  aspect-ratio: 179 / 348;
+}
+
+.weather-competitor-grid figcaption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.4;
+  color: #373737;
+}
+
+.weather-goal-grid {
+  gap: 16px;
+}
+
+.weather-goal-card {
+  background: #e9e9e9;
+  border: 3px solid #e1e1e1;
+  border-radius: 20px;
+  box-shadow: var(--panel-shadow);
+  padding: 24px 20px;
+}
+
+.weather-goal-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.weather-goal-title-row img {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  margin-top: 2px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.weather-goal-title-row h3 {
+  margin: 0;
+  font-size: clamp(18px, 1.9vw, 28px);
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.weather-goal-card p {
+  margin: 12px 0 0;
+  color: #373737;
+  font-size: clamp(13px, 1.5vw, 16px);
+  line-height: 1.45;
+  font-weight: 400;
+}
+
+.weather-exploration-hero {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 435px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.weather-exploration-hero img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ffffff;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.12),
+    0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.weather-exploration-hero p {
+  margin: 0;
+}
+
+.weather-exploration-section {
+  margin-top: 24px;
+}
+
+.weather-exploration-section h3 {
+  margin-top: 0;
+}
+
+.weather-mood-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.weather-mood-grid img {
+  width: 100%;
+  aspect-ratio: 194 / 174;
+  object-fit: cover;
+  border-radius: 12px 12px 6px 6px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-hierarchy-row {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 232px 195px minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+}
+
+.weather-hierarchy-row figure {
+  margin: 0;
+}
+
+.weather-hierarchy-row img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-hierarchy-row figcaption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 18px;
+  color: #373737;
+}
+
+.weather-hierarchy-row p {
+  margin: 0;
+}
+
+.weather-widget-row {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.weather-widget-row img {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-final-image {
+  margin-top: 16px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.weather-final-image img {
+  width: 100%;
+  display: block;
+  border-radius: 0;
+  aspect-ratio: 1059 / 477;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.weather-reflection-gallery {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.weather-reflection-main {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.12),
+    0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.weather-reflection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.weather-reflection-grid img {
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 1200px) {
+  .weather-case-page .intro-media {
+    left: 96px;
+  }
+
+  .weather-mood-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .weather-hierarchy-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .weather-hierarchy-row p {
+    grid-column: 1 / -1;
+  }
+
+  .weather-goal-title-row h3 {
+    font-size: clamp(18px, 1.8vw, 24px);
+  }
+
+  .weather-goal-card p {
+    font-size: clamp(13px, 1.4vw, 15px);
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 980px) {
+  .weather-case-page .intro-media {
+    left: auto;
+    width: min(340px, calc(100% - 8px));
+    height: 320px;
+  }
+
+  .weather-case-page .intro-phone {
+    width: 280px;
+    height: 458px;
+  }
+
+  .weather-competitor-grid,
+  .weather-mood-grid,
+  .weather-widget-row,
+  .weather-reflection-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-competitor img {
+    max-width: 360px;
+  }
+
+  .weather-hierarchy-row {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-exploration-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-goal-title-row img {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+    margin-top: 4px;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .weather-goal-title-row h3 {
+    font-size: clamp(18px, 3vw, 22px);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .weather-goal-card p {
+    font-size: clamp(13px, 2vw, 15px);
+    line-height: 1.45;
+    font-weight: 400;
+  }
+}

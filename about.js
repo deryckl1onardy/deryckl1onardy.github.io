@@ -10,6 +10,13 @@
   const status = document.querySelector("#chat-status");
   const mailShortcut = form.querySelector(".chat-shortcut-mail");
   const socialShortcut = form.querySelector(".chat-shortcut-social");
+  const trackProgress = document.querySelector(".track-progress");
+  const trackProgressFill = document.querySelector(".track-progress-fill");
+  const trackSlider = document.querySelector(".track-slider");
+  const trackElapsed = document.querySelector(".track-elapsed");
+  const prevButton = document.querySelector(".control-prev");
+  const nextButton = document.querySelector(".control-next");
+  const pauseButton = document.querySelector(".control-pause");
 
   const targetEmail = (form.getAttribute("data-target-email") || "").trim();
   const socialUrl = (form.getAttribute("data-social-url") || "").trim();
@@ -21,6 +28,62 @@
   let currentStep = STEP_EMAIL;
   let visitorEmail = "";
   let isSending = false;
+
+  function formatPlayerTime(totalSeconds) {
+    const seconds = Math.max(0, Math.floor(totalSeconds));
+    const minutesPart = String(Math.floor(seconds / 60)).padStart(2, "0");
+    const secondsPart = String(seconds % 60).padStart(2, "0");
+    return `${minutesPart}:${secondsPart}`;
+  }
+
+  function syncTrackProgress() {
+    if (!trackSlider || !trackProgress || !trackProgressFill) {
+      return;
+    }
+
+    const min = Number(trackSlider.min) || 0;
+    const max = Number(trackSlider.max) || 100;
+    const value = Number(trackSlider.value) || 0;
+    const pct = ((value - min) / Math.max(1, max - min)) * 100;
+
+    trackProgress.style.setProperty("--progress", `${pct}%`);
+    trackProgressFill.style.width = `${pct}%`;
+
+    if (trackElapsed) {
+      trackElapsed.textContent = formatPlayerTime(value);
+    }
+  }
+
+  function triggerControlButtonPress(button) {
+    if (!button) {
+      return;
+    }
+
+    button.classList.remove("is-pressed");
+    window.requestAnimationFrame(() => {
+      button.classList.add("is-pressed");
+    });
+
+    window.setTimeout(() => {
+      button.classList.remove("is-pressed");
+    }, 180);
+  }
+
+  function openPlayStoreLink() {
+    const playStoreUrl =
+      "https://play.google.com/store/apps/details?id=com.derrer.weatherbutfun&hl=id";
+
+    triggerControlButtonPress(pauseButton);
+    const openedWindow = window.open("", "_blank", "noopener,noreferrer");
+
+    window.setTimeout(() => {
+      if (openedWindow) {
+        openedWindow.location.href = playStoreUrl;
+        return;
+      }
+      window.location.href = playStoreUrl;
+    }, 120);
+  }
 
   function setStatus(message, state) {
     if (!status) {
@@ -42,6 +105,7 @@
 
     const hasValue = input.value.trim().length > 0;
     sendButton.disabled = isSending || !hasValue;
+    sendButton.classList.toggle("is-ready", !isSending && hasValue);
   }
 
   function setSending(nextSending) {
@@ -140,6 +204,10 @@
     row.appendChild(avatar);
     row.appendChild(bubbleGroup);
     chatThread.appendChild(row);
+    row.classList.add("is-entering");
+    window.setTimeout(() => {
+      row.classList.remove("is-entering");
+    }, 320);
     scrollChatToLatest();
   }
 
@@ -157,6 +225,10 @@
     bubble.className = "chat-bubble chat-bubble-out";
     bubble.textContent = text;
     chatThread.appendChild(bubble);
+    bubble.classList.add("is-entering");
+    window.setTimeout(() => {
+      bubble.classList.remove("is-entering");
+    }, 320);
     scrollChatToLatest();
   }
 
@@ -169,7 +241,7 @@
     input.value = "";
     input.type = "text";
     input.name = "topic";
-    input.placeholder = "What do you want to talk about?";
+    input.placeholder = "";
     input.autocomplete = "off";
     input.minLength = 4;
     input.maxLength = 500;
@@ -188,7 +260,7 @@
     input.value = "";
     input.type = "email";
     input.name = "email";
-    input.placeholder = "your@email.com";
+    input.placeholder = "";
     input.autocomplete = "email";
     input.minLength = 6;
     input.maxLength = 120;
@@ -224,6 +296,45 @@
     );
   }
 
+  if (trackSlider) {
+    syncTrackProgress();
+    trackSlider.addEventListener("input", syncTrackProgress);
+  }
+
+  if (pauseButton) {
+    pauseButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      openPlayStoreLink();
+    });
+
+    pauseButton.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+      event.preventDefault();
+      openPlayStoreLink();
+    });
+  }
+
+  [prevButton, nextButton].forEach((button) => {
+    if (!button) {
+      return;
+    }
+
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      triggerControlButtonPress(button);
+    });
+
+    button.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+      event.preventDefault();
+      triggerControlButtonPress(button);
+    });
+  });
+
   if (input) {
     input.addEventListener("input", () => {
       updateSendAvailability();
@@ -232,6 +343,8 @@
       }
       setStatus("", "");
     });
+    input.addEventListener("keyup", updateSendAvailability);
+    input.addEventListener("change", updateSendAvailability);
   }
 
   setSending(false);

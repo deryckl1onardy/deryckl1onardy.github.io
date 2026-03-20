@@ -16,6 +16,8 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="about.css" />
+    <link rel="stylesheet" href="page-transition.css" />
+    <script src="page-transition.js" defer></script>
   </head>
   <body>
     <div class="landing about-page">
@@ -105,20 +107,32 @@
                   <p class="track-name">Refining Weather UX</p>
                   <p class="track-sub">ambient focus mode</p>
                 </div>
-                <span class="track-duration">00:56 - 2:34</span>
+                <span class="track-duration">01:23 - 3:45</span>
               </div>
-              <div class="track-timeline-row" aria-hidden="true">
-                <span class="track-elapsed">00:56</span>
+              <div class="track-timeline-row">
+                <span class="track-elapsed">01:23</span>
                 <div class="track-progress">
-                  <span></span>
+                  <span class="track-progress-fill" aria-hidden="true"></span>
+                  <input
+                    class="track-slider"
+                    type="range"
+                    min="0"
+                    max="225"
+                    value="83"
+                    aria-label="Track progress"
+                  />
                 </div>
                 <span class="track-dots">....</span>
               </div>
-              <div class="console-controls" aria-hidden="true">
+              <div class="console-controls">
                 <button class="control-btn control-prev" type="button">
                   <span class="control-icon" aria-hidden="true"></span>
                 </button>
-                <button class="control-btn control-pause is-active" type="button">
+                <button
+                  class="control-btn control-pause is-active"
+                  type="button"
+                  aria-label="Open Weather But Fun on Play Store"
+                >
                   <span class="control-icon" aria-hidden="true"></span>
                 </button>
                 <button class="control-btn control-next" type="button">
@@ -145,10 +159,6 @@
                   </p>
                 </div>
               </div>
-
-              <p class="chat-bubble chat-bubble-out" id="chat-preview-bubble">
-                sounds good
-              </p>
             </div>
 
             <form
@@ -205,8 +215,12 @@
                   id="chat-message-input"
                   class="chat-message-input"
                   name="message"
-                  type="text"
-                  placeholder="iMessage"
+                  type="email"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  autocorrect="off"
+                  spellcheck="false"
+                  placeholder=""
                   minlength="4"
                   maxlength="500"
                   required
