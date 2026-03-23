@@ -17,6 +17,143 @@ links.forEach((link) => {
 window.addEventListener("hashchange", setActiveFromHash);
 setActiveFromHash();
 
+const walkmanCtaText = "Click to open project";
+
+const walkmanMarkup = `
+  <span class="walkman-chassis"></span>
+  <span class="walkman-edge walkman-edge-left"></span>
+  <span class="walkman-edge walkman-edge-top"></span>
+  <span class="walkman-base"></span>
+  <span class="walkman-base-line"></span>
+  <span class="walkman-divider"></span>
+  <span class="walkman-panel">
+    <span class="walkman-dial walkman-dial-left"><i></i></span>
+    <span class="walkman-screen">
+      <i class="walkman-screen-pane walkman-screen-pane--left"></i>
+      <i class="walkman-screen-pane walkman-screen-pane--middle"></i>
+      <i class="walkman-screen-pane walkman-screen-pane--right"></i>
+    </span>
+    <span class="walkman-dial walkman-dial-right"><i></i></span>
+  </span>
+  <span class="walkman-cta">${walkmanCtaText}</span>
+`;
+
+const projectSnippets = {
+  "DANA Wallet":
+    "Redesigned the everyday wallet flow so balances, cards, and quick actions feel easier to scan and use.",
+  "Onboarding, Registration & Foreign Account":
+    "Streamlined the first-run journey to reduce drop-off and help more users finish activation with confidence.",
+  "Highlight of the week":
+    "Turned recurring retention content into a lightweight weekly moment with clearer entry points and stronger engagement.",
+  "Weather - But Fun":
+    "A playful product experiment that reframes forecast data into a more expressive, mood-driven weather experience.",
+};
+
+function attachProjectNavigation(projectItem, projectInfo) {
+  if (!projectInfo || projectItem.dataset.projectNavigationBound === "true") {
+    return;
+  }
+
+  const projectLink = projectInfo.querySelector(".see-btn[href]");
+  const href = projectLink?.getAttribute("href")?.trim();
+
+  if (!href || href === "#") {
+    return;
+  }
+
+  projectItem.dataset.projectNavigationBound = "true";
+  projectItem.classList.add("is-project-link");
+
+  projectItem.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.button !== 0) {
+      return;
+    }
+
+    const interactiveArea = event.target.closest(
+      ".mixtape, .walkman, .project-snippet"
+    );
+
+    if (!interactiveArea || !projectItem.contains(interactiveArea)) {
+      return;
+    }
+
+    if (event.target.closest("a, button, input, textarea, select, summary")) {
+      return;
+    }
+
+    window.location.href = href;
+  });
+}
+
+function ensureWalkmanCta(walkman) {
+  if (!walkman || walkman.querySelector(".walkman-cta")) {
+    return;
+  }
+
+  const cta = document.createElement("span");
+  cta.className = "walkman-cta";
+  cta.textContent = walkmanCtaText;
+  walkman.append(cta);
+}
+
+function syncProjectSnippet(projectItem, projectInfo) {
+  if (!projectItem || !projectInfo) {
+    return;
+  }
+
+  const mixtapeLabel =
+    projectItem.querySelector(".mixtape-label")?.textContent?.trim() || "";
+  const snippetText = projectSnippets[mixtapeLabel] || "";
+  const snippet = projectInfo.querySelector(".project-snippet");
+
+  if (!snippetText) {
+    if (snippet) {
+      snippet.remove();
+    }
+    return;
+  }
+
+  if (snippet) {
+    snippet.textContent = snippetText;
+    return;
+  }
+
+  const nextSnippet = document.createElement("p");
+  nextSnippet.className = "project-snippet";
+  nextSnippet.textContent = snippetText;
+  projectInfo.append(nextSnippet);
+}
+
+document.querySelectorAll(".project-item").forEach((projectItem) => {
+  const existingWalkman = projectItem.querySelector(".walkman");
+
+  if (existingWalkman) {
+    ensureWalkmanCta(existingWalkman);
+
+    const projectInfo = projectItem.querySelector(".project-info");
+    syncProjectSnippet(projectItem, projectInfo);
+
+    attachProjectNavigation(projectItem, projectInfo);
+    return;
+  }
+
+  const walkman = document.createElement("div");
+  walkman.className = "walkman";
+  walkman.setAttribute("aria-hidden", "true");
+  walkman.innerHTML = walkmanMarkup;
+
+  const projectInfo = projectItem.querySelector(".project-info");
+
+  if (projectInfo) {
+    projectItem.insertBefore(walkman, projectInfo);
+    syncProjectSnippet(projectItem, projectInfo);
+    attachProjectNavigation(projectItem, projectInfo);
+    return;
+  }
+
+  projectItem.append(walkman);
+});
+
 const canUsePointerTilt =
   window.matchMedia("(prefers-reduced-motion: no-preference)").matches &&
   window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -62,7 +199,10 @@ if (canUsePointerTilt) {
 
   function resetCassetteTilt(event) {
     const cassette = event.currentTarget;
+    const projectItem = cassette.closest(".project-item");
+
     cassette.classList.remove("is-tilting");
+    projectItem?.classList.remove("is-mixtape-active");
     cassette.style.setProperty("--mixtape-tilt-x", "0deg");
     cassette.style.setProperty("--mixtape-tilt-y", "0deg");
     cassette.style.setProperty("--mixtape-parallax-far-x", "0px");
@@ -77,7 +217,10 @@ if (canUsePointerTilt) {
 
   cassettes.forEach((cassette) => {
     cassette.addEventListener("pointerenter", () => {
+      const projectItem = cassette.closest(".project-item");
+
       cassette.classList.add("is-tilting");
+      projectItem?.classList.add("is-mixtape-active");
     });
     cassette.addEventListener("pointermove", updateCassetteTilt);
     cassette.addEventListener("pointerleave", resetCassetteTilt);

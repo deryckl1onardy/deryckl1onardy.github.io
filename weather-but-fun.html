@@ -14,9 +14,11 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="weather-but-fun.css?v=10" />
+    <link rel="stylesheet" href="weather-but-fun.css?v=29" />
+    <link rel="stylesheet" href="footer.css" />
     <link rel="stylesheet" href="page-transition.css" />
     <script src="page-transition.js" defer></script>
+    <script src="footer.js" defer></script>
   </head>
   <body>
     <div class="case-page weather-case-page">
@@ -324,38 +326,48 @@
 
             <article class="weather-exploration-section">
               <h3>2. Information hierarchy</h3>
-              <div class="weather-hierarchy-row">
-                <figure>
+              <div class="weather-hierarchy-layout">
+                <figure class="weather-hierarchy-item">
                   <img
-                    src="https://www.figma.com/api/mcp/asset/db9d1659-ff5a-476e-a6ad-5db173c76fd7"
+                    src="assets/weather-hierarchy-first.png"
                     alt="First information hierarchy exploration"
                   />
-                  <figcaption>First Exploration</figcaption>
+                  <figcaption class="weather-hierarchy-caption">
+                    First Exploration
+                  </figcaption>
                 </figure>
-                <figure>
+                <figure class="weather-hierarchy-item weather-hierarchy-item-end">
                   <img
-                    src="https://www.figma.com/api/mcp/asset/bb12f028-1163-4313-91a1-64bf347b01fe"
+                    src="assets/weather-hierarchy-end.png"
                     alt="End-result hierarchy design"
                   />
-                  <figcaption>End Result</figcaption>
+                  <figcaption class="weather-hierarchy-caption">
+                    End Result
+                  </figcaption>
                 </figure>
-                <p>
-                  Another major exploration area was deciding what should be
-                  most prominent.
-                </p>
-                <p>
-                  A weather app can easily become overloaded: temperature,
-                  feels like, hourly forecast, daily forecast, humidity, UV,
-                  wind, warnings, precipitation, sunrise, sunset, and more.
-                  Showing everything equally makes nothing feel important.
-                </p>
+                <div class="weather-hierarchy-copy">
+                  <p>
+                    Another major exploration area was deciding what should be
+                    most prominent.
+                  </p>
+                  <p>
+                    A weather app can easily become overloaded: temperature,
+                    feels like, hourly forecast, daily forecast, humidity, UV,
+                    wind, warnings, precipitation, sunrise, sunset, and more.
+                    Showing everything equally makes nothing feel important.
+                  </p>
+                </div>
               </div>
-              <p>I explored different hierarchy approaches to answer:</p>
-              <ul>
-                <li>What should users understand first?</li>
-                <li>Which information is secondary?</li>
-                <li>When should the UI explain versus simply display?</li>
-              </ul>
+              <div class="weather-hierarchy-followup">
+                <p>
+                  I explored different hierarchy approaches to answer:
+                </p>
+                <ul>
+                  <li>What should users understand first?</li>
+                  <li>Which information is secondary?</li>
+                  <li>When should the UI explain versus simply display?</li>
+                </ul>
+              </div>
             </article>
 
             <article class="weather-exploration-section">
@@ -471,13 +483,13 @@
 
           <section class="study-section reflection" id="reflection">
             <h2>Reflection</h2>
-            <div class="weather-reflection-gallery">
+            <div class="weather-reflection-panel">
               <img
-                class="weather-reflection-main"
+                class="weather-reflection-store"
                 src="https://www.figma.com/api/mcp/asset/e9f9ca10-0377-43ec-b78e-df3c65c612a1"
                 alt="Weather - But Fun Play Store listing"
               />
-              <div class="weather-reflection-grid">
+              <div class="weather-reflection-reviews">
                 <img
                   src="https://www.figma.com/api/mcp/asset/920fbc09-6ff8-4f92-9ef6-8148ffc36d2a"
                   alt="User feedback snippet"
@@ -495,10 +507,6 @@
                   alt="User feedback snippet"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/f1faeef4-39e6-4be2-a0bc-378b59debc94"
-                  alt="User feedback snippet"
-                />
-                <img
                   src="https://www.figma.com/api/mcp/asset/1270aff3-f78f-4bec-8ac3-61a59a688e4e"
                   alt="User feedback snippet"
                 />
@@ -512,6 +520,10 @@
                 />
                 <img
                   src="https://www.figma.com/api/mcp/asset/367007f3-a239-4434-bbc5-b316d7b0ccff"
+                  alt="User feedback snippet"
+                />
+                <img
+                  src="https://www.figma.com/api/mcp/asset/f1faeef4-39e6-4be2-a0bc-378b59debc94"
                   alt="User feedback snippet"
                 />
               </div>
@@ -539,6 +551,44 @@
         </main>
       </div>
     </div>
+
+    <footer class="site-footer">
+      <div class="site-footer__links" aria-label="Footer contact links">
+        <a class="site-footer__pill site-footer__pill--wide" href="mailto:derrick@lionardy.com">
+          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 7.4c0-1 .8-1.8 1.8-1.8h14.4c1 0 1.8.8 1.8 1.8v9.2c0 1-.8 1.8-1.8 1.8H4.8c-1 0-1.8-.8-1.8-1.8V7.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="m4.7 7.4 7.3 5.1 7.3-5.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>derrick@lionardy.com</span>
+        </a>
+        <div class="site-footer__pill site-footer__pill--wide">
+          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21s-6-5.53-6-11a6 6 0 1 1 12 0c0 5.47-6 11-6 11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8" />
+          </svg>
+          <span>Jakarta, Indonesia</span>
+        </div>
+        <a class="site-footer__pill site-footer__pill--small" href="https://play.google.com/store/apps/details?id=com.derrer.weatherbutfun&hl=id" target="_blank" rel="noopener noreferrer">
+          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M8 6.5v11l9-5.5-9-5.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="M6 5.5h1.4a.6.6 0 0 1 .6.6v11.8a.6.6 0 0 1-.6.6H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+          <span>Play Store</span>
+        </a>
+        <a class="site-footer__pill site-footer__pill--small" href="index.html#work">
+          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h11A2.5 2.5 0 0 1 20 8.5v9A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-9Z" stroke="currentColor" stroke-width="1.8" />
+            <path d="M9 6V4.8A.8.8 0 0 1 9.8 4h4.4a.8.8 0 0 1 .8.8V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M4 11.5h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+          <span>More Work</span>
+        </a>
+      </div>
+      <div class="site-footer__meta">
+        <p class="site-footer__copyright">&copy; 2026 Derrick Lionardy.</p>
+        <p class="site-footer__note">Built with 🤖⌨️</p>
+      </div>
+    </footer>
 
     <script src="weather-but-fun.js"></script>
   </body>

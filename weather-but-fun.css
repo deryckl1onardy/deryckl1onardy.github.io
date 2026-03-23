@@ -122,7 +122,11 @@ a {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   height: 442px;
-  background: linear-gradient(to bottom, #e1e1e1 51.81%, #c5c5c5);
+  background: linear-gradient(
+    to bottom,
+    rgba(197, 197, 197, 0) 0%,
+    rgba(197, 197, 197, 1) 100%
+  );
   position: relative;
   overflow: hidden;
   animation: float-up 650ms ease-out both;
@@ -659,7 +663,11 @@ a {
     min-height: 0;
     height: auto;
     padding: 16px 16px 0;
-    background: linear-gradient(to bottom, #e1e1e1 51.81%, #c5c5c5);
+    background: linear-gradient(
+      to bottom,
+      rgba(197, 197, 197, 0) 0%,
+      rgba(197, 197, 197, 1) 100%
+    );
     overflow: hidden;
   }
 
@@ -960,35 +968,112 @@ a {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
+.weather-hierarchy-layout {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 232px 195px minmax(0, 577px);
+  gap: 28px;
+  align-items: start;
+}
+
 .weather-hierarchy-row {
   margin-top: 14px;
   display: grid;
-  grid-template-columns: 232px 195px minmax(0, 1fr);
-  gap: 22px;
-  align-items: center;
+  grid-template-columns: 232px 195px minmax(0, 577px);
+  gap: 28px;
+  align-items: start;
 }
 
 .weather-hierarchy-row figure {
   margin: 0;
+  min-width: 0;
 }
 
-.weather-hierarchy-row img {
+.weather-hierarchy-row figure img {
   width: 100%;
+  display: block;
   border-radius: 12px;
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.15),
     0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.weather-hierarchy-row figcaption {
-  margin-top: 10px;
+.weather-hierarchy-row figure figcaption {
+  margin: 14px 0 0;
   text-align: center;
   font-size: 18px;
   color: #373737;
 }
 
-.weather-hierarchy-row p {
+.weather-hierarchy-row > p {
   margin: 0;
+  max-width: none;
+  grid-column: 3;
+}
+
+.weather-hierarchy-row > p + p {
+  margin-top: 14px;
+}
+
+.weather-hierarchy-row > p:first-of-type::after {
+  content: "A weather app can easily become overloaded: temperature, feels like, hourly forecast, daily forecast, humidity, UV, wind, warnings, precipitation, sunrise, sunset, and more. Showing everything equally makes nothing feel important.";
+  display: block;
+  margin-top: 14px;
+}
+
+.weather-hierarchy-row > p:nth-of-type(2) {
+  display: none;
+}
+
+.weather-hierarchy-item {
+  min-width: 0;
+}
+
+.weather-hierarchy-item img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-hierarchy-item-end img {
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.weather-hierarchy-caption {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 18px;
+  color: #373737;
+}
+
+.weather-hierarchy-copy {
+  margin: 0;
+  max-width: none;
+}
+
+.weather-hierarchy-copy p {
+  margin: 0;
+}
+
+.weather-hierarchy-copy p + p {
+  margin-top: 14px;
+}
+
+.weather-hierarchy-followup {
+  margin-top: 18px;
+}
+
+.weather-hierarchy-followup p {
+  margin: 0;
+}
+
+.weather-hierarchy-followup ul {
+  margin-top: 14px;
 }
 
 .weather-widget-row {
@@ -1041,7 +1126,7 @@ a {
 }
 
 .weather-widget-collage .widget-card-5 {
-  grid-column: 1 / span 3;
+  grid-column: 1 / span 2;
   grid-row: 2;
 }
 
@@ -1072,36 +1157,32 @@ a {
   object-position: center 42%;
 }
 
-.weather-reflection-gallery {
+.weather-reflection-panel {
   margin-top: 18px;
+  padding: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 1fr;
-  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) 0.95fr;
+  gap: 22px;
   align-items: start;
+  background: var(--bg);
+  border-radius: 0;
 }
 
-.weather-reflection-main {
+.weather-reflection-store {
   width: 100%;
-  border-radius: 8px;
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.12),
-    0 6px 16px rgba(0, 0, 0, 0.08);
+  display: block;
 }
 
-.weather-reflection-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+.weather-reflection-reviews {
+  column-count: 2;
+  column-gap: 14px;
 }
 
-.weather-reflection-grid img {
+.weather-reflection-reviews img {
   width: 100%;
-  aspect-ratio: 5 / 3;
-  object-fit: cover;
-  border-radius: 6px;
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.12),
-    0 4px 12px rgba(0, 0, 0, 0.08);
+  display: block;
+  break-inside: avoid;
+  margin: 0 0 14px;
 }
 
 @media (max-width: 1200px) {
@@ -1113,12 +1194,14 @@ a {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .weather-hierarchy-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .weather-hierarchy-layout {
+    grid-template-columns: 232px 195px minmax(0, 1fr);
+    gap: 22px;
   }
 
-  .weather-hierarchy-row p {
-    grid-column: 1 / -1;
+  .weather-hierarchy-row {
+    grid-template-columns: 232px 195px minmax(0, 1fr);
+    gap: 22px;
   }
 
   .weather-goal-title-row h3 {
@@ -1150,21 +1233,44 @@ a {
   .weather-case-page .intro-phone {
     width: 280px;
     height: 458px;
+    top: 8px;
   }
 
   .weather-competitor-grid,
   .weather-mood-grid,
   .weather-widget-row,
-  .weather-reflection-gallery {
+  .weather-reflection-panel {
     grid-template-columns: 1fr;
+  }
+
+  .weather-reflection-reviews {
+    column-count: 1;
   }
 
   .weather-competitor img {
     max-width: 360px;
   }
 
+  .weather-hierarchy-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
   .weather-hierarchy-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .weather-hierarchy-copy {
+    grid-column: 1 / -1;
+  }
+
+  .weather-hierarchy-row > p {
+    grid-column: 1 / -1;
+  }
+
+  .weather-hierarchy-caption {
+    font-size: 15px;
   }
 
   .weather-exploration-hero {
