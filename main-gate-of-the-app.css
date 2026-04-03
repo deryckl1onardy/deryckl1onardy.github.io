@@ -1,0 +1,373 @@
+.main-gate-page .intro-stage {
+  width: 1440px;
+  height: 442px;
+}
+
+.main-gate-page .intro-media {
+  width: 560px;
+  height: 442px;
+  left: 0;
+  top: 0;
+  overflow: visible;
+}
+
+.main-gate-page .intro-backdrop {
+  width: 402.5px;
+  height: 381.5px;
+  left: 78px;
+  top: 60.5px;
+}
+
+.main-gate-page .intro-backdrop img {
+  position: static;
+  width: 100%;
+  height: 100%;
+  display: block;
+  max-width: none;
+}
+
+.main-gate-page .intro-phone {
+  width: 845px;
+  aspect-ratio: 2240 / 2000;
+  left: -134px;
+  top: -45px;
+  overflow: visible;
+  transform: none;
+}
+
+.main-gate-page .intro-phone img {
+  position: static;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  display: block;
+}
+
+.main-gate-page .intro-copy {
+  left: 617px;
+  top: 37px;
+  width: 762px;
+}
+
+.main-gate-page .intro-copy p:first-of-type {
+  margin-top: 23px;
+}
+
+.main-gate-page .intro-tags {
+  display: block;
+  margin-top: 19px;
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+.main-gate-page .prototype-btn {
+  margin-top: 28px;
+}
+
+.study-section--phones {
+  margin-top: -4px;
+}
+
+.phone-pair {
+  display: grid;
+  grid-template-columns: 247px 285px;
+  gap: 35px;
+  align-items: end;
+  width: max-content;
+  max-width: 100%;
+}
+
+.phone-pair figure {
+  margin: 0;
+}
+
+.phone-pair img {
+  width: 100%;
+  display: block;
+  border-radius: 36px;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
+}
+
+.phone-pair figure:last-child img {
+  border-radius: 42px;
+}
+
+.main-gate-page .study-section p.section-kicker {
+  margin-top: 18px;
+  color: #000000;
+  font-size: clamp(28px, 3vw, 32px);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.initiative {
+  display: grid;
+  gap: 16px;
+}
+
+.initiative + .initiative {
+  margin-top: 18px;
+}
+
+.main-gate-page .study-section h3.initiative-title {
+  margin: 0;
+  color: #000000;
+  font-size: clamp(22px, 2.5vw, 24px);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.initiative-copy {
+  display: grid;
+  gap: 0;
+}
+
+.initiative-copy p,
+.initiative-copy li {
+  font-size: clamp(18px, 1.95vw, 24px);
+}
+
+.main-gate-page .study-section p.initiative-why {
+  margin: 8px 0 0;
+  color: #000000;
+  font-size: clamp(22px, 2.5vw, 24px);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.initiative-media {
+  max-width: 100%;
+}
+
+.initiative-media img {
+  width: 100%;
+  display: block;
+}
+
+.initiative-media--two {
+  display: grid;
+  grid-template-columns: minmax(0, 394px) minmax(0, 448px);
+  gap: 36px;
+  align-items: start;
+}
+
+.initiative-media--two img {
+  border-radius: 19px;
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.14);
+}
+
+.wallet-compare {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 293px)
+    auto
+    minmax(0, 240px)
+    auto
+    minmax(0, 238px);
+  gap: 18px;
+  align-items: center;
+}
+
+.wallet-compare__item {
+  margin: 0;
+}
+
+.wallet-compare__item img {
+  border-radius: 22px;
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
+}
+
+.wallet-compare__symbol {
+  color: #000000;
+  font-size: clamp(80px, 8vw, 134px);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 361px) minmax(0, 354px);
+  gap: 84px;
+  align-items: start;
+}
+
+.comparison-card {
+  margin: 0;
+}
+
+.comparison-card img {
+  border-radius: 12px;
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
+}
+
+.main-gate-page .study-section p.comparison-metric {
+  margin: 14px 0 0;
+  color: #000000;
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.5;
+}
+
+.comparison-metric strong {
+  font-weight: 700;
+}
+
+.comparison-metric--positive strong {
+  color: #42ab00;
+}
+
+.initiative-media--protection {
+  display: grid;
+  grid-template-columns: minmax(0, 476px) minmax(0, 478px);
+  gap: 19px;
+  align-items: start;
+}
+
+.initiative-media--protection figure {
+  margin: 0;
+}
+
+.initiative-media--protection img {
+  border-radius: 13px;
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
+}
+
+.initiative-media--protection figure:last-child img {
+  border-radius: 11px;
+}
+
+.footmark-grid {
+  display: grid;
+  grid-template-columns: 347fr 279fr 404fr;
+  gap: 18px 12px;
+  max-width: 1053px;
+}
+
+.footmark-grid figure {
+  margin: 0;
+}
+
+.footmark-grid img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
+}
+
+.footmark-grid__a {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.footmark-grid__b {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.footmark-grid__c {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+}
+
+.footmark-grid__d {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.footmark-grid__e {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.main-gate-page #impact h3.impact-outcomes {
+  margin-top: 12px;
+  color: #000000;
+  font-size: clamp(22px, 2.5vw, 24px);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.impact-copy p,
+.impact-copy li {
+  font-size: clamp(18px, 1.95vw, 24px);
+}
+
+@media (max-width: 980px) {
+  .main-gate-page .intro-media {
+    width: min(360px, calc(100% - 8px));
+    height: 320px;
+    margin: 8px auto 0;
+  }
+
+  .main-gate-page .intro-backdrop {
+    width: 280px;
+    height: 265px;
+    left: 50%;
+    top: 48px;
+    transform: translateX(-50%);
+  }
+
+  .main-gate-page .intro-phone {
+    width: min(533px, calc(100% + 96px));
+    left: 50%;
+    top: -24px;
+    transform: translateX(-50%);
+  }
+
+  .main-gate-page .intro-copy {
+    width: 100%;
+  }
+
+  .main-gate-page .intro-tags {
+    font-size: clamp(20px, 4vw, 24px);
+  }
+
+  .phone-pair,
+  .initiative-media--two,
+  .wallet-compare,
+  .comparison-grid,
+  .initiative-media--protection,
+  .footmark-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .phone-pair {
+    gap: 16px;
+  }
+
+  .wallet-compare__symbol {
+    min-height: 0;
+  }
+
+  .comparison-grid {
+    gap: 24px;
+  }
+
+  .footmark-grid__a,
+  .footmark-grid__b,
+  .footmark-grid__c,
+  .footmark-grid__d,
+  .footmark-grid__e {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .phone-pair {
+    grid-template-columns: 1fr;
+    width: min(285px, 100%);
+  }
+
+  .main-gate-page .intro-phone {
+    width: min(468px, calc(100% + 56px));
+  }
+}

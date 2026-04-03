@@ -43,6 +43,8 @@ const projectSnippets = {
     "Redesigned the everyday wallet flow so balances, cards, and quick actions feel easier to scan and use.",
   "Onboarding, Registration & Foreign Account":
     "Streamlined the first-run journey to reduce drop-off and help more users finish activation with confidence.",
+  "Main Gate of the App":
+    "Reframed DANA Home as a strategic gateway for discovery, trust, and clearer entry points across a growing ecosystem.",
   "Highlight of the week":
     "Turned recurring retention content into a lightweight weekly moment with clearer entry points and stronger engagement.",
   "Weather - But Fun":

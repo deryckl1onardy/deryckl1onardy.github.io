@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather - But Fun Case Study | Derrick Portfolio</title>
+    <meta
+      name="description"
+      content="Case study for Weather - But Fun, an atmospheric Android weather app focused on clear forecasting and everyday decision support."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="weather-but-fun.css?v=39" />
+    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="page-transition.css" />
+    <script src="page-transition.js" defer></script>
+    <script src="footer.js" defer></script>
+  </head>
+  <body>
+    <div class="case-page weather-case-page">
+      <header class="case-header">
+        <nav class="pill-nav" aria-label="Primary">
+          <a class="nav-link" href="index.html#home">Home</a>
+          <a class="nav-link is-active" href="index.html#work">Work</a>
+          <a class="nav-link" href="about.html">About</a>
+        </nav>
+      </header>
+
+      <section class="intro" id="summary">
+        <div class="intro-stage">
+          <div class="intro-media" aria-hidden="true">
+            <div class="intro-backdrop">
+              <img src="assets/weather-live/intro-backdrop.svg" alt="" />
+            </div>
+            <div class="intro-phone">
+              <img
+                src="assets/weather-live/intro-phone.png"
+                alt="Weather - But Fun app preview"
+              />
+            </div>
+          </div>
+
+          <div class="intro-copy">
+            <h1>Weather - But Fun</h1>
+            <p>
+              A weather app focused on clearer forecasting, calmer visuals, and
+              more human daily guidance.
+            </p>
+            <p class="intro-tags">
+              <span>Weather</span>
+              <span aria-hidden="true">&bull;</span>
+              <span>2026</span>
+              <span aria-hidden="true">&bull;</span>
+              <span>Android</span>
+            </p>
+            <a
+              class="prototype-btn"
+              href="https://play.google.com/store/apps/details?id=com.derrer.weatherbutfun&hl=id"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Check on Play Store</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <div class="study-shell">
+        <aside class="overview-card">
+          <h2>Overview</h2>
+          <div class="overview-divider"></div>
+          <a class="overview-link" data-target="summary" href="#summary">Summary</a>
+          <a class="overview-link is-active" data-target="opportunity" href="#opportunity"
+            >Opportunity</a
+          >
+          <a class="overview-link" data-target="problem" href="#problem">Problem</a>
+          <a class="overview-link" data-target="evolution" href="#evolution"
+            >Why this matters</a
+          >
+          <a class="overview-link" data-target="goals" href="#goals">Goals</a>
+          <a class="overview-link" data-target="exploration" href="#exploration"
+            >Exploration</a
+          >
+          <a class="overview-link" data-target="final-solution" href="#final-solution"
+            >Final Design</a
+          >
+          <a class="overview-link" data-target="impact" href="#impact">Impact</a>
+        </aside>
+
+        <main class="study-main">
+          <section class="study-section" id="opportunity">
+            <h2>The Opportunity</h2>
+            <p>
+              Weather apps are one of the most frequently used utility products,
+              but many still feel either too technical, too generic, or too
+              visually disconnected from the actual mood of the day.
+            </p>
+            <p>
+              I wanted to explore how a weather app could become more than a
+              place to check numbers, and instead feel like a product that
+              helps people quickly understand the day ahead.
+            </p>
+            <p>
+              This project started as a vibe-coding design exploration around
+              weather visualization, but gradually evolved into a broader
+              product exercise: how to combine forecast data, atmospheric UI,
+              and decision-support features into one cohesive experience.
+            </p>
+          </section>
+
+          <section class="study-section" id="problem">
+            <h2>
+              The Core Problem: Weather apps show information, but they do not
+              always help users make sense of it.
+            </h2>
+            <p>
+              Even when forecast data is available, users still have to do a lot
+              of mental work. They need to interpret whether the weather feels
+              pleasant or harsh, whether a trip will be comfortable, whether
+              rain risk is disruptive, or whether UV exposure matters enough to
+              change behavior.
+            </p>
+            <h3>From a product perspective, the challenge became:</h3>
+            <p>How might I make weather easier to understand at a glance?</p>
+            <p>How might visuals support comprehension instead of decoration?</p>
+            <p>
+              How might the app move beyond static forecast display into
+              practical guidance?
+            </p>
+
+            <h3 class="weather-competitor-heading">
+              How this compares to other weather apps
+            </h3>
+            <div class="weather-competitor-grid">
+              <figure class="weather-competitor weather-competitor-windy">
+                <img src="assets/weather-live/competitor-windy.png" alt="Windy.com weather app" />
+                <figcaption>Windy.com</figcaption>
+              </figure>
+              <figure class="weather-competitor weather-competitor-bmkg">
+                <img src="assets/weather-live/competitor-bmkg.png" alt="Info BMKG weather app" />
+                <figcaption>Info BMKG</figcaption>
+              </figure>
+              <figure class="weather-competitor weather-competitor-weawow">
+                <img src="assets/weather-live/competitor-weawow.png" alt="Weawow weather app" />
+                <figcaption>Weawow</figcaption>
+              </figure>
+              <figure class="weather-competitor weather-competitor-wtf">
+                <img src="assets/weather-live/competitor-wtf.png" alt="What The Forecast app" />
+                <figcaption>What The Forecast</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="study-section" id="evolution">
+            <h2>Why this matters</h2>
+            <p>
+              Weather is a high-frequency use case. People check it before
+              commuting, before traveling, before exercising, before going out,
+              or simply when deciding what kind of day they are stepping into.
+            </p>
+            <p>That means even small usability issues add up quickly:</p>
+            <ul>
+              <li>Too much information slows users down.</li>
+              <li>Weak hierarchy makes scanning harder.</li>
+              <li>Generic visuals reduce memorability.</li>
+              <li>Raw data without interpretation limits usefulness.</li>
+            </ul>
+            <p>
+              A better weather experience is not just about aesthetics. It is
+              about reducing friction in everyday decision-making.
+            </p>
+          </section>
+
+          <section class="study-section" id="goals">
+            <h2>Goals</h2>
+            <div class="goal-grid weather-goal-grid">
+              <article class="goal-card weather-goal-card">
+                <div class="weather-goal-title-row">
+                  <img src="assets/weather-live/goal-understand.svg" alt="" aria-hidden="true" />
+                  <h3>Make it understandable at a glance</h3>
+                </div>
+                <p>
+                  The first screen should answer the most important question
+                  quickly: what kind of day is this?
+                </p>
+              </article>
+
+              <article class="goal-card weather-goal-card">
+                <div class="weather-goal-title-row">
+                  <img
+                    src="assets/weather-live/goal-visual-system.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  <h3>Build a visual system that reflects real conditions</h3>
+                </div>
+                <p>
+                  The interface should feel atmospheric and expressive, but
+                  never at the cost of clarity.
+                </p>
+              </article>
+
+              <article class="goal-card weather-goal-card">
+                <div class="weather-goal-title-row">
+                  <img src="assets/weather-live/goal-support.svg" alt="" aria-hidden="true" />
+                  <h3>Support decisions, not just browsing</h3>
+                </div>
+                <p>
+                  Features should help users decide what to do, not only show
+                  raw forecast values.
+                </p>
+              </article>
+
+              <article class="goal-card weather-goal-card">
+                <div class="weather-goal-title-row">
+                  <img
+                    src="assets/weather-live/goal-foundation.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  <h3>Create a scalable foundation</h3>
+                </div>
+                <p>
+                  The product should support future features like warnings, trip
+                  planning, and smart summaries without feeling fragmented.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="study-section" id="exploration">
+            <h2>Exploration</h2>
+            <p>
+              A large part of the project involved iterative exploration.
+              Rather than locking the UI early, I treated the app as a system
+              that needed to balance expression and utility.
+            </p>
+
+            <article class="weather-exploration-hero">
+              <img
+                src="assets/weather-live/exploration-hero.png"
+                alt="Early Weather - But Fun visual exploration"
+              />
+              <p>
+                Early visual exploration started before the app was fully built.
+                I wanted the visual tone to feel cozy, vibey, and storybook-like.
+              </p>
+            </article>
+
+            <article class="weather-exploration-section">
+              <h3>1. Weather visual language</h3>
+              <p>
+                One major exploration track focused on how different weather
+                conditions should feel. Instead of relying on a single
+                illustration style for all states, I explored condition-specific
+                moods.
+              </p>
+              <div class="weather-mood-grid">
+                <img src="assets/weather-live/mood-sunny.png" alt="Sunny visual exploration" />
+                <img
+                  src="assets/weather-live/mood-thunderstorm.png"
+                  alt="Thunderstorm visual exploration"
+                />
+                <img src="assets/weather-live/mood-overcast.png" alt="Overcast visual exploration" />
+                <img
+                  src="assets/weather-live/mood-few-clouds.png"
+                  alt="Few clouds visual exploration"
+                />
+                <img src="assets/weather-live/mood-clear-sky.png" alt="Clear sky visual exploration" />
+              </div>
+              <ul>
+                <li>Sunny that felt bright but not harsh.</li>
+                <li>
+                  Thunderstorm that felt dramatic without becoming visually
+                  noisy.
+                </li>
+                <li>Overcast that felt heavy and muted.</li>
+                <li>Few clouds that felt soft and breathable.</li>
+              </ul>
+              <p>
+                The design challenge here was subtlety. If the visuals became
+                too decorative, they distracted from the forecast. If they were
+                too restrained, they lost emotional value.
+              </p>
+              <p>
+                The goal became to create a visual language that reinforced the
+                weather state while staying in the background enough for the
+                data to remain primary.
+              </p>
+            </article>
+
+            <article class="weather-exploration-section">
+              <h3>2. Information hierarchy</h3>
+              <div class="weather-hierarchy-row">
+                <figure class="weather-hierarchy-item weather-hierarchy-item-first">
+                  <div class="weather-hierarchy-frame">
+                    <img
+                      src="assets/weather-live/hierarchy-first.png"
+                      alt="First hierarchy exploration"
+                    />
+                  </div>
+                  <figcaption class="weather-hierarchy-caption">
+                    First Exploration
+                  </figcaption>
+                </figure>
+                <figure class="weather-hierarchy-item weather-hierarchy-item-end">
+                  <div class="weather-hierarchy-frame">
+                    <img src="assets/weather-live/hierarchy-end.png" alt="End result hierarchy" />
+                  </div>
+                  <figcaption class="weather-hierarchy-caption">End Result</figcaption>
+                </figure>
+                <div class="weather-hierarchy-copy">
+                  <p>
+                    Another major exploration area was deciding what should be most
+                    prominent.
+                  </p>
+                  <p>
+                    A weather app can easily become overloaded: temperature, feels
+                    like, hourly forecast, daily forecast, humidity, UV, wind,
+                    warnings, precipitation, sunrise, sunset, and more. Showing
+                    everything equally makes nothing feel important.
+                  </p>
+                </div>
+              </div>
+              <div class="weather-hierarchy-followup">
+                <p>
+                  I explored different hierarchy approaches to answer:
+                </p>
+                <ul>
+                  <li>What should users understand first?</li>
+                  <li>Which information is secondary?</li>
+                  <li>When should the UI explain versus simply display?</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="weather-exploration-section">
+              <h3>3. Smart interpretation</h3>
+                <div class="smart-widget-row">
+                  <div class="smart-widget-canvas" aria-hidden="true">
+                    <img class="smart-widget-image smart-widget-image-1" src="assets/weather-live/widget-card-1.png" alt="" />
+                    <img class="smart-widget-image smart-widget-image-2" src="assets/weather-live/widget-card-2.png" alt="" />
+                    <img class="smart-widget-image smart-widget-image-3" src="assets/weather-live/widget-card-3.png" alt="" />
+                    <img class="smart-widget-image smart-widget-image-4" src="assets/weather-live/widget-card-4.png" alt="" />
+                    <img class="smart-widget-image smart-widget-image-5" src="assets/weather-live/widget-card-5.png" alt="" />
+                    <img class="smart-widget-image smart-widget-image-6" src="assets/weather-live/widget-card-6.png" alt="" />
+                  </div>
+                  <p class="smart-widget-label">
+                    Type of OS Widgets Available to choose
+                  </p>
+                </div>
+              <p>
+                One of the most interesting explorations was around
+                interpretation. I wanted the app to move beyond showing weather
+                values and toward helping users make sense of them.
+              </p>
+              <ul>
+                <li>Summarizing conditions in more natural language.</li>
+                <li>Combining current and forecast data for better guidance.</li>
+                <li>Route-aware trip weather summaries.</li>
+                <li>More contextual recommendation cards.</li>
+              </ul>
+              <p>
+                This was especially relevant because weather APIs do not always
+                provide perfect data coverage, especially for route-level or
+                hourly prediction use cases. That forced the design to think
+                carefully about confidence, usefulness, and transparency.
+              </p>
+            </article>
+          </section>
+
+          <section class="study-section" id="final-solution">
+            <h2>Final Design</h2>
+            <div class="weather-final-image">
+              <img
+                src="assets/weather-live/final-design.png"
+                alt="Final Weather - But Fun interface"
+              />
+            </div>
+          </section>
+
+          <section class="study-section" id="impact">
+            <div class="impact-layout">
+              <div class="impact-top">
+                <div class="impact-col">
+                  <article class="impact-block">
+                    <h3>Atmospheric UI</h3>
+                    <p>
+                      Condition-based visuals give the product personality and
+                      make the experience feel aligned with the outside world.
+                    </p>
+                  </article>
+
+                  <article class="impact-block">
+                    <h3>Context-aware home screen</h3>
+                    <p>
+                      The home screen is designed to quickly communicate what
+                      kind of day it is with a readable structure and clear
+                      temperature hierarchy.
+                    </p>
+                  </article>
+                </div>
+
+                <div class="impact-col">
+                  <article class="impact-block">
+                    <h3>Clear forecast hierarchy</h3>
+                    <p>
+                      The layout prioritizes current understanding first, then
+                      unfolds into hourly, daily, and supporting metrics.
+                    </p>
+                  </article>
+
+                  <article class="impact-block">
+                    <h3>Trip weather planning</h3>
+                    <p>
+                      Route and destination context make travel-related weather
+                      feel more relevant, especially for longer journeys.
+                    </p>
+                  </article>
+                </div>
+              </div>
+
+              <article class="impact-bottom">
+                <h3>Contextual assistance</h3>
+                <p>
+                  Smart features translate forecast data into practical advice
+                  for everyday activities and travel, making the app feel more
+                  supportive than a raw data utility.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="study-section reflection" id="reflection">
+            <h2>Reflection</h2>
+            <div class="weather-reflection-panel">
+              <img
+                class="weather-reflection-summary"
+                src="assets/weather-live/reflection-summary.png"
+                alt="Weather - But Fun Play Store listing and user feedback summary"
+              />
+              <div class="weather-reflection-mosaic">
+                <img
+                  class="weather-reflection-card weather-reflection-card-2"
+                  src="assets/weather-live/reflection-image-2.png"
+                  alt="User feedback snippet"
+                />
+                <img
+                  class="weather-reflection-card weather-reflection-card-3"
+                  src="assets/weather-live/reflection-image-3.png"
+                  alt="User feedback snippet"
+                />
+                <img
+                  class="weather-reflection-card weather-reflection-card-4"
+                  src="assets/weather-live/reflection-image-4.png"
+                  alt="User feedback snippet"
+                />
+                <img
+                  class="weather-reflection-card weather-reflection-card-1"
+                  src="assets/weather-live/reflection-image-1.png"
+                  alt="User feedback snippet"
+                />
+                <img
+                  class="weather-reflection-card weather-reflection-card-9"
+                  src="assets/weather-live/reflection-image-9.png"
+                  alt="User feedback snippet"
+                />
+                <img
+                  class="weather-reflection-card weather-reflection-card-5"
+                  src="assets/weather-live/reflection-image-5.png"
+                  alt="User feedback snippet"
+                />
+                <img
+                  class="weather-reflection-card weather-reflection-card-7"
+                  src="assets/weather-live/reflection-image-7.png"
+                  alt="User feedback snippet"
+                />
+                <img
+                  class="weather-reflection-card weather-reflection-card-8"
+                  src="assets/weather-live/reflection-image-8.png"
+                  alt="User feedback snippet"
+                />
+                <img
+                  class="weather-reflection-card weather-reflection-card-6"
+                  src="assets/weather-live/reflection-image-6.png"
+                  alt="User feedback snippet"
+                />
+              </div>
+            </div>
+
+            <p>
+              This project taught me that weather design is not only about
+              presenting data cleanly. It is also about helping users build
+              confidence in their everyday decisions.
+            </p>
+            <p>I learned that:</p>
+            <ul>
+              <li>Delight works best when it reinforces understanding.</li>
+              <li>Hierarchy matters more than how much data is available.</li>
+              <li>Contextual guidance can add real value when it is grounded.</li>
+              <li>Expressive interfaces still need to earn user trust.</li>
+            </ul>
+            <p>
+              Most importantly, I learned that even a familiar category like
+              weather still has room for strong product thinking when the design
+              challenge is framed around human understanding rather than feature
+              parity.
+            </p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="site-footer__links" aria-label="Footer contact links">
+        <a class="site-footer__pill site-footer__pill--wide" href="mailto:derrick@lionardy.com">
+          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 7.4c0-1 .8-1.8 1.8-1.8h14.4c1 0 1.8.8 1.8 1.8v9.2c0 1-.8 1.8-1.8 1.8H4.8c-1 0-1.8-.8-1.8-1.8V7.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="m4.7 7.4 7.3 5.1 7.3-5.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>derrick@lionardy.com</span>
+        </a>
+        <div class="site-footer__pill site-footer__pill--wide">
+          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21s-6-5.53-6-11a6 6 0 1 1 12 0c0 5.47-6 11-6 11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8" />
+          </svg>
+          <span>Jakarta, Indonesia</span>
+        </div>
+        <a class="site-footer__pill site-footer__pill--small" href="https://play.google.com/store/apps/details?id=com.derrer.weatherbutfun&hl=id" target="_blank" rel="noopener noreferrer">
+          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M8 6.5v11l9-5.5-9-5.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="M6 5.5h1.4a.6.6 0 0 1 .6.6v11.8a.6.6 0 0 1-.6.6H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+          <span>Play Store</span>
+        </a>
+        <a class="site-footer__pill site-footer__pill--small" href="index.html#work">
+          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h11A2.5 2.5 0 0 1 20 8.5v9A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-9Z" stroke="currentColor" stroke-width="1.8" />
+            <path d="M9 6V4.8A.8.8 0 0 1 9.8 4h4.4a.8.8 0 0 1 .8.8V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M4 11.5h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+          <span>More Work</span>
+        </a>
+      </div>
+      <div class="site-footer__meta">
+        <p class="site-footer__copyright">&copy; 2026 Derrick Lionardy.</p>
+        <p class="site-footer__note">Built with 🤖⌨️</p>
+      </div>
+    </footer>
+
+    <script src="weather-but-fun.js"></script>
+  </body>
+</html>
+
+
+
+
