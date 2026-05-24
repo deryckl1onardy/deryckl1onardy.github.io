@@ -1,0 +1,33 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 434 279" fill="none">
+  <defs>
+    <linearGradient id="shell" x1="217" y1="4" x2="217" y2="275" gradientUnits="userSpaceOnUse"><stop stop-color="#44484C"/><stop offset=".38" stop-color="#1F2225"/><stop offset="1" stop-color="#101114"/></linearGradient>
+    <linearGradient id="teal" x1="18" y1="18" x2="180" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#99C2BC"/><stop offset="1" stop-color="#7FA7A1"/></linearGradient>
+    <linearGradient id="slot" x1="217" y1="106" x2="217" y2="142" gradientUnits="userSpaceOnUse"><stop stop-color="#111315"/><stop offset="1" stop-color="#232529"/></linearGradient>
+    <linearGradient id="note" x1="272" y1="42" x2="272" y2="60" gradientUnits="userSpaceOnUse"><stop stop-color="#F4ECDD"/><stop offset="1" stop-color="#E0D5C0"/></linearGradient>
+    <pattern id="groove" width="7" height="7" patternUnits="userSpaceOnUse"><path d="M.5 0v7" stroke="#FFF" stroke-opacity=".04"/></pattern>
+    <pattern id="diag" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M.5 0v10" stroke="#FFF" stroke-opacity=".03"/></pattern>
+    <radialGradient id="screw" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 0) scale(7)"><stop stop-color="#767B80"/><stop offset=".4" stop-color="#394046"/><stop offset=".75" stop-color="#171A1E"/><stop offset="1" stop-color="#0A0C0E"/></radialGradient>
+    <radialGradient id="hub" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 0) scale(16)"><stop stop-color="#FAF6ED"/><stop offset=".28" stop-color="#D8D3C9"/><stop offset=".29" stop-color="#0000"/><stop offset=".52" stop-color="#FAF6ED"/><stop offset=".53" stop-color="#0000"/><stop offset="1" stop-color="#0000"/></radialGradient>
+  </defs>
+  <rect x="4" y="4" width="426" height="271" rx="12" fill="url(#shell)"/><rect x="4" y="4" width="426" height="271" rx="12" fill="url(#groove)"/><rect x="4" y="4" width="426" height="271" rx="12" stroke="#596067" stroke-opacity=".55" stroke-width="2"/>
+  <rect x="18" y="18" width="398" height="92" rx="2" fill="#14171A"/>
+  <polygon points="18,18 188,18 108,110 18,110" fill="url(#teal)"/>
+  <polygon points="188,18 314,18 206,110 82,110" fill="#0E1113"/>
+  <polygon points="314,18 416,18 294,110 190,110" fill="#D04F8A"/>
+  <polygon points="358,18 416,18 329,110 270,110" fill="#E3922C"/>
+  <polygon points="389,18 416,18 365,110 337,110" fill="#79AD41"/>
+  <polygon points="414,18 416,18 399,110 383,110" fill="#4E7AC7"/>
+  <rect x="18" y="18" width="398" height="92" rx="2" stroke="#B5BCAC" stroke-opacity=".32"/>
+  <g transform="rotate(-3 272 52)"><rect x="196" y="42" width="152" height="18" rx="2" fill="url(#note)"/></g>
+  <rect x="112" y="99" width="210" height="36" rx="7" fill="url(#slot)" stroke="#CFC7B8" stroke-opacity=".44"/>
+  <rect x="185" y="106" width="64" height="22" rx="2" fill="#23262A"/><path d="M217 106h9l-3 22h-6z" fill="#F1ECE4"/><rect x="247" y="106" width="2" height="22" fill="#C3BAAB" fill-opacity=".42"/>
+  <circle cx="152" cy="117" r="25" fill="#000" fill-opacity=".18"/><circle cx="152" cy="117" r="19" fill="#1E2125"/><circle cx="152" cy="117" r="15" fill="url(#hub)"/><circle cx="152" cy="117" r="4" fill="#FAF6ED"/>
+  <path d="M152 104l2.5 9h-5l2.5-9zm11 12l-8 2.5 2.5-5 5.5 2.5zm-5.5 9l-5.5-8h5l.5 8zm-11 0l.5-8h5l-5.5 8zm-5.5-9l5.5-2.5 2.5 5-8-2.5z" fill="#E5DED0"/>
+  <circle cx="282" cy="117" r="25" fill="#000" fill-opacity=".18"/><circle cx="282" cy="117" r="19" fill="#1E2125"/><circle cx="282" cy="117" r="15" fill="url(#hub)"/><circle cx="282" cy="117" r="4" fill="#FAF6ED"/>
+  <path d="M282 104l2.5 9h-5l2.5-9zm11 12l-8 2.5 2.5-5 5.5 2.5zm-5.5 9l-5.5-8h5l.5 8zm-11 0l.5-8h5l-5.5 8zm-5.5-9l5.5-2.5 2.5 5-8-2.5z" fill="#E5DED0"/>
+  <polygon points="120,176 314,176 346,270 88,270" fill="#17191C"/><polygon points="120,176 314,176 346,270 88,270" fill="url(#diag)"/>
+  <path d="M140 180h154" stroke="#EEF0F2" stroke-opacity=".42" stroke-width="3"/>
+  <circle cx="146" cy="238" r="4.5" fill="#131518"/><circle cx="288" cy="238" r="4.5" fill="#131518"/><circle cx="217" cy="236" r="5" fill="#0E1012"/>
+  <rect x="196" y="220" width="19" height="28" fill="#525862" fill-opacity=".66"/><rect x="220" y="220" width="19" height="28" fill="#525862" fill-opacity=".66"/>
+  <circle cx="28" cy="28" r="7" fill="url(#screw)"/><circle cx="406" cy="28" r="7" fill="url(#screw)"/><circle cx="28" cy="251" r="7" fill="url(#screw)"/><circle cx="406" cy="251" r="7" fill="url(#screw)"/>
+</svg>

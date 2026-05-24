@@ -1512,7 +1512,10 @@ a {
 .weather-reflection-card {
   position: absolute;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: left top;
+  background: #050505;
+  border-radius: 14px;
 }
 
 .weather-reflection-card-2 {

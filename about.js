@@ -8,8 +8,9 @@
   const input = form.querySelector(".chat-message-input");
   const sendButton = form.querySelector(".chat-send");
   const status = document.querySelector("#chat-status");
-  const mailShortcut = form.querySelector(".chat-shortcut-mail");
-  const socialShortcut = form.querySelector(".chat-shortcut-social");
+  const panelRoot = form.closest(".quote-panel") || document;
+  const mailShortcut = panelRoot.querySelector(".chat-shortcut-mail");
+  const socialShortcut = panelRoot.querySelector(".chat-shortcut-social");
   const trackProgress = document.querySelector(".track-progress");
   const trackProgressFill = document.querySelector(".track-progress-fill");
   const trackSlider = document.querySelector(".track-slider");
@@ -17,6 +18,7 @@
   const prevButton = document.querySelector(".control-prev");
   const nextButton = document.querySelector(".control-next");
   const pauseButton = document.querySelector(".control-pause");
+  const nowPlayingPanel = document.querySelector(".now-playing");
 
   const targetEmail = (form.getAttribute("data-target-email") || "").trim();
   const socialUrl = (form.getAttribute("data-social-url") || "").trim();
@@ -69,20 +71,29 @@
     }, 180);
   }
 
-  function openPlayStoreLink() {
-    const playStoreUrl =
-      "https://play.google.com/store/apps/details?id=com.derrer.weatherbutfun&hl=id";
+  function syncPlaybackState() {
+    if (!nowPlayingPanel || !pauseButton) {
+      return;
+    }
+
+    const isPlaying = pauseButton.classList.contains("is-active");
+
+    nowPlayingPanel.classList.toggle("is-playing", isPlaying);
+    pauseButton.setAttribute("aria-pressed", String(isPlaying));
+    pauseButton.setAttribute(
+      "aria-label",
+      isPlaying ? "Pause walkman" : "Play walkman"
+    );
+  }
+
+  function togglePlayback() {
+    if (!pauseButton) {
+      return;
+    }
 
     triggerControlButtonPress(pauseButton);
-    const openedWindow = window.open("", "_blank", "noopener,noreferrer");
-
-    window.setTimeout(() => {
-      if (openedWindow) {
-        openedWindow.location.href = playStoreUrl;
-        return;
-      }
-      window.location.href = playStoreUrl;
-    }, 120);
+    pauseButton.classList.toggle("is-active");
+    syncPlaybackState();
   }
 
   function setStatus(message, state) {
@@ -241,11 +252,12 @@
     input.value = "";
     input.type = "text";
     input.name = "topic";
-    input.placeholder = "";
+    input.placeholder = "tell me about your project";
     input.autocomplete = "off";
     input.minLength = 4;
     input.maxLength = 500;
     input.setAttribute("inputmode", "text");
+    input.setAttribute("aria-label", "Your message");
     input.focus();
     updateSendAvailability();
   }
@@ -260,11 +272,12 @@
     input.value = "";
     input.type = "email";
     input.name = "email";
-    input.placeholder = "";
+    input.placeholder = "your@email.com";
     input.autocomplete = "email";
     input.minLength = 6;
     input.maxLength = 120;
     input.setAttribute("inputmode", "email");
+    input.setAttribute("aria-label", "Your email");
     updateSendAvailability();
   }
 
@@ -301,10 +314,12 @@
     trackSlider.addEventListener("input", syncTrackProgress);
   }
 
+  syncPlaybackState();
+
   if (pauseButton) {
     pauseButton.addEventListener("click", (event) => {
       event.preventDefault();
-      openPlayStoreLink();
+      togglePlayback();
     });
 
     pauseButton.addEventListener("keydown", (event) => {
@@ -312,7 +327,7 @@
         return;
       }
       event.preventDefault();
-      openPlayStoreLink();
+      togglePlayback();
     });
   }
 

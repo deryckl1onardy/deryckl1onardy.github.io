@@ -124,11 +124,6 @@
   gap: 0;
 }
 
-.initiative-copy p,
-.initiative-copy li {
-  font-size: clamp(18px, 1.95vw, 24px);
-}
-
 .main-gate-page .study-section p.initiative-why {
   margin: 8px 0 0;
   color: #000000;
@@ -245,6 +240,7 @@
   grid-template-columns: 347fr 279fr 404fr;
   gap: 18px 12px;
   max-width: 1053px;
+  align-items: start;
 }
 
 .footmark-grid figure {
@@ -253,9 +249,10 @@
 
 .footmark-grid img {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: left top;
   border-radius: 12px;
   box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
 }
@@ -294,9 +291,22 @@
   letter-spacing: -0.01em;
 }
 
-.impact-copy p,
-.impact-copy li {
-  font-size: clamp(18px, 1.95vw, 24px);
+.main-gate-page #impact p,
+.main-gate-page #impact li {
+  margin-top: 14px;
+  color: #373737;
+  font-size: clamp(14px, 1.9vw, 18px);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.main-gate-page #impact ul {
+  margin-top: 10px;
+  padding-left: 24px;
+}
+
+.main-gate-page #impact li + li {
+  margin-top: 14px;
 }
 
 @media (max-width: 980px) {
