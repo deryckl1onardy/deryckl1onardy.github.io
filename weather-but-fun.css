@@ -1243,16 +1243,24 @@ a {
 
 @media (max-width: 960px) {
   .weather-case-page .intro-media {
+    position: relative;
     left: auto;
-    width: calc(100% - 24px);
-    height: min(880px, 120vw);
+    top: auto;
+    width: clamp(220px, 60vw, 320px);
+    height: calc(clamp(220px, 60vw, 320px) * 1.83);
+    margin: 8px auto 0;
     overflow: hidden;
   }
 
   .weather-case-page .intro-phone {
-    width: clamp(560px, 110vw, 880px);
-    height: calc(clamp(560px, 110vw, 880px) * 1.83);
-    top: 0;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    left: auto;
+    top: auto;
+    transform: none;
+    overflow: hidden;
   }
 
   .weather-competitor-grid,
@@ -1612,8 +1620,15 @@ a {
 
 @media (max-width: 960px) {
   .weather-hierarchy-row {
-    grid-template-columns: 232px 195px;
-    gap: 16px 24px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .weather-hierarchy-item-first .weather-hierarchy-frame,
+  .weather-hierarchy-item-end .weather-hierarchy-frame {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 232 / 417;
   }
 
   .weather-hierarchy-copy {
@@ -1792,17 +1807,19 @@ a {
 
 @media (max-width: 960px) {
   .weather-case-page .intro-phone {
-    overflow: visible;
+    overflow: hidden;
   }
 
   .weather-case-page .intro-phone img {
-    inset: 0;
-    left: auto;
-    top: auto;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
+    position: absolute;
+    inset: auto;
+    left: -63.44%;
+    top: -11.3%;
+    width: 228.11%;
+    height: 111.3%;
+    max-width: none;
+    object-fit: fill;
+    object-position: initial;
   }
 
   .weather-widget-row {
@@ -1940,14 +1957,9 @@ a {
   }
 
   .weather-case-page .intro-media {
-    width: calc(100% - 24px);
-    height: min(880px, 120vw);
+    width: clamp(200px, 64vw, 300px);
+    height: calc(clamp(200px, 64vw, 300px) * 1.83);
     overflow: hidden;
-  }
-
-  .weather-case-page .intro-phone {
-    width: clamp(560px, 110vw, 880px);
-    height: calc(clamp(560px, 110vw, 880px) * 1.83);
   }
 
   .study-section h2 {

@@ -109,6 +109,7 @@ a {
   background: #e0e0e0;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
   display: flex;
+  align-items: center;
   gap: 16px;
 }
 
