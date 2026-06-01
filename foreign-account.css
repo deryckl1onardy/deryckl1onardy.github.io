@@ -1,0 +1,204 @@
+/* ============================================================
+   Foreign Account — overrides on top of dana-wallet-v3.css
+   ============================================================ */
+
+/* --- Intro: backdrop (blurred green shape, Figma: left=78 top=104 w=366.5 h=338) --- */
+.fa-intro-backdrop {
+  position: absolute;
+  left: 78px;
+  top: 104px;
+  width: 366.5px;
+  height: 338px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fa-intro-backdrop img {
+  position: absolute;
+  left: -29.11%;
+  top: -31.57%;
+  width: 158.22%;
+  height: 163.14%;
+  max-width: none;
+}
+
+/* --- Intro: phone wrapper (Figma: left=165 top=28 w=303 h=541) --- */
+.fa-intro-phone-wrap {
+  position: absolute;
+  left: 165px;
+  top: 28px;
+  width: 303px;
+  height: 541px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Clipping container */
+.fa-intro-phone {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Image: Figma left=-74.92% top=-9.37% w=248.61% h=124.07% */
+.fa-intro-phone img {
+  position: absolute;
+  left: -74.92%;
+  top: -9.37%;
+  width: 248.61%;
+  height: 124.07%;
+  max-width: none;
+}
+
+.foreign-account-page .intro-copy {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- WIP badge (non-interactive variant of prototype-btn) --- */
+.wip-badge {
+  display: inline-grid;
+  place-items: center;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* --- Sneak Peek section ------------------------------------ */
+.fa-sneak-peek {
+  margin: 60px auto 0;
+  width: min(936px, calc(100% - 32px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.fa-sneak-tag {
+  height: 48px;
+  padding: 7px 24px;
+  border-radius: 40px;
+  background: #efefef;
+  border: 0.5px solid #bababa;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #000;
+  display: grid;
+  place-items: center;
+}
+
+.fa-wip-heading {
+  margin: 0;
+  font-size: clamp(40px, 4.5vw, 64px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #000;
+  text-wrap: balance;
+}
+
+.fa-wip-sub {
+  margin: 0;
+  font-size: clamp(20px, 2.1vw, 30px);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #373737;
+  text-wrap: balance;
+}
+
+/* --- Other projects grid ---------------------------------- */
+.fa-other-projects {
+  margin: 60px auto 0;
+  width: min(1360px, calc(100% - 32px));
+}
+
+.fa-project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 0;
+  justify-content: unset;
+}
+
+/* Make the fixed-width items from styles.css fluid */
+.fa-project-grid .project-item {
+  width: 100%;
+}
+
+.fa-project-grid .mixtape {
+  width: 100%;
+}
+
+.fa-project-grid .project-info {
+  width: 100%;
+  margin-left: 0;
+  height: auto;
+  min-height: 262px;
+}
+
+/* ============================================================
+   Mobile — matches dana-wallet-v3.css breakpoint at 960px
+   ============================================================ */
+@media (max-width: 960px) {
+  /* Intro: switch to stacked flex (mirrors base CSS .intro-stage mobile) */
+  .fa-intro-backdrop {
+    display: none;
+  }
+
+  .fa-intro-phone-wrap {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: clamp(220px, 52vw, 340px);
+    height: calc(clamp(220px, 52vw, 340px) * 1.785);
+    margin: 8px auto 0;
+    order: 2;
+  }
+
+  .fa-intro-phone {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Reset the image to fill the clipping container naturally */
+  .fa-intro-phone img {
+    left: -74.92%;
+    top: -9.37%;
+    width: 248.61%;
+    height: 124.07%;
+  }
+
+  .foreign-account-page .intro-copy {
+    order: 1;
+    padding: 0 16px;
+  }
+
+  /* Sneak peek */
+  .fa-sneak-peek {
+    margin-top: 40px;
+    gap: 16px;
+  }
+
+  .fa-sneak-tag {
+    font-size: 18px;
+    height: 42px;
+  }
+
+  /* Cards: 1 column on mobile, 2 on mid-range */
+  .fa-project-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .fa-other-projects {
+    margin-top: 40px;
+  }
+}
+
+@media (min-width: 560px) and (max-width: 960px) {
+  .fa-project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

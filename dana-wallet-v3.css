@@ -827,7 +827,7 @@ a {
     margin-top: 18px;
     min-height: 0;
     height: auto;
-    padding: 16px 16px 0;
+    padding: 20px 20px 0;
     background: linear-gradient(to bottom, #e1e1e1 51.81%, #c5c5c5);
     overflow: hidden;
   }
@@ -900,7 +900,7 @@ a {
   }
 
   .study-shell {
-    width: calc(100% - 24px);
+    width: calc(100% - 40px);
     margin-top: 18px;
   }
 
