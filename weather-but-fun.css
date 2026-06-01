@@ -606,8 +606,13 @@ a {
 }
 
 @media (max-width: 960px) {
+  /* Prevent any descendant from triggering horizontal scroll on the page */
+  .case-page {
+    overflow-x: clip;
+  }
+
   .study-shell {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 16px;
   }
 
