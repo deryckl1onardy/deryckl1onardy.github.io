@@ -365,9 +365,18 @@
    Responsive
    ============================================================ */
 @media (max-width: 960px) {
-  /* Hide the desktop composite image on mobile — it's not a standalone asset */
+  /* Clip the composite image to just the phone on mobile */
   .ob-intro-bg {
-    display: none;
+    position: relative;
+    order: 2;
+    width: min(280px, 75vw);
+    height: 230px;
+    left: auto;
+    top: auto;
+    margin: 8px auto 0;
+    object-fit: cover;
+    object-position: left center;
+    border-radius: 16px;
   }
 
   .onboarding-page .intro-copy {

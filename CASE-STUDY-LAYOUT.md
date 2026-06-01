@@ -165,15 +165,19 @@ The JS clears the scale transform at ≤980px. This means `.intro-stage` reverts
     width: 100%;
   }
 
-  /* any absolutely-positioned image inside intro-stage must become relative */
+  /* any absolutely-positioned image inside intro-stage must become relative.
+     Use object-fit: cover + object-position to clip to the phone area of
+     the composite image — do NOT use object-fit: contain (shows full image). */
   .[page]-page .intro-[image-element] {
     position: relative;
     order: 2;
-    width: min(360px, calc(100% - 8px));
-    height: auto;
+    width: min(280px, 75vw);
+    height: 230px;
     left: auto; top: auto;
     margin: 8px auto 0;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: left center;
+    border-radius: 16px;
   }
 }
 ```
