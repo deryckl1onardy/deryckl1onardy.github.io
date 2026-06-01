@@ -2,24 +2,19 @@
    Foreign Account — overrides on top of dana-wallet-v3.css
    ============================================================ */
 
-/* --- Intro: backdrop (blurred green shape, Figma: left=78 top=104 w=366.5 h=338) --- */
+/* --- Intro: backdrop — pure CSS blur blob, no image needed --- */
 .fa-intro-backdrop {
   position: absolute;
-  left: 78px;
-  top: 104px;
-  width: 366.5px;
-  height: 338px;
+  left: -30px;
+  top: 0px;
+  width: 580px;
+  height: 552px;
   pointer-events: none;
   z-index: 0;
-}
-
-.fa-intro-backdrop img {
-  position: absolute;
-  left: -29.11%;
-  top: -31.57%;
-  width: 158.22%;
-  height: 163.14%;
-  max-width: none;
+  background: #668079;
+  opacity: 0.4;
+  border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+  filter: blur(53px);
 }
 
 /* --- Intro: phone wrapper (Figma: left=165 top=28 w=303 h=541) --- */
