@@ -1,0 +1,262 @@
+/* Tap/click to zoom lightbox — shared across all case studies.
+   Layout of inline images is untouched; this only adds an overlay on activation. */
+
+.study-main img,
+.intro-stage img:not([aria-hidden="true"]),
+.zoomable {
+  cursor: zoom-in;
+}
+
+.img-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 15, 15, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+.img-lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.img-lightbox__stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-lightbox__img {
+  max-width: 92vw;
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: center center;
+  transition: transform 220ms cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+  cursor: zoom-in;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  border-radius: 6px;
+  background: #1a1a1a;
+}
+
+.img-lightbox.is-zoomed .img-lightbox__img {
+  cursor: grab;
+}
+
+.img-lightbox.is-panning .img-lightbox__img {
+  cursor: grabbing;
+  transition: none;
+}
+
+.img-lightbox__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 150ms ease;
+}
+
+.img-lightbox__close:hover {
+  background: rgba(255,255,255,0.22);
+}
+
+@media (max-width: 640px) {
+  .img-lightbox__close {
+    top: 12px;
+    right: 12px;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Preserve desktop image-row layouts on mobile.
+   Image grids stay horizontal — users tap to zoom for detail instead of
+   having images stack vertically.
+   ------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  /* Prevent grid items / figures from forcing their parents wider than the
+     viewport when intrinsic image sizes exceed available width. */
+  .study-main,
+  .study-main > .study-section,
+  .study-main figure,
+  .study-main .ob-img-panel__col {
+    min-width: 0 !important;
+  }
+  .study-main img {
+    max-width: 100% !important;
+    height: auto;
+  }
+
+  /* onboarding-registration */
+  .onboarding-page .ob-img-panel--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0 8px !important;
+  }
+  .onboarding-page .ob-img-panel--6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 4px !important;
+  }
+  .onboarding-page .ob-otp-row,
+  .onboarding-page .ob-phone-flow {
+    flex-wrap: nowrap !important;
+    justify-content: space-around !important;
+    gap: 4px !important;
+    align-items: flex-start !important;
+  }
+  .onboarding-page .ob-phone-flow img {
+    max-width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+  }
+  .onboarding-page .ob-otp-group {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+  .onboarding-page .ob-otp-screens {
+    gap: 2px !important;
+    width: 100% !important;
+  }
+  .onboarding-page .ob-otp-screens img {
+    flex: 1 1 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 50% !important;
+    height: auto !important;
+    aspect-ratio: 156 / 338 !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+  }
+  .onboarding-page .ob-otp-screens img:only-child {
+    margin: 0 auto !important;
+  }
+  .onboarding-page .ob-arrow {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  /* dana-wallet-v3 */
+  .dana-wallet-v3-page .problem-gallery,
+  .dana-wallet-v3-page .evolution-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    padding: 14px 10px 10px !important;
+  }
+  .dana-wallet-v3-page .small-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  .dana-wallet-v3-page .wide-gallery {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* main-gate-of-the-app */
+  .main-gate-page .initiative-media--two,
+  .main-gate-page .comparison-grid,
+  .main-gate-page .initiative-media--protection {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+  .main-gate-page .footmark-grid {
+    grid-template-columns: 347fr 279fr 404fr !important;
+    gap: 10px 8px !important;
+  }
+
+  /* foreign-account */
+  .foreign-account-page .fa-project-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  /* weather-but-fun */
+  .weather-but-fun-page .weather-competitor-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+  .weather-but-fun-page .weather-competitor-grid figure,
+  .weather-but-fun-page .weather-competitor {
+    min-width: 0 !important;
+    display: block !important;
+    overflow: hidden !important;
+  }
+  .weather-but-fun-page .weather-competitor img,
+  .weather-but-fun-page .weather-competitor-grid img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  .weather-but-fun-page .weather-mood-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+  }
+  .weather-but-fun-page .weather-mood-grid > * {
+    min-width: 0 !important;
+  }
+  .weather-but-fun-page .weather-mood-grid img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  .weather-but-fun-page .weather-hierarchy-row {
+    grid-template-columns: 1fr 1fr minmax(0, 1.4fr) !important;
+    gap: 10px !important;
+  }
+  .weather-but-fun-page .weather-hierarchy-row figure,
+  .weather-but-fun-page .weather-hierarchy-row > * {
+    min-width: 0 !important;
+  }
+  .weather-but-fun-page .weather-hierarchy-row img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  .weather-but-fun-page .weather-widget-row {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) !important;
+    gap: 10px !important;
+  }
+  .weather-but-fun-page .weather-widget-row > * {
+    min-width: 0 !important;
+  }
+  .weather-but-fun-page .weather-widget-row img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* Smaller text inside preserved image rows so captions don't overflow */
+@media (max-width: 640px) {
+  .onboarding-page .ob-img-panel--3 .ob-img-panel__col p,
+  .onboarding-page .ob-img-panel--6 .ob-img-panel__col p,
+  .dana-wallet-v3-page .problem-gallery figcaption,
+  .dana-wallet-v3-page .evolution-gallery figcaption,
+  .main-gate-page .footmark-grid figcaption,
+  .weather-but-fun-page .weather-competitor-grid figcaption,
+  .weather-but-fun-page .weather-hierarchy-row figure figcaption {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+}

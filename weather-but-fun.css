@@ -2067,3 +2067,341 @@ a {
 body.prototype-modal-open {
   overflow: hidden;
 }
+
+/* ── Callout (blockquote with quote marks) ── */
+.weather-callout {
+  background: var(--panel);
+  border: 3px solid var(--panel-border);
+  border-radius: 20px;
+  box-shadow: var(--panel-shadow);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 22px 0 18px;
+}
+
+.weather-callout-open,
+.weather-callout-close {
+  font-size: 92px;
+  font-weight: 700;
+  color: #373737;
+  line-height: 1.5;
+  flex-shrink: 0;
+  width: 52px;
+}
+
+.weather-callout-close {
+  transform: rotate(180deg);
+  display: inline-block;
+  align-self: flex-end;
+}
+
+.weather-callout p {
+  font-size: 32px !important;
+  font-weight: 700;
+  color: #373737;
+  letter-spacing: -0.32px;
+  line-height: 1.5;
+  margin: 0 !important;
+  flex: 1;
+}
+
+@media (max-width: 960px) {
+  .weather-callout { flex-wrap: wrap; }
+  .weather-callout-open,
+  .weather-callout-close { font-size: 56px; width: 36px; }
+  .weather-callout p { font-size: 20px !important; }
+}
+
+@media (max-width: 640px) {
+  .weather-callout p { font-size: clamp(16px, 5vw, 20px) !important; }
+}
+
+/* ── HMW numbered list ─────────────── */
+.weather-hmw-list {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+  counter-reset: hmw;
+}
+
+.weather-hmw-list li {
+  counter-increment: hmw;
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 18px 0;
+  border-top: 1px solid #c1c1c1;
+  font-size: clamp(16px, 1.9vw, 20px);
+  line-height: 1.5;
+  color: #373737;
+  margin: 0;
+}
+
+.weather-hmw-list li:last-child {
+  border-bottom: 1px solid #c1c1c1;
+}
+
+.weather-hmw-list li::before {
+  content: "0" counter(hmw);
+  font-style: italic;
+  font-weight: 500;
+  color: #7a7a7a;
+  flex-shrink: 0;
+  min-width: 36px;
+  font-size: 1.05em;
+}
+
+/* ── Friction bullet list ──────────── */
+.weather-friction-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+}
+
+.weather-friction-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid #c1c1c1;
+  font-size: clamp(16px, 1.9vw, 20px);
+  line-height: 1.5;
+  color: #373737;
+  margin: 0;
+}
+
+.weather-friction-list li::before {
+  content: "—";
+  color: #7a7a7a;
+  flex-shrink: 0;
+}
+
+/* ── Final-design numbered features ── */
+.weather-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+  counter-reset: feat;
+}
+
+.weather-features-list li {
+  counter-increment: feat;
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid #c1c1c1;
+  align-items: baseline;
+  margin: 0;
+}
+
+.weather-features-list li:first-child {
+  border-top: 1px solid #c1c1c1;
+}
+
+.weather-features-list li::before {
+  content: "0" counter(feat);
+  font-style: italic;
+  color: #7a7a7a;
+  font-size: clamp(20px, 2.4vw, 26px);
+  letter-spacing: -0.01em;
+}
+
+.weather-feat-text {
+  min-width: 0;
+}
+
+.weather-feat-text h3 {
+  margin: 0 0 6px;
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.weather-feat-text p {
+  margin: 0;
+  color: #373737;
+  font-size: clamp(15px, 1.7vw, 18px);
+  line-height: 1.55;
+}
+
+/* ── Reflection learnings list ─────── */
+.weather-learnings-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  counter-reset: learn;
+}
+
+.weather-learnings-list li {
+  counter-increment: learn;
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid #c1c1c1;
+  font-size: clamp(16px, 1.9vw, 20px);
+  line-height: 1.55;
+  color: #373737;
+  margin: 0;
+}
+
+.weather-learnings-list li:first-child {
+  border-top: 1px solid #c1c1c1;
+}
+
+.weather-learnings-list li::before {
+  content: "0" counter(learn);
+  font-style: italic;
+  color: #7a7a7a;
+  flex-shrink: 0;
+  min-width: 36px;
+  font-size: 1.05em;
+}
+
+@media (max-width: 640px) {
+  .weather-features-list li {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 12px;
+    padding: 18px 0;
+  }
+
+  .weather-hmw-list li,
+  .weather-learnings-list li {
+    gap: 12px;
+  }
+
+  .weather-hmw-list li::before,
+  .weather-learnings-list li::before {
+    min-width: 28px;
+  }
+}
+
+/* ── Section eyebrow (matches sidebar overview) ── */
+.section-eyebrow {
+  margin: 0 0 12px;
+  font-size: clamp(12px, 1.1vw, 14px);
+  font-weight: 500;
+  color: #7a7a7a;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+}
+
+/* ── AUTHORITATIVE Widget Collage Reset ─────────────────────
+   Defeats the conflicting older grid-layout and percentage-
+   layout rule blocks above. This is the single source of
+   truth for the widget collage layout. */
+.weather-widget-row {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 705px) minmax(0, 234px);
+  gap: 26px;
+  align-items: center;
+}
+
+.weather-widget-collage {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 705px;
+  aspect-ratio: 705.138 / 337.13;
+  grid-template-columns: none;
+  grid-template-rows: none;
+  gap: 0;
+}
+
+.weather-widget-collage .widget-card {
+  position: absolute;
+  display: block;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-widget-collage .widget-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  display: block;
+}
+
+.weather-widget-collage .widget-card-1 {
+  left: 0;
+  top: 0;
+  width: 22.977%;
+  height: 48.224%;
+  grid-column: auto;
+  grid-row: auto;
+  aspect-ratio: auto;
+}
+
+.weather-widget-collage .widget-card-2 {
+  left: 24.676%;
+  top: 0.332%;
+  width: 22.817%;
+  height: 47.893%;
+  grid-column: auto;
+  grid-row: auto;
+  aspect-ratio: auto;
+}
+
+.weather-widget-collage .widget-card-3 {
+  left: 49.203%;
+  top: 0.332%;
+  width: 22.817%;
+  height: 47.893%;
+  grid-column: auto;
+  grid-row: auto;
+  aspect-ratio: auto;
+}
+
+.weather-widget-collage .widget-card-4 {
+  left: 74.171%;
+  top: 0.297%;
+  width: 9.903%;
+  height: 20.548%;
+  grid-column: auto;
+  grid-row: auto;
+  aspect-ratio: auto;
+  border-radius: 14px;
+}
+
+.weather-widget-collage .widget-card-5 {
+  left: 0;
+  top: 51.613%;
+  width: 49.281%;
+  height: 48.386%;
+  grid-column: auto;
+  grid-row: auto;
+  aspect-ratio: auto;
+}
+
+.weather-widget-collage .widget-card-6 {
+  left: 51.196%;
+  top: 51.613%;
+  width: 48.804%;
+  height: 47.893%;
+  grid-column: auto;
+  grid-row: auto;
+  aspect-ratio: auto;
+}
+
+@media (max-width: 1200px) {
+  .weather-widget-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .weather-widget-collage {
+    max-width: 705px;
+  }
+}

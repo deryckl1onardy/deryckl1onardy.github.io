@@ -14,11 +14,13 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="weather-but-fun.css?v=4" />
+    <link rel="stylesheet" href="weather-but-fun.css?v=5" />
     <link rel="stylesheet" href="page-transition.css" />
+    <link rel="stylesheet" href="image-lightbox.css?v=2" />
     <script src="page-transition.js" defer></script>
+    <script src="image-lightbox.js?v=2" defer></script>
   </head>
-  <body>
+  <body class="weather-but-fun-page">
     <div class="case-page weather-case-page">
       <header class="case-header">
         <nav class="pill-nav" aria-label="Primary">
@@ -98,12 +100,14 @@
           <a class="overview-link" data-target="final-solution" href="#final-solution"
             >Final Design</a
           >
-          <a class="overview-link" data-target="impact" href="#impact">Impact</a>
+          <a class="overview-link" data-target="reflection" href="#reflection"
+            >Reflection</a
+          >
         </aside>
 
         <main class="study-main">
           <section class="study-section" id="opportunity">
-            <h2>The Opportunity</h2>
+            <h2>Opportunity</h2>
             <p>
               Weather apps are one of the most frequently used utility products,
               but many still feel either too technical, too generic, or too
@@ -115,31 +119,10 @@
               helps people quickly understand the day ahead.
             </p>
             <p>
-              This project started as a vibe coding design exploration around
+              This project started as a vibe-coding design exploration around
               weather visualization, but gradually evolved into a broader
               product exercise: how to combine forecast data, atmospheric UI,
-              and decision support features into one cohesive experience.
-            </p>
-          </section>
-
-          <section class="study-section" id="problem">
-            <h2>
-              The Core Problem: Weather apps show information, but they do not
-              always help users make sense of it.
-            </h2>
-            <p>
-              Even when forecast data is available, users still have to do a lot
-              of mental work. They need to interpret whether the weather feels
-              pleasant or harsh, whether a trip will be comfortable, whether
-              rain risk is disruptive, or whether UV exposure matters enough to
-              change behavior.
-            </p>
-            <h3>From a product perspective, the challenge became:</h3>
-            <p>How might I make weather easier to understand at a glance?</p>
-            <p>How might visuals support comprehension instead of decoration?</p>
-            <p>
-              How might the app move beyond static forecast display into
-              practical guidance?
+              and decision-support features into one cohesive experience.
             </p>
 
             <h3 class="weather-competitor-heading">
@@ -148,28 +131,28 @@
             <div class="weather-competitor-grid">
               <figure class="weather-competitor weather-competitor-windy">
                 <img
-                  src="https://www.figma.com/api/mcp/asset/ed95e57f-6d9f-4358-b43a-29271862c7a3"
+                  src="assets/weather/competitor-windy.png"
                   alt="Windy.com weather app"
                 />
                 <figcaption>Windy.com</figcaption>
               </figure>
               <figure class="weather-competitor weather-competitor-bmkg">
                 <img
-                  src="https://www.figma.com/api/mcp/asset/9508b163-979d-408e-9489-9ff8ec4d89f5"
+                  src="assets/weather/competitor-bmkg.png"
                   alt="Info BMKG weather app"
                 />
                 <figcaption>Info BMKG</figcaption>
               </figure>
               <figure class="weather-competitor weather-competitor-weawow">
                 <img
-                  src="https://www.figma.com/api/mcp/asset/57d5ff37-0eef-45fd-86ba-f3a917301747"
+                  src="assets/weather/competitor-weawow.png"
                   alt="Weawow weather app"
                 />
                 <figcaption>Weawow</figcaption>
               </figure>
               <figure class="weather-competitor weather-competitor-wtf">
                 <img
-                  src="https://www.figma.com/api/mcp/asset/00c4a018-971b-4414-9609-82464e03d92d"
+                  src="assets/weather/competitor-wtf.png"
                   alt="What The Forecast app"
                 />
                 <figcaption>What The Forecast</figcaption>
@@ -177,15 +160,49 @@
             </div>
           </section>
 
+          <section class="study-section" id="problem">
+            <h2>Problem</h2>
+
+            <blockquote class="weather-callout">
+              <span class="weather-callout-open">"</span>
+              <p>
+                Weather apps show information, but they do not always help
+                users make sense of it.
+              </p>
+              <span class="weather-callout-close">"</span>
+            </blockquote>
+
+            <p>
+              Even when forecast data is accurate, users still have to do a lot
+              of mental work. They need to interpret whether the weather feels
+              pleasant or harsh, whether a trip will be comfortable, whether
+              rain risk is disruptive, or whether UV exposure matters enough to
+              change behavior.
+            </p>
+            <p>From a product perspective, the challenge became:</p>
+
+            <ol class="weather-hmw-list">
+              <li>How might I make weather easier to understand at a glance?</li>
+              <li>
+                How might visuals support comprehension instead of just
+                decoration?
+              </li>
+              <li>
+                How might the app move beyond static forecast display into
+                practical guidance?
+              </li>
+            </ol>
+          </section>
+
           <section class="study-section" id="evolution">
             <h2>Why this matters</h2>
             <p>
-              Weather is a high frequency use case. People check it before
-              commuting, before traveling, before exercising, before going out,
-              or simply when deciding what kind of day they are stepping into.
+              People check weather before commuting, before traveling, before
+              exercising, before going out, or simply when deciding what kind
+              of day they're stepping into.
             </p>
-            <p>That means even small usability issues add up quickly:</p>
-            <ul>
+            <p>That means even small usability issues compound quickly:</p>
+            <ul class="weather-friction-list">
               <li>Too much information slows users down.</li>
               <li>Weak hierarchy makes scanning harder.</li>
               <li>Generic visuals reduce memorability.</li>
@@ -203,7 +220,7 @@
               <article class="goal-card weather-goal-card">
                 <div class="weather-goal-title-row">
                   <img
-                    src="https://www.figma.com/api/mcp/asset/186e752a-d3e7-4aaa-ac5e-08024887164d"
+                    src="assets/weather/goal-understand.svg"
                     alt=""
                     aria-hidden="true"
                   />
@@ -218,7 +235,7 @@
               <article class="goal-card weather-goal-card">
                 <div class="weather-goal-title-row">
                   <img
-                    src="https://www.figma.com/api/mcp/asset/65e35cc2-146c-44ee-97b3-8ce91ae0528b"
+                    src="assets/weather/goal-visual-system.svg"
                     alt=""
                     aria-hidden="true"
                   />
@@ -233,7 +250,7 @@
               <article class="goal-card weather-goal-card">
                 <div class="weather-goal-title-row">
                   <img
-                    src="https://www.figma.com/api/mcp/asset/2c06e5c8-dc48-4ff0-98ab-f9e9c059084a"
+                    src="assets/weather/goal-support.svg"
                     alt=""
                     aria-hidden="true"
                   />
@@ -248,7 +265,7 @@
               <article class="goal-card weather-goal-card">
                 <div class="weather-goal-title-row">
                   <img
-                    src="https://www.figma.com/api/mcp/asset/4c3e5af6-2ab5-4ded-bf37-5cfefa6d9003"
+                    src="assets/weather/goal-foundation.svg"
                     alt=""
                     aria-hidden="true"
                   />
@@ -272,7 +289,7 @@
 
             <article class="weather-exploration-hero">
               <img
-                src="https://www.figma.com/api/mcp/asset/04209a86-186c-4491-b87f-05e249765797"
+                src="assets/weather/exploration-hero.png"
                 alt="Early Weather - But Fun visual exploration"
               />
               <p>
@@ -284,67 +301,61 @@
             <article class="weather-exploration-section">
               <h3>1. Weather visual language</h3>
               <p>
-                One major exploration track focused on how different weather
-                conditions should feel. Instead of relying on a single
-                illustration style for all states, I explored condition-specific
-                moods.
+                Instead of relying on a single illustration style for all
+                states, I explored how different weather conditions should
+                feel, using condition-specific moods rather than one uniform
+                look.
               </p>
               <div class="weather-mood-grid">
                 <img
-                  src="https://www.figma.com/api/mcp/asset/f1fcbb22-92c3-422b-80d9-df7ba4ce97d6"
+                  src="assets/weather/mood-sunny.png"
                   alt="Sunny visual exploration"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/b3d9c2c9-c25a-422d-a457-00f8d5f2feaf"
+                  src="assets/weather/mood-thunderstorm.png"
                   alt="Thunderstorm visual exploration"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/eb8f2224-44f5-49c9-9850-de1a47d88ac4"
+                  src="assets/weather/mood-overcast.png"
                   alt="Overcast visual exploration"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/c341dd40-f25d-4fce-945f-53f690ac0c06"
+                  src="assets/weather/mood-few-clouds.png"
                   alt="Few clouds visual exploration"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/ded13905-29f2-4e15-b19f-f30b1a222b45"
+                  src="assets/weather/mood-clear-sky.png"
                   alt="Clear sky visual exploration"
                 />
               </div>
-              <ul>
-                <li>Sunny that felt bright but not harsh.</li>
-                <li>
-                  Thunderstorm that felt dramatic without becoming visually
-                  noisy.
-                </li>
-                <li>Overcast that felt heavy and muted.</li>
-                <li>Few clouds that felt soft and breathable.</li>
-              </ul>
               <p>
-                The design challenge here was subtlety. If the visuals became
-                too decorative, they distracted from the forecast. If they were
-                too restrained, they lost emotional value.
-              </p>
-              <p>
-                The goal became to create a visual language that reinforced the
-                weather state while staying in the background enough for the
-                data to remain primary.
+                The design challenge was subtlety. Too decorative, and visuals
+                distract from the forecast. Too restrained, they lose emotional
+                value. The goal was a visual language that reinforces the
+                weather state while staying in the background enough for data
+                to remain primary.
               </p>
             </article>
 
             <article class="weather-exploration-section">
               <h3>2. Information hierarchy</h3>
+              <p>
+                A weather app can easily become overloaded: temperature, feels
+                like, hourly forecast, daily, humidity, UV, wind, warnings,
+                precipitation, sunrise, sunset, and more. Showing everything
+                equally makes nothing feel important.
+              </p>
               <div class="weather-hierarchy-row">
                 <figure>
                   <img
-                    src="https://www.figma.com/api/mcp/asset/db9d1659-ff5a-476e-a6ad-5db173c76fd7"
+                    src="assets/weather/hierarchy-first.png"
                     alt="First information hierarchy exploration"
                   />
                   <figcaption>First Exploration</figcaption>
                 </figure>
                 <figure>
                   <img
-                    src="https://www.figma.com/api/mcp/asset/bb12f028-1163-4313-91a1-64bf347b01fe"
+                    src="assets/weather/hierarchy-end.png"
                     alt="End-result hierarchy design"
                   />
                   <figcaption>End Result</figcaption>
@@ -360,59 +371,66 @@
                   Showing everything equally makes nothing feel important.
                 </p>
               </div>
-              <p>I explored different hierarchy approaches to answer:</p>
-              <ul>
-                <li>What should users understand first?</li>
-                <li>Which information is secondary?</li>
-                <li>When should the UI explain versus simply display?</li>
-              </ul>
+              <p>I explored different hierarchy approaches to answer: What should users understand first? Which information is secondary? When should the UI explain versus simply display?</p>
             </article>
 
             <article class="weather-exploration-section">
               <h3>3. Smart interpretation</h3>
+              <p>
+                One of the most interesting explorations was around
+                interpretation, helping users make sense of weather values
+                rather than just displaying them.
+              </p>
               <div class="weather-widget-row">
                 <div class="weather-widget-collage">
-                  <img
-                    class="widget-card widget-card-1"
-                    src="https://www.figma.com/api/mcp/asset/bce956fc-2dda-4e46-a3cd-3aa91f0b8986"
-                    alt="Compact weather widget option"
-                  />
-                  <img
-                    class="widget-card widget-card-2"
-                    src="https://www.figma.com/api/mcp/asset/cfe40e50-e460-4ed8-ae31-b525570714bc"
-                    alt="Detailed weather widget option"
-                  />
-                  <img
-                    class="widget-card widget-card-3"
-                    src="https://www.figma.com/api/mcp/asset/bc633d52-a8ad-4d94-ad8e-372e48f243a2"
-                    alt="Minimal weather widget option"
-                  />
-                  <img
-                    class="widget-card widget-card-5"
-                    src="https://www.figma.com/api/mcp/asset/63c16e2d-bce9-4aa6-842a-76066e09ae54"
-                    alt="Wide weather widget option"
-                  />
+                  <div class="widget-card widget-card-1">
+                    <img
+                      src="assets/weather/widget-card-1.png"
+                      alt="Compact weather widget option"
+                    />
+                  </div>
+                  <div class="widget-card widget-card-2">
+                    <img
+                      src="assets/weather/widget-card-2.png"
+                      alt="Detailed weather widget option"
+                    />
+                  </div>
+                  <div class="widget-card widget-card-3">
+                    <img
+                      src="assets/weather/widget-card-3.png"
+                      alt="Minimal weather widget option"
+                    />
+                  </div>
+                  <div class="widget-card widget-card-4">
+                    <img
+                      src="assets/weather/widget-card-4.png"
+                      alt="App icon weather widget"
+                    />
+                  </div>
+                  <div class="widget-card widget-card-5">
+                    <img
+                      src="assets/weather/widget-card-5.png"
+                      alt="Wide weather widget option"
+                    />
+                  </div>
+                  <div class="widget-card widget-card-6">
+                    <img
+                      src="assets/weather/widget-card-6.png"
+                      alt="Forecast row weather widget option"
+                    />
+                  </div>
                 </div>
                 <p class="weather-widget-label">
-                  Type of OS Widgets Available to choose
+                  Types of OS widgets available to choose from
                 </p>
               </div>
               <p>
-                One of the most interesting explorations was around
-                interpretation. I wanted the app to move beyond showing weather
-                values and toward helping users make sense of them.
-              </p>
-              <ul>
-                <li>Summarizing conditions in more natural language.</li>
-                <li>Combining current and forecast data for better guidance.</li>
-                <li>Route-aware trip weather summaries.</li>
-                <li>More contextual recommendation cards.</li>
-              </ul>
-              <p>
-                This was especially relevant because weather APIs do not always
-                provide perfect data coverage, especially for route-level or
-                hourly prediction use cases. That forced the design to think
-                carefully about confidence, usefulness, and transparency.
+                Directions explored: summarizing conditions in natural
+                language; combining current and forecast data for better
+                guidance; route-aware trip weather summaries; contextual
+                recommendation cards. Weather APIs don't always have perfect
+                data coverage, so the design had to think carefully about
+                confidence, usefulness, and transparency.
               </p>
             </article>
           </section>
@@ -421,62 +439,61 @@
             <h2>Final Design</h2>
             <div class="weather-final-image">
               <img
-                src="https://www.figma.com/api/mcp/asset/1a5d447b-be28-42f2-8348-9d02d74c7a89"
+                src="assets/weather/final-design.png"
                 alt="Final Weather - But Fun interface"
               />
             </div>
-          </section>
-
-          <section class="study-section" id="impact">
-            <div class="impact-layout">
-              <div class="impact-top">
-                <div class="impact-col">
-                  <article class="impact-block">
-                    <h3>Atmospheric UI</h3>
-                    <p>
-                      Condition-based visuals give the product personality and
-                      make the experience feel aligned with the outside world.
-                    </p>
-                  </article>
-
-                  <article class="impact-block">
-                    <h3>Context-aware home screen</h3>
-                    <p>
-                      The home screen is designed to quickly communicate what
-                      kind of day it is with a readable structure and clear
-                      temperature hierarchy.
-                    </p>
-                  </article>
+            <ol class="weather-features-list">
+              <li>
+                <div class="weather-feat-text">
+                  <h3>Atmospheric UI</h3>
+                  <p>
+                    Condition-based visuals give the product personality and
+                    make the experience feel aligned with the outside world,
+                    without competing with the data.
+                  </p>
                 </div>
-
-                <div class="impact-col">
-                  <article class="impact-block">
-                    <h3>Clear forecast hierarchy</h3>
-                    <p>
-                      The layout prioritizes current understanding first, then
-                      unfolds into hourly, daily, and supporting metrics.
-                    </p>
-                  </article>
-
-                  <article class="impact-block">
-                    <h3>Trip weather planning</h3>
-                    <p>
-                      Route and destination context make travel-related weather
-                      feel more relevant, especially for longer journeys.
-                    </p>
-                  </article>
+              </li>
+              <li>
+                <div class="weather-feat-text">
+                  <h3>Context-aware home screen</h3>
+                  <p>
+                    Designed to quickly communicate what kind of day it is,
+                    with a readable structure and clear temperature
+                    hierarchy, not a data dump.
+                  </p>
                 </div>
-              </div>
-
-              <article class="impact-bottom">
-                <h3>Contextual assistance</h3>
-                <p>
-                  Smart features translate forecast data into practical advice
-                  for everyday activities and travel, making the app feel more
-                  supportive than a raw data utility.
-                </p>
-              </article>
-            </div>
+              </li>
+              <li>
+                <div class="weather-feat-text">
+                  <h3>Clear forecast hierarchy</h3>
+                  <p>
+                    The layout prioritizes current understanding first, then
+                    unfolds into hourly, daily, and supporting metrics in a
+                    predictable rhythm.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="weather-feat-text">
+                  <h3>Trip weather planning</h3>
+                  <p>
+                    Route and destination context make travel-related weather
+                    feel more relevant, especially for longer journeys.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="weather-feat-text">
+                  <h3>Contextual assistance</h3>
+                  <p>
+                    Smart features translate forecast data into practical
+                    advice for everyday activities and travel, making the app
+                    feel more supportive than a raw data utility.
+                  </p>
+                </div>
+              </li>
+            </ol>
           </section>
 
           <section class="study-section reflection" id="reflection">
@@ -484,44 +501,44 @@
             <div class="weather-reflection-panel">
               <img
                 class="weather-reflection-store"
-                src="https://www.figma.com/api/mcp/asset/e9f9ca10-0377-43ec-b78e-df3c65c612a1"
+                src="assets/weather/reflection-summary.png"
                 alt="Weather - But Fun Play Store listing"
               />
               <div class="weather-reflection-reviews">
                 <img
-                  src="https://www.figma.com/api/mcp/asset/920fbc09-6ff8-4f92-9ef6-8148ffc36d2a"
+                  src="assets/weather/reflection-image-1.png"
                   alt="User feedback snippet"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/7a2844a8-1846-4714-acef-3f7dffc40515"
+                  src="assets/weather/reflection-image-2.png"
                   alt="User feedback snippet"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/a593a0b8-14c4-44fa-b42b-0dd60e72736c"
+                  src="assets/weather/reflection-image-3.png"
                   alt="User feedback snippet"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/73b06a28-bd15-4b93-ad0c-c2d572643456"
+                  src="assets/weather/reflection-image-4.png"
                   alt="User feedback snippet"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/1270aff3-f78f-4bec-8ac3-61a59a688e4e"
+                  src="assets/weather/reflection-image-5.png"
                   alt="User feedback snippet"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/35d24ba3-8285-4538-8dd2-881a72bbb133"
+                  src="assets/weather/reflection-image-6.png"
                   alt="User feedback snippet"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/959ab1a1-042b-4400-8f09-b94f3e40bc82"
+                  src="assets/weather/reflection-image-7.png"
                   alt="User feedback snippet"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/367007f3-a239-4434-bbc5-b316d7b0ccff"
+                  src="assets/weather/reflection-image-8.png"
                   alt="User feedback snippet"
                 />
                 <img
-                  src="https://www.figma.com/api/mcp/asset/f1faeef4-39e6-4be2-a0bc-378b59debc94"
+                  src="assets/weather/reflection-image-9.png"
                   alt="User feedback snippet"
                 />
               </div>
@@ -532,19 +549,29 @@
               presenting data cleanly. It is also about helping users build
               confidence in their everyday decisions.
             </p>
-            <p>I learned that:</p>
-            <ul>
-              <li>Delight works best when it reinforces understanding.</li>
-              <li>Hierarchy matters more than how much data is available.</li>
-              <li>Contextual guidance can add real value when it is grounded.</li>
-              <li>Expressive interfaces still need to earn user trust.</li>
-            </ul>
-            <p>
-              Most importantly, I learned that even a familiar category like
-              weather still has room for strong product thinking when the design
-              challenge is framed around human understanding rather than feature
-              parity.
-            </p>
+            <ol class="weather-learnings-list">
+              <li>
+                Delight works best when it reinforces understanding, not when
+                it competes with it.
+              </li>
+              <li>
+                Hierarchy matters more than how much data is available. More
+                data ≠ more useful.
+              </li>
+              <li>
+                Contextual guidance can add real value when it is grounded in
+                data the app actually has.
+              </li>
+              <li>
+                Expressive interfaces still need to earn user trust. Beauty is
+                not a substitute for reliability.
+              </li>
+              <li>
+                Even a familiar category like weather has room for strong
+                product thinking when framed around human understanding rather
+                than feature parity.
+              </li>
+            </ol>
           </section>
         </main>
       </div>
