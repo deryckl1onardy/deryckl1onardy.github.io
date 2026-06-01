@@ -14,11 +14,9 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="weather-but-fun.css?v=39" />
-    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="weather-but-fun.css" />
     <link rel="stylesheet" href="page-transition.css" />
     <script src="page-transition.js" defer></script>
-    <script src="footer.js" defer></script>
   </head>
   <body>
     <div class="case-page weather-case-page">
@@ -34,7 +32,10 @@
         <div class="intro-stage">
           <div class="intro-media" aria-hidden="true">
             <div class="intro-backdrop">
-              <img src="assets/weather/intro-backdrop.svg" alt="" />
+              <img
+                src="assets/weather/intro-backdrop.svg"
+                alt=""
+              />
             </div>
             <div class="intro-phone">
               <img
@@ -57,13 +58,23 @@
               <span aria-hidden="true">&bull;</span>
               <span>Android</span>
             </p>
-            <a
-              class="prototype-btn"
-              href="https://play.google.com/store/apps/details?id=com.derrer.weatherbutfun&hl=id"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Check on Play Store</a
-            >
+            <div class="intro-btn-row">
+              <a
+                class="prototype-btn"
+                href="https://play.google.com/store/apps/details?id=com.derrer.weatherbutfun&hl=id"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Check on Play Store</a
+              >
+              <a
+                class="prototype-btn"
+                href="assets/weather-prototype.mp4"
+                data-prototype-trigger
+                aria-haspopup="dialog"
+                aria-controls="prototype-modal"
+                >View Prototype</a
+              >
+            </div>
           </div>
         </div>
       </section>
@@ -104,10 +115,10 @@
               helps people quickly understand the day ahead.
             </p>
             <p>
-              This project started as a vibe-coding design exploration around
+              This project started as a vibe coding design exploration around
               weather visualization, but gradually evolved into a broader
               product exercise: how to combine forecast data, atmospheric UI,
-              and decision-support features into one cohesive experience.
+              and decision support features into one cohesive experience.
             </p>
           </section>
 
@@ -136,19 +147,31 @@
             </h3>
             <div class="weather-competitor-grid">
               <figure class="weather-competitor weather-competitor-windy">
-                <img src="assets/weather/competitor-windy.png" alt="Windy.com weather app" />
+                <img
+                  src="https://www.figma.com/api/mcp/asset/ed95e57f-6d9f-4358-b43a-29271862c7a3"
+                  alt="Windy.com weather app"
+                />
                 <figcaption>Windy.com</figcaption>
               </figure>
               <figure class="weather-competitor weather-competitor-bmkg">
-                <img src="assets/weather/competitor-bmkg.png" alt="Info BMKG weather app" />
+                <img
+                  src="https://www.figma.com/api/mcp/asset/9508b163-979d-408e-9489-9ff8ec4d89f5"
+                  alt="Info BMKG weather app"
+                />
                 <figcaption>Info BMKG</figcaption>
               </figure>
               <figure class="weather-competitor weather-competitor-weawow">
-                <img src="assets/weather/competitor-weawow.png" alt="Weawow weather app" />
+                <img
+                  src="https://www.figma.com/api/mcp/asset/57d5ff37-0eef-45fd-86ba-f3a917301747"
+                  alt="Weawow weather app"
+                />
                 <figcaption>Weawow</figcaption>
               </figure>
               <figure class="weather-competitor weather-competitor-wtf">
-                <img src="assets/weather/competitor-wtf.png" alt="What The Forecast app" />
+                <img
+                  src="https://www.figma.com/api/mcp/asset/00c4a018-971b-4414-9609-82464e03d92d"
+                  alt="What The Forecast app"
+                />
                 <figcaption>What The Forecast</figcaption>
               </figure>
             </div>
@@ -157,7 +180,7 @@
           <section class="study-section" id="evolution">
             <h2>Why this matters</h2>
             <p>
-              Weather is a high-frequency use case. People check it before
+              Weather is a high frequency use case. People check it before
               commuting, before traveling, before exercising, before going out,
               or simply when deciding what kind of day they are stepping into.
             </p>
@@ -179,7 +202,11 @@
             <div class="goal-grid weather-goal-grid">
               <article class="goal-card weather-goal-card">
                 <div class="weather-goal-title-row">
-                  <img src="assets/weather/goal-understand.svg" alt="" aria-hidden="true" />
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/186e752a-d3e7-4aaa-ac5e-08024887164d"
+                    alt=""
+                    aria-hidden="true"
+                  />
                   <h3>Make it understandable at a glance</h3>
                 </div>
                 <p>
@@ -191,7 +218,7 @@
               <article class="goal-card weather-goal-card">
                 <div class="weather-goal-title-row">
                   <img
-                    src="assets/weather/goal-visual-system.svg"
+                    src="https://www.figma.com/api/mcp/asset/65e35cc2-146c-44ee-97b3-8ce91ae0528b"
                     alt=""
                     aria-hidden="true"
                   />
@@ -205,7 +232,11 @@
 
               <article class="goal-card weather-goal-card">
                 <div class="weather-goal-title-row">
-                  <img src="assets/weather/goal-support.svg" alt="" aria-hidden="true" />
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/2c06e5c8-dc48-4ff0-98ab-f9e9c059084a"
+                    alt=""
+                    aria-hidden="true"
+                  />
                   <h3>Support decisions, not just browsing</h3>
                 </div>
                 <p>
@@ -217,7 +248,7 @@
               <article class="goal-card weather-goal-card">
                 <div class="weather-goal-title-row">
                   <img
-                    src="assets/weather/goal-foundation.svg"
+                    src="https://www.figma.com/api/mcp/asset/4c3e5af6-2ab5-4ded-bf37-5cfefa6d9003"
                     alt=""
                     aria-hidden="true"
                   />
@@ -241,7 +272,7 @@
 
             <article class="weather-exploration-hero">
               <img
-                src="assets/weather/exploration-hero.png"
+                src="https://www.figma.com/api/mcp/asset/04209a86-186c-4491-b87f-05e249765797"
                 alt="Early Weather - But Fun visual exploration"
               />
               <p>
@@ -259,17 +290,26 @@
                 moods.
               </p>
               <div class="weather-mood-grid">
-                <img src="assets/weather/mood-sunny.png" alt="Sunny visual exploration" />
                 <img
-                  src="assets/weather/mood-thunderstorm.png"
+                  src="https://www.figma.com/api/mcp/asset/f1fcbb22-92c3-422b-80d9-df7ba4ce97d6"
+                  alt="Sunny visual exploration"
+                />
+                <img
+                  src="https://www.figma.com/api/mcp/asset/b3d9c2c9-c25a-422d-a457-00f8d5f2feaf"
                   alt="Thunderstorm visual exploration"
                 />
-                <img src="assets/weather/mood-overcast.png" alt="Overcast visual exploration" />
                 <img
-                  src="assets/weather/mood-few-clouds.png"
+                  src="https://www.figma.com/api/mcp/asset/eb8f2224-44f5-49c9-9850-de1a47d88ac4"
+                  alt="Overcast visual exploration"
+                />
+                <img
+                  src="https://www.figma.com/api/mcp/asset/c341dd40-f25d-4fce-945f-53f690ac0c06"
                   alt="Few clouds visual exploration"
                 />
-                <img src="assets/weather/mood-clear-sky.png" alt="Clear sky visual exploration" />
+                <img
+                  src="https://www.figma.com/api/mcp/asset/ded13905-29f2-4e15-b19f-f30b1a222b45"
+                  alt="Clear sky visual exploration"
+                />
               </div>
               <ul>
                 <li>Sunny that felt bright but not harsh.</li>
@@ -295,63 +335,68 @@
             <article class="weather-exploration-section">
               <h3>2. Information hierarchy</h3>
               <div class="weather-hierarchy-row">
-                <figure class="weather-hierarchy-item weather-hierarchy-item-first">
-                  <div class="weather-hierarchy-frame">
-                    <img
-                      src="assets/weather/hierarchy-first.png"
-                      alt="First hierarchy exploration"
-                    />
-                  </div>
-                  <figcaption class="weather-hierarchy-caption">
-                    First Exploration
-                  </figcaption>
+                <figure>
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/db9d1659-ff5a-476e-a6ad-5db173c76fd7"
+                    alt="First information hierarchy exploration"
+                  />
+                  <figcaption>First Exploration</figcaption>
                 </figure>
-                <figure class="weather-hierarchy-item weather-hierarchy-item-end">
-                  <div class="weather-hierarchy-frame">
-                    <img src="assets/weather/hierarchy-end.png" alt="End result hierarchy" />
-                  </div>
-                  <figcaption class="weather-hierarchy-caption">End Result</figcaption>
+                <figure>
+                  <img
+                    src="https://www.figma.com/api/mcp/asset/bb12f028-1163-4313-91a1-64bf347b01fe"
+                    alt="End-result hierarchy design"
+                  />
+                  <figcaption>End Result</figcaption>
                 </figure>
-                <div class="weather-hierarchy-copy">
-                  <p>
-                    Another major exploration area was deciding what should be most
-                    prominent.
-                  </p>
-                  <p>
-                    A weather app can easily become overloaded: temperature, feels
-                    like, hourly forecast, daily forecast, humidity, UV, wind,
-                    warnings, precipitation, sunrise, sunset, and more. Showing
-                    everything equally makes nothing feel important.
-                  </p>
-                </div>
-              </div>
-              <div class="weather-hierarchy-followup">
                 <p>
-                  I explored different hierarchy approaches to answer:
+                  Another major exploration area was deciding what should be
+                  most prominent.
                 </p>
-                <ul>
-                  <li>What should users understand first?</li>
-                  <li>Which information is secondary?</li>
-                  <li>When should the UI explain versus simply display?</li>
-                </ul>
+                <p>
+                  A weather app can easily become overloaded: temperature,
+                  feels like, hourly forecast, daily forecast, humidity, UV,
+                  wind, warnings, precipitation, sunrise, sunset, and more.
+                  Showing everything equally makes nothing feel important.
+                </p>
               </div>
+              <p>I explored different hierarchy approaches to answer:</p>
+              <ul>
+                <li>What should users understand first?</li>
+                <li>Which information is secondary?</li>
+                <li>When should the UI explain versus simply display?</li>
+              </ul>
             </article>
 
             <article class="weather-exploration-section">
               <h3>3. Smart interpretation</h3>
-                <div class="smart-widget-row">
-                  <div class="smart-widget-canvas" aria-hidden="true">
-                    <img class="smart-widget-image smart-widget-image-1" src="assets/weather/widget-card-1.png" alt="" />
-                    <img class="smart-widget-image smart-widget-image-2" src="assets/weather/widget-card-2.png" alt="" />
-                    <img class="smart-widget-image smart-widget-image-3" src="assets/weather/widget-card-3.png" alt="" />
-                    <img class="smart-widget-image smart-widget-image-4" src="assets/weather/widget-card-4.png" alt="" />
-                    <img class="smart-widget-image smart-widget-image-5" src="assets/weather/widget-card-5.png" alt="" />
-                    <img class="smart-widget-image smart-widget-image-6" src="assets/weather/widget-card-6.png" alt="" />
-                  </div>
-                  <p class="smart-widget-label">
-                    Type of OS Widgets Available to choose
-                  </p>
+              <div class="weather-widget-row">
+                <div class="weather-widget-collage">
+                  <img
+                    class="widget-card widget-card-1"
+                    src="https://www.figma.com/api/mcp/asset/bce956fc-2dda-4e46-a3cd-3aa91f0b8986"
+                    alt="Compact weather widget option"
+                  />
+                  <img
+                    class="widget-card widget-card-2"
+                    src="https://www.figma.com/api/mcp/asset/cfe40e50-e460-4ed8-ae31-b525570714bc"
+                    alt="Detailed weather widget option"
+                  />
+                  <img
+                    class="widget-card widget-card-3"
+                    src="https://www.figma.com/api/mcp/asset/bc633d52-a8ad-4d94-ad8e-372e48f243a2"
+                    alt="Minimal weather widget option"
+                  />
+                  <img
+                    class="widget-card widget-card-5"
+                    src="https://www.figma.com/api/mcp/asset/63c16e2d-bce9-4aa6-842a-76066e09ae54"
+                    alt="Wide weather widget option"
+                  />
                 </div>
+                <p class="weather-widget-label">
+                  Type of OS Widgets Available to choose
+                </p>
+              </div>
               <p>
                 One of the most interesting explorations was around
                 interpretation. I wanted the app to move beyond showing weather
@@ -376,7 +421,7 @@
             <h2>Final Design</h2>
             <div class="weather-final-image">
               <img
-                src="assets/weather/final-design.png"
+                src="https://www.figma.com/api/mcp/asset/1a5d447b-be28-42f2-8348-9d02d74c7a89"
                 alt="Final Weather - But Fun interface"
               />
             </div>
@@ -438,54 +483,45 @@
             <h2>Reflection</h2>
             <div class="weather-reflection-panel">
               <img
-                class="weather-reflection-summary"
-                src="assets/weather/reflection-summary.png"
-                alt="Weather - But Fun Play Store listing and user feedback summary"
+                class="weather-reflection-store"
+                src="https://www.figma.com/api/mcp/asset/e9f9ca10-0377-43ec-b78e-df3c65c612a1"
+                alt="Weather - But Fun Play Store listing"
               />
-              <div class="weather-reflection-mosaic">
+              <div class="weather-reflection-reviews">
                 <img
-                  class="weather-reflection-card weather-reflection-card-2"
-                  src="assets/weather/reflection-image-2.png"
+                  src="https://www.figma.com/api/mcp/asset/920fbc09-6ff8-4f92-9ef6-8148ffc36d2a"
                   alt="User feedback snippet"
                 />
                 <img
-                  class="weather-reflection-card weather-reflection-card-3"
-                  src="assets/weather/reflection-image-3.png"
+                  src="https://www.figma.com/api/mcp/asset/7a2844a8-1846-4714-acef-3f7dffc40515"
                   alt="User feedback snippet"
                 />
                 <img
-                  class="weather-reflection-card weather-reflection-card-4"
-                  src="assets/weather/reflection-image-4.png"
+                  src="https://www.figma.com/api/mcp/asset/a593a0b8-14c4-44fa-b42b-0dd60e72736c"
                   alt="User feedback snippet"
                 />
                 <img
-                  class="weather-reflection-card weather-reflection-card-1"
-                  src="assets/weather/reflection-image-1.png"
+                  src="https://www.figma.com/api/mcp/asset/73b06a28-bd15-4b93-ad0c-c2d572643456"
                   alt="User feedback snippet"
                 />
                 <img
-                  class="weather-reflection-card weather-reflection-card-9"
-                  src="assets/weather/reflection-image-9.png"
+                  src="https://www.figma.com/api/mcp/asset/1270aff3-f78f-4bec-8ac3-61a59a688e4e"
                   alt="User feedback snippet"
                 />
                 <img
-                  class="weather-reflection-card weather-reflection-card-5"
-                  src="assets/weather/reflection-image-5.png"
+                  src="https://www.figma.com/api/mcp/asset/35d24ba3-8285-4538-8dd2-881a72bbb133"
                   alt="User feedback snippet"
                 />
                 <img
-                  class="weather-reflection-card weather-reflection-card-7"
-                  src="assets/weather/reflection-image-7.png"
+                  src="https://www.figma.com/api/mcp/asset/959ab1a1-042b-4400-8f09-b94f3e40bc82"
                   alt="User feedback snippet"
                 />
                 <img
-                  class="weather-reflection-card weather-reflection-card-8"
-                  src="assets/weather/reflection-image-8.png"
+                  src="https://www.figma.com/api/mcp/asset/367007f3-a239-4434-bbc5-b316d7b0ccff"
                   alt="User feedback snippet"
                 />
                 <img
-                  class="weather-reflection-card weather-reflection-card-6"
-                  src="assets/weather/reflection-image-6.png"
+                  src="https://www.figma.com/api/mcp/asset/f1faeef4-39e6-4be2-a0bc-378b59debc94"
                   alt="User feedback snippet"
                 />
               </div>
@@ -514,47 +550,46 @@
       </div>
     </div>
 
-    <footer class="site-footer">
-      <div class="site-footer__links" aria-label="Footer contact links">
-        <a class="site-footer__pill site-footer__pill--wide" href="mailto:derrick@lionardy.com">
-          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M3 7.4c0-1 .8-1.8 1.8-1.8h14.4c1 0 1.8.8 1.8 1.8v9.2c0 1-.8 1.8-1.8 1.8H4.8c-1 0-1.8-.8-1.8-1.8V7.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
-            <path d="m4.7 7.4 7.3 5.1 7.3-5.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <span>derrick@lionardy.com</span>
-        </a>
-        <div class="site-footer__pill site-footer__pill--wide">
-          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 21s-6-5.53-6-11a6 6 0 1 1 12 0c0 5.47-6 11-6 11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
-            <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8" />
-          </svg>
-          <span>Jakarta, Indonesia</span>
+    <div
+      class="prototype-modal"
+      id="prototype-modal"
+      data-prototype-modal
+      aria-hidden="true"
+    >
+      <div class="prototype-modal__backdrop" data-prototype-close></div>
+      <div
+        class="prototype-modal__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="prototype-modal-title"
+      >
+        <div class="prototype-modal__header">
+          <div>
+            <p class="prototype-modal__eyebrow">Weather – But Fun</p>
+            <h2 id="prototype-modal-title">Prototype Walkthrough</h2>
+          </div>
+          <button
+            class="prototype-modal__close"
+            type="button"
+            aria-label="Close prototype video"
+            data-prototype-close
+          >
+            Close
+          </button>
         </div>
-        <a class="site-footer__pill site-footer__pill--small" href="https://play.google.com/store/apps/details?id=com.derrer.weatherbutfun&hl=id" target="_blank" rel="noopener noreferrer">
-          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M8 6.5v11l9-5.5-9-5.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
-            <path d="M6 5.5h1.4a.6.6 0 0 1 .6.6v11.8a.6.6 0 0 1-.6.6H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-          </svg>
-          <span>Play Store</span>
-        </a>
-        <a class="site-footer__pill site-footer__pill--small" href="index.html#work">
-          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h11A2.5 2.5 0 0 1 20 8.5v9A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-9Z" stroke="currentColor" stroke-width="1.8" />
-            <path d="M9 6V4.8A.8.8 0 0 1 9.8 4h4.4a.8.8 0 0 1 .8.8V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-            <path d="M4 11.5h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-          </svg>
-          <span>More Work</span>
-        </a>
+        <video
+          class="prototype-modal__video"
+          data-prototype-video
+          controls
+          playsinline
+          preload="metadata"
+        >
+          <source src="assets/weather-prototype.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
-      <div class="site-footer__meta">
-        <p class="site-footer__copyright">&copy; 2026 Derrick Lionardy.</p>
-        <p class="site-footer__note">Built with 🤖⌨️</p>
-      </div>
-    </footer>
+    </div>
 
     <script src="weather-but-fun.js"></script>
   </body>
 </html>
-
-
-

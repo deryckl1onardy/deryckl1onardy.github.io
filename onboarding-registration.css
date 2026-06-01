@@ -1,0 +1,436 @@
+/* ============================================================
+   Onboarding & Registration — overrides on top of dana-wallet-v3.css
+   ============================================================ */
+
+/* --- Intro phone image (left portion only) ---------------- */
+/* Show only the left ~530px of the 1440px composite to get the phone */
+.ob-intro-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 530px;   /* clip to phone area */
+  height: 442px;
+  object-fit: cover;
+  object-position: left center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.onboarding-page .intro-copy {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Sidebar overrides ------------------------------------ */
+.onboarding-page .overview-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.onboarding-page .overview-link {
+  font-weight: 300;
+  color: #3e3e3e;
+}
+
+.onboarding-page .overview-link.overview-link--active,
+.onboarding-page .overview-link.is-active {
+  font-weight: 400;
+  color: #2b2b2b;
+}
+
+/* --- Study section spacing -------------------------------- */
+.onboarding-page .study-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.onboarding-page .study-section p {
+  font-size: 24px;
+  font-weight: 400;
+  color: #373737;
+  letter-spacing: -0.24px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* --- Blockquote ------------------------------------------- */
+.ob-blockquote {
+  background: var(--panel);
+  border: 3px solid var(--panel-border);
+  border-radius: 20px;
+  box-shadow: var(--panel-shadow);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+}
+
+.ob-bq-open,
+.ob-bq-close {
+  font-size: 92px;
+  font-weight: 700;
+  color: #373737;
+  line-height: 1.5;
+  flex-shrink: 0;
+  width: 52px;
+}
+
+.ob-bq-close {
+  transform: rotate(180deg);
+  display: inline-block;
+  align-self: flex-end;
+}
+
+.ob-blockquote p {
+  font-size: 32px !important;
+  font-weight: 700;
+  color: #373737;
+  letter-spacing: -0.32px;
+  line-height: 1.5;
+  margin: 0 !important;
+  flex: 1;
+}
+
+.ob-bq-source {
+  font-size: 24px;
+  color: #373737;
+  letter-spacing: -0.24px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* --- Cards ------------------------------------------------- */
+.ob-card-row {
+  display: flex;
+  gap: 16px;
+}
+
+.ob-card-row .ob-card { flex: 1; }
+
+.ob-card {
+  background: var(--panel);
+  border: 3px solid var(--panel-border);
+  border-radius: 20px;
+  box-shadow: var(--panel-shadow);
+  padding: 24px 16px;
+}
+
+.ob-card h3 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #373737;
+  letter-spacing: -0.32px;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.ob-card p {
+  font-size: 24px !important;
+  color: #373737;
+  line-height: 1.5;
+  margin: 0 !important;
+}
+
+/* --- Timeline grid ---------------------------------------- */
+.ob-timeline-grid {
+  background: #d6d6d6;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.08);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px 80px;
+  padding: 22px 38px 28px;
+}
+
+.ob-timeline-full { grid-column: 1 / -1; }
+
+.ob-timeline-date {
+  font-size: 24px !important;
+  font-weight: 500 !important;
+  color: #108ee9 !important;
+  letter-spacing: -0.24px;
+  line-height: 1.15;
+  margin: 0 0 8px !important;
+}
+
+.ob-timeline-item h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.24px;
+  line-height: 1.15;
+  margin: 0 0 10px;
+}
+
+.ob-timeline-item p {
+  font-size: 24px !important;
+  color: #373737;
+  line-height: 1.5;
+  margin: 0 !important;
+}
+
+/* --- Insight grid ----------------------------------------- */
+.ob-insight-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 16px;
+}
+
+.ob-insight {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ob-insight h3 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.28px;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.ob-insight p {
+  font-size: 24px !important;
+  color: #373737;
+  line-height: 1.5;
+  margin: 0 !important;
+  flex: 1;
+}
+
+.ob-insight-stat {
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 24px;
+  color: #373737;
+  letter-spacing: -0.24px;
+  line-height: 1.5;
+}
+
+/* --- Image panels ----------------------------------------- */
+.ob-img-panel {
+  border-radius: 4px;
+  padding: 18px 20px 16px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.ob-img-panel--gray { background: #d6d6d6; }
+.ob-img-panel--blue { background: #d3e6ee; }
+
+.ob-img-panel__heading {
+  font-size: 16px;
+  color: #000;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+/* 3-col comparison */
+.ob-img-panel--3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 16px;
+}
+
+.ob-img-panel--3 .ob-img-panel__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ob-img-panel--3 .ob-img-panel__col img {
+  width: 100%;
+  max-width: 221px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.11);
+  display: block;
+  margin: 0 auto;
+}
+
+.ob-img-panel--3 .ob-img-panel__col p {
+  font-size: 16px !important;
+  color: #000;
+  text-align: center;
+  margin: 0 !important;
+}
+
+/* 6-col final flow */
+.ob-img-panel--6 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  align-items: end;
+}
+
+.ob-img-panel--6 .ob-img-panel__col img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.11);
+}
+
+/* OTP provider comparison */
+.ob-otp-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.ob-otp-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ob-otp-group p {
+  font-size: 16px !important;
+  color: #000;
+  margin: 0 !important;
+}
+
+.ob-otp-screens {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.ob-otp-screens img {
+  width: 156px;
+  height: 338px;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 8px;
+}
+
+/* Phone number flow */
+.ob-phone-flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+  margin: 12px 0 8px;
+}
+
+.ob-phone-flow img {
+  max-height: 381px;
+  max-width: 176px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.ob-arrow {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.ob-phone-captions {
+  display: flex;
+  justify-content: space-around;
+  font-size: 16px;
+  color: #000;
+  line-height: 1.5;
+  text-align: center;
+  gap: 16px;
+}
+
+.ob-phone-captions p {
+  flex: 1;
+  font-size: 16px !important;
+  margin: 0 !important;
+}
+
+/* --- Sub-heading for change sections ---------------------- */
+.ob-change-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.24px;
+  line-height: 1.15;
+  margin: 0;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 960px) {
+  .onboarding-page .intro-media {
+    width: min(360px, calc(100% - 8px));
+    height: 300px;
+    left: auto;
+    top: auto;
+    margin: 8px auto 0;
+    position: relative;
+  }
+
+  .onboarding-page .intro-backdrop {
+    display: none;
+  }
+
+  .onboarding-page .intro-phone {
+    position: static;
+    width: 100%;
+    height: 280px;
+  }
+
+  .ob-card-row { flex-direction: column; }
+  .ob-timeline-grid { grid-template-columns: 1fr; gap: 24px; }
+  .ob-timeline-full { grid-column: 1; }
+  .ob-insight-grid { grid-template-columns: 1fr; }
+  .ob-img-panel--3 { grid-template-columns: 1fr; gap: 16px; }
+  .ob-img-panel--6 { grid-template-columns: repeat(3, 1fr); }
+  .ob-otp-row { flex-wrap: wrap; justify-content: center; }
+  .ob-phone-flow { flex-wrap: wrap; justify-content: center; }
+
+  .ob-blockquote { flex-wrap: wrap; }
+  .ob-bq-open, .ob-bq-close { font-size: 56px; width: 36px; }
+  .ob-blockquote p { font-size: 20px !important; }
+  .ob-card h3 { font-size: 20px; }
+  .ob-insight h3 { font-size: 18px; }
+}
+
+@media (max-width: 640px) {
+  .intro-copy h1 {
+    font-size: clamp(28px, 9vw, 40px);
+  }
+
+  .intro-copy p {
+    font-size: clamp(15px, 4.2vw, 18px);
+  }
+
+  .onboarding-page .intro-media {
+    width: min(300px, calc(100% - 8px));
+    height: 240px;
+  }
+
+  .prototype-btn {
+    width: 100%;
+  }
+
+  .study-section h2 {
+    font-size: clamp(26px, 7vw, 36px);
+  }
+
+  .study-section h3 {
+    font-size: clamp(20px, 5.5vw, 28px);
+  }
+
+  .overview-card {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ob-img-panel--6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

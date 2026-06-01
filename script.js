@@ -41,8 +41,10 @@ const walkmanMarkup = `
 const projectSnippets = {
   "DANA Wallet":
     "Redesigned the everyday wallet flow so balances, cards, and quick actions feel easier to scan and use.",
-  "Onboarding, Registration & Foreign Account":
+  "Onboarding & Registration":
     "Streamlined the first-run journey to reduce drop-off and help more users finish activation with confidence.",
+  "Foreign Account":
+    "Clarified account access for international or cross-border needs so users could understand and complete setup with less friction.",
   "Main Gate of the App":
     "Reframed DANA Home as a strategic gateway for discovery, trust, and clearer entry points across a growing ecosystem.",
   "Highlight of the week":
@@ -323,9 +325,13 @@ document.querySelectorAll(".project-item").forEach((projectItem) => {
 
 setupProjectRailDragScroll(projectRail);
 
+const canUseHoverPreview = window.matchMedia(
+  "(hover: hover) and (pointer: fine)"
+).matches;
 const canUsePointerTilt =
   window.matchMedia("(prefers-reduced-motion: no-preference)").matches &&
-  window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  canUseHoverPreview;
+
 
 if (canUsePointerTilt) {
   const cassettes = document.querySelectorAll(".project-item .mixtape");
@@ -371,7 +377,9 @@ if (canUsePointerTilt) {
     const projectItem = cassette.closest(".project-item");
 
     cassette.classList.remove("is-tilting");
-    projectItem?.classList.remove("is-mixtape-active");
+    if (!projectItem?.classList.contains("is-prototype-preview-active")) {
+      projectItem?.classList.remove("is-mixtape-active");
+    }
     cassette.style.setProperty("--mixtape-tilt-x", "0deg");
     cassette.style.setProperty("--mixtape-tilt-y", "0deg");
     cassette.style.setProperty("--mixtape-parallax-far-x", "0px");

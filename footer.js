@@ -1,155 +1,58 @@
 (function () {
+  const currentYear = new Date().getFullYear();
+
   const footerMarkup = `
-    <span class="site-footer__corner site-footer__corner--tl" aria-hidden="true"></span>
-    <span class="site-footer__corner site-footer__corner--br" aria-hidden="true"></span>
     <div class="site-footer__inner">
       <div class="site-footer__grid">
-        <section class="site-footer__panel site-footer__panel--bio">
-          <p class="site-footer__label">Product Designer</p>
-          <h2 class="site-footer__name">
-            <span class="site-footer__name-primary">Derrick</span>
-            <span class="site-footer__name-secondary">Lionardy.</span>
-          </h2>
-          <div class="site-footer__bio">
-            <p>// crafting digital payment</p>
-            <p>// experiences for Indonesian.</p>
-            <p>// design that never gets in</p>
-            <p>// the way of the user.</p>
-          </div>
-          <div class="site-footer__availability">
-            <span class="site-footer__availability-dot" aria-hidden="true"></span>
-            <span>Available for projects</span>
+        <section class="site-footer__brand" aria-label="Footer profile">
+          <img class="site-footer__avatar" src="avatar.svg" alt="Portrait illustration of Derrick" />
+
+          <div class="site-footer__brand-copy">
+            <h2 class="site-footer__name">Derrick</h2>
+            <p class="site-footer__role">UX / Product Designer</p>
+            <p class="site-footer__tagline">Designed with clarity and a little nostalgia.</p>
           </div>
         </section>
 
-        <section class="site-footer__panel site-footer__panel--works">
-          <p class="site-footer__label">Selected Works</p>
-          <div class="site-footer__works">
-            <a class="site-footer__work-link is-active" href="dana-wallet-v3.html" data-footer-track="DANA Wallet">
-              <span class="site-footer__work-number">01</span>
-              <span class="site-footer__work-copy">
-                <span class="site-footer__work-title">DANA Wallet</span>
-                <span class="site-footer__work-cursor" aria-hidden="true">_</span>
-              </span>
-              <span class="site-footer__work-year">2022</span>
+        <section class="site-footer__column">
+          <p class="site-footer__eyebrow">Email</p>
+          <a class="site-footer__text-link" href="mailto:derrick@lionardy.com">derrick@lionardy.com</a>
+        </section>
+
+        <section class="site-footer__column">
+          <p class="site-footer__eyebrow">Based in</p>
+          <p class="site-footer__text">Indonesia</p>
+        </section>
+
+        <section class="site-footer__column site-footer__column--connect">
+          <p class="site-footer__eyebrow">Let's connect</p>
+
+          <nav class="site-footer__socials" aria-label="Social links">
+            <a class="site-footer__social-link" href="about.html" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.94 8.5a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12ZM5.6 9.75h2.68v8.65H5.6V9.75Zm4.36 0h2.57v1.18h.04c.36-.68 1.23-1.4 2.53-1.4 2.7 0 3.2 1.78 3.2 4.09v4.78h-2.67v-4.24c0-1.01-.02-2.31-1.41-2.31-1.41 0-1.62 1.1-1.62 2.24v4.31H9.96V9.75Z" fill="currentColor"></path>
+              </svg>
             </a>
-            <a class="site-footer__work-link" href="weather-but-fun.html" data-footer-track="Weather - But Fun">
-              <span class="site-footer__work-number">02</span>
-              <span class="site-footer__work-copy">
-                <span class="site-footer__work-title">Weather - But Fun</span>
-                <span class="site-footer__work-cursor" aria-hidden="true">_</span>
-              </span>
-              <span class="site-footer__work-year">2026</span>
+            <a class="site-footer__social-link" href="mailto:derrick@lionardy.com" aria-label="Send email to Derrick">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 2 8 5 8-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
             </a>
-            <a class="site-footer__work-link" href="index.html#work" data-footer-track="Onboarding &amp; Registration">
-              <span class="site-footer__work-number">03</span>
-              <span class="site-footer__work-copy">
-                <span class="site-footer__work-title">Onboarding &amp; Registration</span>
-                <span class="site-footer__work-cursor" aria-hidden="true">_</span>
-              </span>
-              <span class="site-footer__work-year">2022</span>
+            <a class="site-footer__social-link" href="https://x.com/derycklionardy" target="_blank" rel="noreferrer" aria-label="X">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M17.53 3H20.5l-6.49 7.42L21.64 21h-5.98l-4.68-6.12L5.63 21H2.65l6.94-7.93L2.25 3h6.13l4.23 5.58L17.53 3Zm-1.04 16.2h1.65L7.47 4.72H5.7L16.49 19.2Z" fill="currentColor"></path>
+              </svg>
             </a>
-            <a class="site-footer__work-link" href="main-gate-of-the-app.html" data-footer-track="Main Gate of the App">
-              <span class="site-footer__work-number">04</span>
-              <span class="site-footer__work-copy">
-                <span class="site-footer__work-title">Main Gate of the App</span>
-                <span class="site-footer__work-cursor" aria-hidden="true">_</span>
-              </span>
-              <span class="site-footer__work-year">2022</span>
-            </a>
-          </div>
+          </nav>
         </section>
       </div>
 
-      <div class="site-footer__bottom">
-        <p class="site-footer__legal">&copy; 2026 &mdash; Derrick Lionardy</p>
-
-        <div class="site-footer__deck">
-          <div class="site-footer__cassette" aria-hidden="true">
-            <div class="site-footer__cassette-head">Derrick / Vol. 1</div>
-            <div class="site-footer__cassette-body">
-              <span class="site-footer__cassette-reel"></span>
-              <span class="site-footer__cassette-slot"></span>
-              <span class="site-footer__cassette-reel"></span>
-            </div>
-          </div>
-          <span class="site-footer__deck-line" aria-hidden="true"></span>
-          <p class="site-footer__now-label">// now playing //</p>
-          <p class="site-footer__now-title" data-footer-now-playing>DANA Wallet</p>
-        </div>
-
-        <nav class="site-footer__socials" aria-label="Social links">
-          <a href="#" data-footer-social="x">X</a>
-          <a href="#" data-footer-social="instagram">Instagram</a>
-          <a href="#" data-footer-social="dribbble">Dribbble</a>
-          <a href="#" data-footer-social="linkedin">LinkedIn</a>
-        </nav>
-      </div>
+      <p class="site-footer__copyright">&copy; ${currentYear} Derrick. All rights reserved.</p>
     </div>
   `;
 
-  const TYPE_DELAY_MS = 34;
-
   document.querySelectorAll(".site-footer").forEach((footer) => {
     footer.innerHTML = footerMarkup;
-
-    footer.querySelectorAll('[data-footer-social][href="#"]').forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-      });
-    });
-
-    const nowPlaying = footer.querySelector("[data-footer-now-playing]");
-    const tracks = Array.from(footer.querySelectorAll(".site-footer__work-link"));
-    let typeToken = 0;
-
-    const typeTrack = (title, animate) => {
-      typeToken += 1;
-      const currentToken = typeToken;
-
-      if (!animate) {
-        nowPlaying.textContent = title;
-        return;
-      }
-
-      nowPlaying.textContent = "";
-      let index = 0;
-
-      const step = () => {
-        if (currentToken !== typeToken) return;
-        nowPlaying.textContent = title.slice(0, index);
-        index += 1;
-
-        if (index <= title.length) {
-          window.setTimeout(step, TYPE_DELAY_MS);
-        }
-      };
-
-      step();
-    };
-
-    const setActiveTrack = (track, animate) => {
-      tracks.forEach((item) => {
-        item.classList.toggle("is-active", item === track);
-      });
-
-      typeTrack(track.dataset.footerTrack || track.textContent.trim(), animate);
-    };
-
-    if (tracks.length) {
-      setActiveTrack(tracks[0], false);
-
-      tracks.forEach((track) => {
-        track.addEventListener("pointerenter", () => {
-          setActiveTrack(track, true);
-        });
-
-        track.addEventListener("focus", () => {
-          setActiveTrack(track, true);
-        });
-      });
-    }
-
     footer.dataset.footerReady = "true";
   });
 })();

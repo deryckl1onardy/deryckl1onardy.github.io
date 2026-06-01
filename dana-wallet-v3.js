@@ -3,6 +3,12 @@ const overviewLinks = Array.from(
 );
 const intro = document.querySelector(".intro");
 const introStage = document.querySelector(".intro-stage");
+const prototypeTrigger = document.querySelector("[data-prototype-trigger]");
+const prototypeModal = document.querySelector("[data-prototype-modal]");
+const prototypeVideo = document.querySelector("[data-prototype-video]");
+const prototypeCloseControls = Array.from(
+  document.querySelectorAll("[data-prototype-close]")
+);
 
 const linkById = new Map(
   overviewLinks.map((link) => [link.dataset.target, link])
@@ -57,7 +63,7 @@ if (initialHash && linkById.has(initialHash)) {
 function updateIntroScale() {
   if (!intro || !introStage) return;
 
-  if (window.matchMedia("(max-width: 980px)").matches) {
+  if (window.matchMedia("(max-width: 960px)").matches) {
     introStage.style.transform = "";
     intro.style.height = "";
     return;
@@ -71,3 +77,48 @@ function updateIntroScale() {
 
 window.addEventListener("resize", updateIntroScale);
 updateIntroScale();
+
+function openPrototypeModal() {
+  if (!prototypeModal) return;
+
+  prototypeModal.classList.add("is-open");
+  prototypeModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("prototype-modal-open");
+
+  if (prototypeVideo) {
+    prototypeVideo.currentTime = 0;
+    const playPromise = prototypeVideo.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {});
+    }
+  }
+}
+
+function closePrototypeModal() {
+  if (!prototypeModal) return;
+
+  prototypeModal.classList.remove("is-open");
+  prototypeModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("prototype-modal-open");
+
+  if (prototypeVideo) {
+    prototypeVideo.pause();
+  }
+}
+
+if (prototypeTrigger && prototypeModal) {
+  prototypeTrigger.addEventListener("click", (event) => {
+    event.preventDefault();
+    openPrototypeModal();
+  });
+
+  prototypeCloseControls.forEach((control) => {
+    control.addEventListener("click", closePrototypeModal);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && prototypeModal.classList.contains("is-open")) {
+      closePrototypeModal();
+    }
+  });
+}

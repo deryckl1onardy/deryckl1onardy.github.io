@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="dana-wallet-v3.css?v=2" />
+    <link rel="stylesheet" href="dana-wallet-v3.css?v=3" />
     <link rel="stylesheet" href="footer.css" />
     <link rel="stylesheet" href="page-transition.css" />
     <script src="page-transition.js" defer></script>
@@ -56,10 +56,11 @@
             </p>
             <a
               class="prototype-btn"
-              href="https://www.figma.com/design/mM1LUEdO81T76i7hfyBkRK/Agent-Pocket?node-id=54-2247&t=lPB2de8m5VXEo2CC-4"
-              target="_blank"
-              rel="noopener noreferrer"
-              >See Prototype</a
+              href="assets/dana/wallet-prototype.mp4"
+              data-prototype-trigger
+              aria-haspopup="dialog"
+              aria-controls="prototype-modal"
+              >View Prototype</a
             >
           </div>
         </div>
@@ -79,6 +80,7 @@
           <a class="overview-link" data-target="exploration" href="#exploration"
             >Exploration</a
           >
+          <a class="overview-link" data-target="research" href="#research">Research</a>
           <a class="overview-link" data-target="final-solution" href="#final-solution"
             >Final Solution</a
           >
@@ -151,7 +153,8 @@
             </p>
           </section>
 
-          <section class="study-section" id="evolution">
+
+                    <section class="study-section" id="evolution">
             <h2>The Evolution</h2>
             <div class="evolution-gallery">
               <figure>
@@ -303,6 +306,142 @@
             </article>
           </section>
 
+          <section class="study-section" id="research">
+            <h2>What Research Revealed?</h2>
+            <p>
+              Insight collected from Wallet v2 survey and usability testing,
+              digital wallet attitudes research, and Wallet v3 usability
+              testing conducted by UX Researchers.
+            </p>
+
+            <div class="research-summary-card">
+              <article class="research-summary-item">
+                <h3>Wallet v2 Research</h3>
+                <p>Survey + Usability Test</p>
+                <ul>
+                  <li>951 Respondents</li>
+                  <li>5 Participants</li>
+                </ul>
+                <p>Establishing baseline behaviour and discoverability issues.</p>
+              </article>
+
+              <article class="research-summary-item">
+                <h3>Digital Wallet Attitudes</h3>
+                <p>Survey + in-depth interviews</p>
+                <ul>
+                  <li>1104 Respondents</li>
+                  <li>6 Participants</li>
+                </ul>
+                <p>Explored what users expect from digital wallet.</p>
+              </article>
+
+              <article class="research-summary-item">
+                <h3>Wallet v3 Usability Test</h3>
+                <p>UT &amp; Concept Validation</p>
+                <ul>
+                  <li>6 Participants</li>
+                </ul>
+                <p>Validated the redesigned wallet experience.</p>
+              </article>
+            </div>
+
+            <div class="research-learnings">
+              <h3>What we learned</h3>
+
+              <div class="research-learnings-grid">
+                <article class="research-learning-card">
+                  <div class="research-learning-title">
+                    <img
+                      class="research-learning-icon"
+                      src="https://www.figma.com/api/mcp/asset/519c3996-4218-4561-9860-2ffed4497a2e"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    <h4>Wallet = Assets, not only payments</h4>
+                  </div>
+                  <p>
+                    Users associated wallet with DANA Balance, bank card,
+                    savings, PayLater, investment, identity cards, and member
+                    cards.
+                  </p>
+                  <div class="research-implication">
+                    <strong>Design Implication =</strong>
+                    <span>Treat wallet as one unified asset system.</span>
+                  </div>
+                </article>
+
+                <article class="research-learning-card">
+                  <div class="research-learning-title">
+                    <img
+                      class="research-learning-icon"
+                      src="https://www.figma.com/api/mcp/asset/dd9fbefa-e9a2-48f5-97a7-eceebcbfa1a5"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    <h4>Categories need explicit labels</h4>
+                  </div>
+                  <p>
+                    Voucher, loyalty, ticket, and ID-card categories were not
+                    always obvious. Users often relied on brand visuals rather
+                    than clear category cues.
+                  </p>
+                  <div class="research-implication">
+                    <strong>Design Implication =</strong>
+                    <span>
+                      Adding a title in each pocket section with how much there
+                      is.
+                    </span>
+                  </div>
+                </article>
+
+                <article class="research-learning-card">
+                  <div class="research-learning-title">
+                    <img
+                      class="research-learning-icon"
+                      src="https://www.figma.com/api/mcp/asset/0ced7f8a-9b5f-4e22-9230-c822276ef770"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    <h4>Adoption need trust</h4>
+                  </div>
+                  <p>
+                    Users wanted one digital place for essentials, but still
+                    relied on physical wallets for acceptance, connection, and
+                    security backup. 86% were interested in adopting and 88%
+                    felt secure yet trust concern remained.
+                  </p>
+                  <div class="research-implication">
+                    <strong>Design Implication =</strong>
+                    <span>
+                      Communicate security, trust, and reliability clearly.
+                    </span>
+                  </div>
+                </article>
+
+                <article class="research-learning-card">
+                  <div class="research-learning-title">
+                    <img
+                      class="research-learning-icon"
+                      src="https://www.figma.com/api/mcp/asset/ee93b63a-20c2-4fa5-88f9-5905eef9e9c6"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    <h4>Control must match expectations</h4>
+                  </div>
+                  <p>
+                    Users expected add asset, search, payment settings, and
+                    ID-card actions to behave predictably. Confusion appeared
+                    when action placement or wording broke mental models.
+                  </p>
+                  <div class="research-implication">
+                    <strong>Design Implication =</strong>
+                    <span>Make actions obvious and behaviourally consistent.</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+
           <section class="study-section" id="final-solution">
             <h2>Final Solution</h2>
             <div class="solution-gallery">
@@ -375,23 +514,64 @@
           </section>
 
           <section class="study-section reflection" id="reflection">
-            <h2>Reflection</h2>
-            <p>
-              This project reinforced a key fintech lesson for me: when products
-              deal with money, the UI's job is not only usability. It is also
-              trust, clarity, and control.
-            </p>
-            <p>
-              A wallet is not just a feature list, it is a system that must
-              feel stable and predictable. DANA had cards, vouchers, loyalty,
-              and investment, but the experience was fragmented across entry
-              points and inconsistent patterns.
-            </p>
-            <p>
-              I redesigned DANA Wallet into a unified financial hub by
-              restructuring information architecture, creating modular summary
-              sections, and standardizing interactions so users get a clear
-              overview and a predictable way to manage everything in one place.
+            <h2>Reflection &amp; Impact</h2>
+
+            <div class="reflection-metrics">
+              <article class="reflection-metric-card">
+                <div class="reflection-metric-head">
+                  <img
+                    class="reflection-metric-icon"
+                    src="https://www.figma.com/api/mcp/asset/d089c4ee-43a5-4e7f-9d54-d29f7b29fe07"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  <h3>Total User Increase</h3>
+                </div>
+                <p
+                  class="reflection-metric-value"
+                  style="margin:0;color:#108ee9;font-size:101px;line-height:1.1;font-weight:700;letter-spacing:-0.01em;"
+                >
+                  53,8%
+                </p>
+                <p class="reflection-metric-note">
+                  From 18,75M → 28,7M (Wallet v2 → Wallet v3)
+                </p>
+              </article>
+
+              <article class="reflection-metric-card">
+                <div class="reflection-metric-head">
+                  <img
+                    class="reflection-metric-icon"
+                    src="https://www.figma.com/api/mcp/asset/da1e347e-13f8-4e96-b989-3453abeb17ea"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  <h3>Unique User Increase</h3>
+                </div>
+                <p
+                  class="reflection-metric-value"
+                  style="margin:0;color:#108ee9;font-size:101px;line-height:1.1;font-weight:700;letter-spacing:-0.01em;"
+                >
+                  42,4%
+                </p>
+                <p class="reflection-metric-note">
+                  From 12,55M → 17,8M (Wallet v2 → Wallet v3)
+                </p>
+              </article>
+            </div>
+
+            <p class="reflection-copy">
+              This project reinforced a key fintech lesson for me: When
+              products deal with money, the UI’s job is not only usability. It’s
+              also trust, clarity, and control. A wallet isn’t just a feature
+              list, it’s a system that must feel stable and predictable. DANA
+              had cards, vouchers, loyalty, and investment—but the experience
+              was fragmented across different entry points and inconsistent
+              patterns. I redesigned DANA Wallet into a unified Financial Hub
+              by restructuring the information architecture, creating modular
+              summary sections, and standardizing interaction patterns so users
+              get a clear overview and a predictable way to manage everything
+              in one place.
             </p>
           </section>
         </main>
@@ -437,6 +617,49 @@
       </div>
     </footer>
 
+    <div
+      class="prototype-modal"
+      id="prototype-modal"
+      data-prototype-modal
+      aria-hidden="true"
+    >
+      <div class="prototype-modal__backdrop" data-prototype-close></div>
+      <div
+        class="prototype-modal__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="prototype-modal-title"
+      >
+        <div class="prototype-modal__header">
+          <div>
+            <p class="prototype-modal__eyebrow">DANA Wallet v3</p>
+            <h2 id="prototype-modal-title">Prototype Walkthrough</h2>
+          </div>
+          <button
+            class="prototype-modal__close"
+            type="button"
+            aria-label="Close prototype video"
+            data-prototype-close
+          >
+            Close
+          </button>
+        </div>
+        <video
+          class="prototype-modal__video"
+          data-prototype-video
+          controls
+          playsinline
+          preload="metadata"
+        >
+          <source src="assets/dana/wallet-prototype.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
     <script src="dana-wallet-v3.js"></script>
   </body>
 </html>
+
+
+

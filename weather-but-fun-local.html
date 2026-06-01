@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="weather-but-fun.css?v=39" />
+    <link rel="stylesheet" href="weather-but-fun.css" />
     <link rel="stylesheet" href="footer.css" />
     <link rel="stylesheet" href="page-transition.css" />
     <script src="page-transition.js" defer></script>
@@ -57,13 +57,23 @@
               <span aria-hidden="true">&bull;</span>
               <span>Android</span>
             </p>
-            <a
-              class="prototype-btn"
-              href="https://play.google.com/store/apps/details?id=com.derrer.weatherbutfun&hl=id"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Check on Play Store</a
-            >
+            <div class="intro-btn-row">
+              <a
+                class="prototype-btn"
+                href="https://play.google.com/store/apps/details?id=com.derrer.weatherbutfun&hl=id"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Check on Play Store</a
+              >
+              <a
+                class="prototype-btn"
+                href="assets/weather-prototype.mp4"
+                data-prototype-trigger
+                aria-haspopup="dialog"
+                aria-controls="prototype-modal"
+                >View Prototype</a
+              >
+            </div>
           </div>
         </div>
       </section>
@@ -551,6 +561,46 @@
         <p class="site-footer__note">Built with 🤖⌨️</p>
       </div>
     </footer>
+
+    <div
+      class="prototype-modal"
+      id="prototype-modal"
+      data-prototype-modal
+      aria-hidden="true"
+    >
+      <div class="prototype-modal__backdrop" data-prototype-close></div>
+      <div
+        class="prototype-modal__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="prototype-modal-title"
+      >
+        <div class="prototype-modal__header">
+          <div>
+            <p class="prototype-modal__eyebrow">Weather – But Fun</p>
+            <h2 id="prototype-modal-title">Prototype Walkthrough</h2>
+          </div>
+          <button
+            class="prototype-modal__close"
+            type="button"
+            aria-label="Close prototype video"
+            data-prototype-close
+          >
+            Close
+          </button>
+        </div>
+        <video
+          class="prototype-modal__video"
+          data-prototype-video
+          controls
+          playsinline
+          preload="metadata"
+        >
+          <source src="assets/weather-prototype.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
 
     <script src="weather-but-fun.js"></script>
   </body>

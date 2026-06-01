@@ -40,7 +40,7 @@
   margin: 0 0 10px;
   color: rgba(68, 61, 49, 0.68);
   font-family: "Inter", sans-serif;
-  font-size: 13px;
+  font-size: 10px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
 }
@@ -49,13 +49,18 @@
   max-width: 34ch;
   margin: 0 0 30px;
   color: var(--about-muted);
-  font-size: clamp(18px, 1.55vw, 24px);
+  font-size: 14px;
   line-height: 1.55;
   letter-spacing: -0.01em;
 }
 
+.about-page .about-entry h3 {
+  font-size: 10px;
+}
+
 .about-page .about-entry p {
-  color: #4f4a42;
+  font-size: clamp(14px, 1.9vw, 18px);
+  color: var(--about-muted);
 }
 
 .about-page .about-console {
@@ -73,6 +78,145 @@
   border: 0;
   background: none;
   box-shadow: none;
+}
+
+/* ── Experience Panel ─────────────────────────────────────────── */
+
+.about-page .experience-panel {
+  padding: 20px 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(188, 177, 149, 0.6);
+  background: linear-gradient(180deg, var(--about-cream-0) 0%, var(--about-cream-1) 100%);
+  box-shadow: 0 8px 24px rgba(113, 95, 56, 0.1);
+}
+
+.about-page .experience-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(176, 163, 135, 0.4);
+}
+
+.about-page .experience-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(137, 118, 31, 0.12);
+  color: var(--about-gold-deep);
+  flex-shrink: 0;
+}
+
+.about-page .experience-head h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--about-ink);
+}
+
+.about-page .experience-list {
+  display: grid;
+  gap: 0;
+  position: relative;
+}
+
+.about-page .experience-list::before {
+  content: "";
+  position: absolute;
+  left: 58px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(137, 118, 31, 0.5) 0%,
+    rgba(137, 118, 31, 0.1) 100%
+  );
+}
+
+.about-page .experience-item {
+  display: grid;
+  grid-template-columns: 52px 18px 1fr auto;
+  column-gap: 12px;
+  row-gap: 2px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(176, 163, 135, 0.2);
+  align-items: center;
+}
+
+.about-page .experience-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.about-page .experience-period {
+  margin: 0;
+  font-size: 10px;
+  font-family: "Inter", sans-serif;
+  color: rgba(122, 113, 98, 0.9);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.about-page .experience-marker {
+  grid-column: 2;
+  grid-row: 1;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(137, 118, 31, 0.5);
+  border: 1.5px solid rgba(137, 118, 31, 0.8);
+  margin-top: 4px;
+  justify-self: center;
+}
+
+.about-page .experience-item.is-current .experience-marker {
+  background: var(--about-gold-deep);
+  border-color: var(--about-gold-deep);
+  box-shadow: 0 0 8px rgba(137, 118, 31, 0.4);
+}
+
+.about-page .experience-copy {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.about-page .experience-role {
+  margin: 0;
+  font-size: clamp(12px, 1.1vw, 14px);
+  font-weight: 600;
+  color: var(--about-ink);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.about-page .experience-company {
+  margin: 3px 0 0;
+  font-size: clamp(11px, 0.95vw, 12px);
+  color: rgba(114, 106, 95, 0.85);
+  line-height: 1.35;
+}
+
+.about-page .experience-tag {
+  grid-column: 4;
+  grid-row: 1;
+  margin: 0;
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(137, 118, 31, 0.3);
+  background: rgba(137, 118, 31, 0.08);
+  font-size: 10px;
+  font-family: "Inter", sans-serif;
+  color: var(--about-gold-deep);
+  letter-spacing: 0.04em;
 }
 
 .about-page .identity-panel {
@@ -144,6 +288,7 @@
 .about-page .identity-handle {
   font-size: clamp(30px, 2.1vw, 39px);
   color: var(--about-ink);
+  white-space: nowrap;
 }
 
 .about-page .identity-role {
@@ -158,7 +303,7 @@
 .about-page .identity-location {
   margin-top: 7px;
   color: #878074;
-  font-size: clamp(18px, 1.35vw, 22px);
+  font-size: clamp(14px, 1.9vw, 18px);
 }
 
 .about-page .identity-status {
@@ -1077,13 +1222,13 @@
     0 12px 20px rgba(112, 96, 64, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.92);
   color: #2d2922;
-  font-size: clamp(22px, 1.8vw, 31px);
+  font-size: clamp(14px, 1.9vw, 18px);
 }
 
 .about-page .chat-bubble-out {
   border-radius: 18px 18px 8px 18px;
   background: linear-gradient(165deg, #4979f2 0%, #325ecc 100%);
-  font-size: clamp(22px, 1.8vw, 30px);
+  font-size: clamp(14px, 1.9vw, 18px);
 }
 
 .about-page .chat-compose-row {
@@ -1150,10 +1295,10 @@
   color: #8a6c39;
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1200px) {
   .about-page .about {
     gap: 28px;
-    grid-template-columns: minmax(0, 1fr) minmax(390px, 500px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
   }
 
   .about-page .track-marquee-copy {
@@ -1161,15 +1306,42 @@
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1024px) {
   .about-page .about {
     margin-top: 40px;
+    grid-template-columns: 1fr;
+  }
+
+  .about-page .about-copy {
+    max-width: 100%;
+  }
+
+  .about-page .about-console {
+    position: static;
+    top: auto;
+    width: 100%;
+  }
+
+  .about-page .experience-item {
+    grid-template-columns: 46px 16px 1fr auto;
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 640px) {
   .about-page .about {
     margin-top: 36px;
+    gap: 24px;
+  }
+
+  .about-page .experience-item {
+    grid-template-columns: 46px 16px 1fr;
+  }
+
+  .about-page .experience-tag {
+    grid-column: 3;
+    grid-row: 2;
+    margin-top: 4px;
+    justify-self: start;
   }
 
   .about-page .identity-panel {

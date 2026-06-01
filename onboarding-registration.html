@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DANA Onboarding &amp; Registration | Derrick Portfolio</title>
+    <meta
+      name="description"
+      content="Redesigning the first time registration experience to help users complete setup and clarify DANA's value."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="dana-wallet-v3.css?v=3" />
+    <link rel="stylesheet" href="onboarding-registration.css?v=3" />
+    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="page-transition.css" />
+    <script src="page-transition.js" defer></script>
+    <script src="footer.js" defer></script>
+  </head>
+  <body class="onboarding-page">
+    <div class="case-page">
+
+      <!-- NAV -->
+      <header class="case-header">
+        <nav class="pill-nav" aria-label="Primary">
+          <a class="nav-link" href="index.html#home">Home</a>
+          <a class="nav-link is-active" href="index.html#work">Work</a>
+          <a class="nav-link" href="about.html">Contact</a>
+        </nav>
+      </header>
+
+      <!-- INTRO -->
+      <section class="intro" id="summary">
+        <div class="intro-stage">
+          <img class="ob-intro-bg" src="assets/onboarding/intro-full.png" alt="" aria-hidden="true" />
+
+          <div class="intro-copy">
+            <h1>DANA Onboarding</h1>
+            <p>Redesigning the first time registration experience to help users complete setup and clarify DANA's value</p>
+            <p class="intro-tags">
+              <span>Onboarding</span>
+              <span aria-hidden="true">&bull;</span>
+              <span>2023</span>
+              <span aria-hidden="true">&bull;</span>
+              <span>iOS &amp; Android</span>
+            </p>
+            <a class="prototype-btn" href="https://www.figma.com/design/kx1ACHrnccdCh2s24hHaCI/%F0%9F%9F%A2-Pay-V1?node-id=19360-68298" target="_blank" rel="noopener noreferrer">View Prototype</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- STUDY SHELL -->
+      <div class="study-shell">
+
+        <!-- SIDEBAR -->
+        <aside class="overview-card" id="overview-sidebar">
+          <h2>Overview</h2>
+          <div class="overview-divider"></div>
+          <a class="overview-link is-active" data-target="context" href="#context">Context</a>
+          <a class="overview-link" data-target="challenge" href="#challenge">Challenge</a>
+          <a class="overview-link" data-target="problem" href="#problem">Five Studies</a>
+          <a class="overview-link" data-target="research" href="#research">What Research Revealed</a>
+          <a class="overview-link" data-target="exploration" href="#exploration">Exploration</a>
+          <a class="overview-link" data-target="final-design" href="#final-design">What Changed</a>
+          <a class="overview-link" data-target="impact" href="#impact">Impact</a>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="study-main">
+
+          <!-- CONTEXT -->
+          <section class="study-section" id="context">
+            <h2>Context</h2>
+            <p>DANA onboarding is the first moment where new users decide whether the app feels useful, easy, and trustworthy. Earlier onboarding research showed that users generally understood DANA as a digital wallet for cashless payment, but 5 out of 6 users skipped the introduction and directly tapped the phone number field because they wanted to register quickly.</p>
+            <p>Later registration research showed a bigger conversion problem: the overall registration conversion rate from Aug–Oct 2023 was around 51.3% and fluctuating downward, so additional research was needed to identify causes of drop off.</p>
+            <blockquote class="ob-blockquote">
+              <span class="ob-bq-open">"</span>
+              <p>Users wanted to move fast but the journey still needed to feel clear and trustworthy</p>
+              <span class="ob-bq-close">"</span>
+            </blockquote>
+          </section>
+
+          <!-- THE CHALLENGE -->
+          <section class="study-section" id="challenge">
+            <h2>The Challenge</h2>
+            <p>A leaky funnel with no clear diagnosis. DANA was acquiring users but struggling to convert them. Registration completion was stagnant around 51%, and newly registered users weren't activating the features that mattered.</p>
+            <div class="ob-card-row">
+              <div class="ob-card">
+                <h3>Registration drop off</h3>
+                <p>The overall conversion rate for Aug–Oct 2023 hovered around 51.3% and was fluctuating downward. The team had no single clear cause — it could be OTP failures, UI confusion, or technical errors.</p>
+              </div>
+              <div class="ob-card">
+                <h3>OTP friction</h3>
+                <p>WhatsApp OTP was introduced as a security measure, but the Risk Team's data showed users were still dropping off even after the challenge was presented. Users weren't completing the step.</p>
+              </div>
+            </div>
+            <div class="ob-card">
+              <h3>Unexplored feature space</h3>
+              <p>DANA had an extensive feature set, but newly registered users had no guided path to discover it. Users frequently said they didn't know what to do after signing up.</p>
+            </div>
+            <blockquote class="ob-blockquote">
+              <span class="ob-bq-open">"</span>
+              <p>Most of the time we're too eager to ship a new feature rather than maintain or optimize existing features. DANA has too many features, but they're not explored enough by users</p>
+              <span class="ob-bq-close">"</span>
+            </blockquote>
+            <p class="ob-bq-source">— Identified problem statement, IRA Workshop, March 2024</p>
+          </section>
+
+          <!-- FIVE STUDIES -->
+          <section class="study-section" id="problem">
+            <h2>Five studies, four years, one picture</h2>
+            <p>Rather than a single research sprint, this was an evolving body of evidence — each study building on the last to progressively sharpen our understanding of the problem thanks to our UX Researcher.</p>
+            <div class="ob-timeline-grid">
+              <div class="ob-timeline-item">
+                <p class="ob-timeline-date">April 2020</p>
+                <h3>Onboarding Revamp Usability Study</h3>
+                <p>Unmoderated think-aloud sessions with 6 segmented users across age groups and digital wallet experience levels. Evaluated registration flow, tooltips, and what users did immediately after signing up.</p>
+              </div>
+              <div class="ob-timeline-item">
+                <p class="ob-timeline-date">October 2023</p>
+                <h3>Registration Drop Off Desk Research</h3>
+                <p>Triangulated survey data, Appbot negative sentiment review, and internal analytics to identify the top causes of registration abandonment. OTP issues and obscure error messages emerged as the biggest culprits.</p>
+              </div>
+              <div class="ob-timeline-item">
+                <p class="ob-timeline-date">November 2023</p>
+                <h3>Newly Registered Users Top Use Cases</h3>
+                <p>Internal data analysis tracking what users did immediately after registration vs. at 3 months vs. 6 months. Mapped acquiring use cases and fund use cases to reveal which features to surface first in onboarding.</p>
+              </div>
+              <div class="ob-timeline-item">
+                <p class="ob-timeline-date">Jan–Feb 2024</p>
+                <h3>WhatsApp OTP Drop Off — Cold Call Study</h3>
+                <p>CS team cold-called 186 users detected as having not completed WhatsApp OTP verification. Split between registered and unregistered users, this study pinpointed the exact failure modes in the OTP step.</p>
+              </div>
+              <div class="ob-timeline-item ob-timeline-full">
+                <p class="ob-timeline-date">March 2024</p>
+                <h3>Install → Register → Active Workshop + Phone Number Survey</h3>
+                <p>A cross-functional Design Thinking workshop (PD, UED, Marketing, Tech) to align on problem statements, ideate solutions, and create a prioritized roadmap. Complemented by a survey on phone number registration behavior.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- WHAT RESEARCH REVEALED -->
+          <section class="study-section" id="research">
+            <h2>What Research Revealed?</h2>
+            <div class="ob-insight-grid">
+              <div class="ob-insight">
+                <h3>Recycled Number cause ghost account</h3>
+                <p>A meaningful share of users didn't remember attempting to register — their phone number had previously been used by someone else or had been recycled by a telco provider</p>
+                <div class="ob-insight-stat">Of unregistered users: 56 out of 79 said "yes" to ever trying to register</div>
+              </div>
+              <div class="ob-insight">
+                <h3>User wanted to register quickly</h3>
+                <p>In the April 2020 usability test, 5 out of 6 users skipped the introduction and directly tapped the phone number field. One user thought the text was too long to read.</p>
+                <div class="ob-insight-stat">Avg time on intro task: 136 seconds — most of it lost on confusion</div>
+              </div>
+              <div class="ob-insight">
+                <h3>OTP was the largest friction point</h3>
+                <p>The 2023 desk research found that users who failed OTP verification were mainly users who did not receive OTP or experienced slow loading. The 2024 cold call research also found that OTP had the most challenges: users did not receive WhatsApp OTP, preferred SMS OTP, failed when entering OTP, or entered expired codes.</p>
+                <div class="ob-insight-stat">Drop off reasons: not received (38.5%), app error (23.1%), too slow (15.4%)</div>
+              </div>
+              <div class="ob-insight">
+                <h3>81% use their own device's number</h3>
+                <p>The vast majority of users register with the same number that's on their device — validating the decision to build a phone number suggestion shortcut in the keyboard.</p>
+                <div class="ob-insight-stat">19% used a different number — mostly due to inactive SIM or owning 2 devices</div>
+              </div>
+              <div class="ob-insight">
+                <h3>High success rate doesn't mean registration success</h3>
+                <p>In the age of information technology, there are a lot of malicious attempts on hacking in the e-wallet space. 100% success rate on registration can mean our risk team isn't doing its job because of bot activity.</p>
+                <div class="ob-insight-stat">Success rate is not the sole defining metric that we need to look into</div>
+              </div>
+              <div class="ob-insight">
+                <h3>First use cases shift dramatically over time</h3>
+                <p>At registration, A+ Rewards and Other GN dominate. By 3–6 months, Mobile Telco Standalone, Insurance, and QRIS take over. This mismatch means onboarding shows the wrong features.</p>
+                <div class="ob-insight-stat">P2P, PG, and Top Up remain stable #1–3 fund use cases throughout</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- IDEATION & EXPLORATION -->
+          <section class="study-section" id="exploration">
+            <h2>Ideation &amp; Exploration</h2>
+
+            <div class="ob-img-panel ob-img-panel--gray ob-img-panel--3">
+              <div class="ob-img-panel__col">
+                <img src="assets/onboarding/exploration-ideation-1.png" alt="Onboarding Exploration 1" />
+                <p>Onboarding Exploration 1</p>
+              </div>
+              <div class="ob-img-panel__col">
+                <img src="assets/onboarding/exploration-ideation-2.png" alt="Onboarding Exploration 2" />
+                <p>Onboarding Exploration 2</p>
+              </div>
+              <div class="ob-img-panel__col">
+                <img src="assets/onboarding/exploration-finale.png" alt="Finale Onboarding" />
+                <p>Finale Onboarding</p>
+              </div>
+            </div>
+
+            <p>The first design iteration explored a structural shift: moving the phone input field below the carousel so it's always reachable without completing the intro. Richer, more specific illustrations replaced the original abstract graphics. Messaging was rewritten in plain language based on exact user vocabulary from the usability sessions. In the end, we want it to be less clutter as it can be and chose the third design</p>
+
+            <div class="ob-img-panel ob-img-panel--blue">
+              <p class="ob-img-panel__heading">The initiatives to speed up OTP Process</p>
+              <div class="ob-otp-row">
+                <div class="ob-otp-group">
+                  <div class="ob-otp-screens">
+                    <img src="assets/onboarding/otp-citcall-1.png" alt="Citcall screen 1" />
+                    <img src="assets/onboarding/otp-citcall-2.png" alt="Citcall screen 2" />
+                  </div>
+                  <p>Citcall</p>
+                </div>
+                <div class="ob-otp-group">
+                  <div class="ob-otp-screens">
+                    <img src="assets/onboarding/otp-boku-1.png" alt="Boku screen 1" />
+                    <img src="assets/onboarding/otp-boku-2.png" alt="Boku screen 2" />
+                  </div>
+                  <p>Boku</p>
+                </div>
+                <div class="ob-otp-group">
+                  <div class="ob-otp-screens">
+                    <img src="assets/onboarding/otp-akamai.png" alt="Akamai screen" />
+                  </div>
+                  <p>Akamai</p>
+                </div>
+              </div>
+            </div>
+
+            <p>We also notice that there is a lot of opportunity on cutting down steps and cost cutting for OTP. From our research, OTP is the largest friction points when user wants to register, either its because the OTP SMS is so slow or they don't receive at all. so there's an opportunity for us to explore other alternatives that has a better success rate and also better experience.</p>
+
+            <div class="ob-img-panel ob-img-panel--blue">
+              <p class="ob-img-panel__heading">Helping User on inputting their phone number</p>
+              <div class="ob-phone-flow">
+                <img src="assets/onboarding/phone-input-v1.png" alt="Phone input screen 1" />
+                <img class="ob-arrow" src="assets/onboarding/arrow-right.png" alt="" aria-hidden="true" />
+                <img src="assets/onboarding/phone-input-v2.png" alt="Phone input v2" />
+                <img src="assets/onboarding/phone-input-v1.png" alt="Phone input screen 3" />
+                <img class="ob-arrow" src="assets/onboarding/arrow-right.png" alt="" aria-hidden="true" />
+                <img src="assets/onboarding/phone-input-after.png" alt="Phone input after" />
+              </div>
+              <div class="ob-phone-captions">
+                <p>If user press a prefix other than "8" or "0"</p>
+                <p>If user press 0 rather than 8, the "+62" will change into 0</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- WHAT CHANGED AND WHY -->
+          <section class="study-section" id="final-design">
+            <h2>What changed and why</h2>
+            <p>A direct comparison of design decisions across the key screen on the original onboarding, the ideation prototype, and the final design — each change linked to a specific research finding.</p>
+
+            <div class="ob-img-panel ob-img-panel--gray ob-img-panel--3">
+              <div class="ob-img-panel__col">
+                <img src="assets/onboarding/compare-onboarding-v1.png" alt="Onboarding v1" />
+                <p>Onboarding v1</p>
+              </div>
+              <div class="ob-img-panel__col">
+                <img src="assets/onboarding/compare-onboarding-v2.png" alt="Onboarding v2" />
+                <p>Onboarding v2</p>
+              </div>
+              <div class="ob-img-panel__col">
+                <img src="assets/onboarding/exploration-finale.png" alt="Current Onboarding" />
+                <p>Current Onboarding</p>
+              </div>
+            </div>
+
+            <h3 class="ob-change-title">From feature showcase to first impression</h3>
+            <p>One of the clearest patterns in our research was that DANA had a tendency to introduce new features before the existing journey was fully resolved. The onboarding screen became a symptom of this — by the time users landed on it, they were already being sold a product they hadn't yet decided to trust.</p>
+            <p>This informed the decision to strip the onboarding down to its core purpose. The current design removes the feature-selling layer entirely and replaces it with a single, clear value statement and one action. The reasoning is simple: a user who hasn't registered yet doesn't need product depth — they need enough confidence to take that first step. Everything else can wait.</p>
+            <div class="ob-card-row">
+              <div class="ob-card">
+                <h3>Previous (v1 &amp; v2)</h3>
+                <p>Mixed intent — promotional copy and a phone input on the same screen split user attention before trust was established.</p>
+              </div>
+              <div class="ob-card">
+                <h3>Current design rationale</h3>
+                <p>One message, one action. Deferred feature discovery to post registration, where it's actually relevant.</p>
+              </div>
+            </div>
+
+            <div class="ob-img-panel ob-img-panel--gray ob-img-panel--3">
+              <div class="ob-img-panel__col">
+                <img src="assets/onboarding/compare-phone-v1.png" alt="Input Phone number v1" />
+                <p>Input Phone number v1</p>
+              </div>
+              <div class="ob-img-panel__col">
+                <img src="assets/onboarding/compare-phone-v2.png" alt="Input Phone number v2" />
+                <p>Input Phone number v2</p>
+              </div>
+              <div class="ob-img-panel__col">
+                <img src="assets/onboarding/compare-phone-current.png" alt="Current Input Phone number" />
+                <p>Current Input Phone number</p>
+              </div>
+            </div>
+
+            <h3 class="ob-change-title">Removing a silent source of confusion</h3>
+            <p>The data told a story that wasn't immediately obvious from looking at the screen: 81% of users registered using their own device's phone number. That should have made this step frictionless. But it wasn't — because the input field didn't make it clear whether users should include or exclude the leading zero when typing after the +62 prefix.</p>
+            <p>The current design resolves this structurally — not with hint text, but by separating the country code into its own labelled field. The user now sees "Country" and "Number" as two distinct inputs, which implicitly communicates that the prefix is already handled. The addition of a clear (×) button addresses a secondary finding: on a numeric keyboard, mistyping is common, and users were abandoning rather than correcting.</p>
+            <div class="ob-card-row">
+              <div class="ob-card">
+                <h3>Previous (v1 &amp; v2)</h3>
+                <p>A merged +62/number field left users guessing about the correct format — a small friction that compounded into real drop off.</p>
+              </div>
+              <div class="ob-card">
+                <h3>Current design rationale</h3>
+                <p>Structural separation of country code and number. Ambiguity resolved by layout, not copy.</p>
+              </div>
+            </div>
+
+            <div class="ob-img-panel ob-img-panel--gray ob-img-panel--3">
+              <div class="ob-img-panel__col">
+                <img src="assets/onboarding/compare-otp-v1.png" alt="Input OTP v1" />
+                <p>Input OTP v1</p>
+              </div>
+              <div class="ob-img-panel__col">
+                <img src="assets/onboarding/compare-otp-v2.png" alt="Input OTP v2" />
+                <p>Input OTP v2</p>
+              </div>
+              <div class="ob-img-panel__col">
+                <img src="assets/onboarding/compare-otp-current.png" alt="Current Input OTP" />
+                <p>Current Input OTP</p>
+              </div>
+            </div>
+
+            <h3 class="ob-change-title">The biggest drop off point</h3>
+            <p>OTP was where we lost the most users — and it wasn't because the concept was unfamiliar. It was because three separate problems were converging at the same moment in the journey: users didn't know where the code was being sent, they couldn't tell how long they had to enter it, and when it didn't arrive, they didn't know what to do next.</p>
+            <p>The current design addresses each of these individually. Explicitly stating "via WhatsApp" beneath the phone number sets the right expectation before the user even leaves the screen. The visible countdown timer ("00:09") gives users a concrete signal that the system is working and tells them exactly when they can request another code. The always visible resend link (KIRIM ULANG) removes the moment of uncertainty that was causing users to abandon instead of retry.</p>
+            <div class="ob-card-row">
+              <div class="ob-card">
+                <h3>Previous (v1 &amp; v2)</h3>
+                <p>No delivery channel stated, no time signal, and a buried resend action — three compounding uncertainties at the most critical step.</p>
+              </div>
+              <div class="ob-card">
+                <h3>Current design rationale</h3>
+                <p>WhatsApp delivery stated upfront. Countdown timer as a trust signal. Always-visible resend link to prevent abandonment.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- FINAL FLOW / IMPACT -->
+          <section class="study-section" id="impact">
+            <div class="ob-img-panel ob-img-panel--gray ob-img-panel--6">
+              <div class="ob-img-panel__col"><img src="assets/onboarding/final-flow-1.png" alt="Registration flow screen 1" /></div>
+              <div class="ob-img-panel__col"><img src="assets/onboarding/final-flow-2.png" alt="Registration flow screen 2" /></div>
+              <div class="ob-img-panel__col"><img src="assets/onboarding/final-flow-3.png" alt="Registration flow screen 3" /></div>
+              <div class="ob-img-panel__col"><img src="assets/onboarding/final-flow-4.png" alt="Registration flow screen 4" /></div>
+              <div class="ob-img-panel__col"><img src="assets/onboarding/final-flow-5.png" alt="Registration flow screen 5" /></div>
+              <div class="ob-img-panel__col"><img src="assets/onboarding/final-flow-6.png" alt="Registration flow screen 6" /></div>
+            </div>
+            <h3 class="ob-change-title">Overall Onboarding Registration Journey</h3>
+            <p>The flow treats every screen as an opportunity to answer the question the previous one raised. The welcome screen earns trust before asking anything. The phone input removes format ambiguity through structure rather than instructions. The WhatsApp confirmation sets delivery expectations explicitly, so users know exactly where to look for their code. The OTP screen restates those expectations and adds a countdown timer — converting a moment of silence into a visible signal that the system is working. PIN creation reframes a security requirement as a personal action. And the welcome screen closes the journey with a clear sense of arrival.</p>
+          </section>
+
+        </main>
+      </div><!-- /.study-shell -->
+    </div><!-- /.case-page -->
+
+    <footer class="site-footer">
+      <div class="site-footer__links" aria-label="Footer contact links">
+        <a class="site-footer__pill site-footer__pill--wide" href="mailto:derrick@lionardy.com">
+          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 7.4c0-1 .8-1.8 1.8-1.8h14.4c1 0 1.8.8 1.8 1.8v9.2c0 1-.8 1.8-1.8 1.8H4.8c-1 0-1.8-.8-1.8-1.8V7.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="m4.7 7.4 7.3 5.1 7.3-5.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>derrick@lionardy.com</span>
+        </a>
+        <div class="site-footer__pill site-footer__pill--wide">
+          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21s-6-5.53-6-11a6 6 0 1 1 12 0c0 5.47-6 11-6 11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8" />
+          </svg>
+          <span>Jakarta, Indonesia</span>
+        </div>
+        <a class="site-footer__pill site-footer__pill--small" href="index.html#work">
+          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h11A2.5 2.5 0 0 1 20 8.5v9A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-9Z" stroke="currentColor" stroke-width="1.8" />
+            <path d="M9 6V4.8A.8.8 0 0 1 9.8 4h4.4a.8.8 0 0 1 .8.8V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M4 11.5h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+          <span>More Work</span>
+        </a>
+        <a class="site-footer__pill site-footer__pill--small" href="about.html">
+          <svg class="site-footer__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.8" />
+            <path d="M12 10.5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            <circle cx="12" cy="7.7" r="1" fill="currentColor" />
+          </svg>
+          <span>About Me</span>
+        </a>
+      </div>
+      <div class="site-footer__meta">
+        <p class="site-footer__copyright">&copy; 2026 Derrick Lionardy.</p>
+        <p class="site-footer__note">Built with 🤖⌨️</p>
+      </div>
+    </footer>
+
+    <script src="onboarding-registration.js"></script>
+  </body>
+</html>

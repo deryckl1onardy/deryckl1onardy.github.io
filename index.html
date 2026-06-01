@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260406-drag-smooth" />
+    <link rel="stylesheet" href="styles.css?v=20260531-responsive-grid" />
     <link rel="stylesheet" href="footer.css" />
     <link rel="stylesheet" href="page-transition.css" />
     <style>
@@ -312,31 +312,33 @@
 
       @media (max-width: 860px) {
         .projects .project-grid {
-          display: flex !important;
-          flex-wrap: nowrap !important;
-          gap: 16px !important;
-          overflow-x: auto !important;
-          overflow-y: hidden !important;
-          padding: 8px 18px 18px 0 !important;
-          margin-right: -18px !important;
-          scroll-snap-type: x mandatory !important;
-          -webkit-overflow-scrolling: touch !important;
-          overscroll-behavior-x: contain !important;
-          touch-action: pan-x pinch-zoom !important;
-          scrollbar-width: none !important;
-        }
-
-        .projects .project-grid::-webkit-scrollbar {
-          display: none !important;
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          grid-auto-flow: row !important;
+          gap: 14px 14px !important;
+          overflow-x: visible !important;
+          overflow-y: visible !important;
+          padding: 8px 0 0 !important;
+          margin-right: 0 !important;
+          scroll-snap-type: none !important;
+          touch-action: auto !important;
+          scrollbar-width: auto !important;
         }
 
         .projects .project-item {
-          flex: 0 0 min(86vw, 434px) !important;
-          width: min(86vw, 434px) !important;
+          flex: unset !important;
+          width: 100% !important;
+          min-width: 0 !important;
           max-width: none !important;
           margin: 0 !important;
-          scroll-snap-align: start !important;
-          scroll-snap-stop: always !important;
+          scroll-snap-align: unset !important;
+          scroll-snap-stop: unset !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .projects .project-grid {
+          grid-template-columns: 1fr !important;
         }
       }
     </style>
@@ -421,6 +423,26 @@
 
         <div class="project-grid">
           <article class="project-item">
+            <div class="mixtape tone-tosca">
+              <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
+              <div class="mixtape-inner">
+                <div class="mixtape-label"><span class="mixtape-title-paper">Weather - But Fun</span></div>
+                <div class="mixtape-band">
+                  <span class="reel"></span>
+                  <span class="window"><i></i></span>
+                  <span class="reel"></span>
+                </div>
+              </div>
+              <div class="mixtape-foot"><span class="mixtape-foot-surface"></span><span class="mixtape-foot-hardware"></span></div>
+            </div>
+            <div class="project-info">
+              <p class="meta">Weather - But Fun <span>*</span> Solo Project</p>
+              <h3>Vibe Code Experiment</h3>
+              <a href="weather-but-fun-local.html" class="see-btn">See Project</a>
+            </div>
+          </article>
+
+          <article class="project-item">
             <div class="mixtape tone-cream">
               <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
               <div class="mixtape-inner">
@@ -435,29 +457,8 @@
               <div class="mixtape-foot"><span class="mixtape-foot-surface"></span><span class="mixtape-foot-hardware"></span></div>
             </div>
             <div class="project-info">
-              <p class="meta">App Exp <span>*</span> 2022</p>
+              <p class="meta">DANA Wallet <span>*</span> App Exp</p>
               <h3>Increase User Retention</h3>
-              <a href="dana-wallet-v3.html" class="see-btn">See Project</a>
-            </div>
-          </article>
-
-          <article class="project-item">
-            <div class="mixtape tone-dark">
-              <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
-              <div class="mixtape-inner">
-                <div class="mixtape-label"><span class="mixtape-title-paper">Onboarding, Registration &amp; Foreign Account</span></div>
-                <div class="mixtape-band">
-                  <span class="reel"></span>
-                  <span class="window"><i></i></span>
-                  <span class="reel"></span>
-                </div>
-                <div class="mixtape-brand" aria-hidden="true"><img src="assets/dana-logo-badge.png" alt="" width="65" height="18" style="display:block;width:65px;height:18px;max-width:none;max-height:none;" /></div>
-              </div>
-              <div class="mixtape-foot"><span class="mixtape-foot-surface"></span><span class="mixtape-foot-hardware"></span></div>
-            </div>
-            <div class="project-info">
-              <p class="meta">App Exp <span>*</span> 2022</p>
-              <h3>User Acquisition</h3>
               <a href="dana-wallet-v3.html" class="see-btn">See Project</a>
             </div>
           </article>
@@ -477,29 +478,9 @@
               <div class="mixtape-foot"><span class="mixtape-foot-surface"></span><span class="mixtape-foot-hardware"></span></div>
             </div>
             <div class="project-info">
-              <p class="meta">App Exp <span>*</span> 2022</p>
+              <p class="meta">Main Gate of the App <span>*</span> App Exp</p>
               <h3>Evolving DANA Home</h3>
               <a href="main-gate-of-the-app.html" class="see-btn">See Project</a>
-            </div>
-          </article>
-
-          <article class="project-item">
-            <div class="mixtape tone-tosca">
-              <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
-              <div class="mixtape-inner">
-                <div class="mixtape-label"><span class="mixtape-title-paper">Weather - But Fun</span></div>
-                <div class="mixtape-band">
-                  <span class="reel"></span>
-                  <span class="window"><i></i></span>
-                  <span class="reel"></span>
-                </div>
-              </div>
-              <div class="mixtape-foot"><span class="mixtape-foot-surface"></span><span class="mixtape-foot-hardware"></span></div>
-            </div>
-            <div class="project-info">
-              <p class="meta">Solo Project <span>*</span> 2026</p>
-              <h3>Vibe Code Experiment</h3>
-              <a href="weather-but-fun-local.html" class="see-btn">See Project</a>
             </div>
           </article>
 
@@ -507,7 +488,7 @@
             <div class="mixtape tone-dark">
               <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
               <div class="mixtape-inner">
-                <div class="mixtape-label"><span class="mixtape-title-paper">Onboarding, Registration &amp; Foreign Account</span></div>
+                <div class="mixtape-label"><span class="mixtape-title-paper">Onboarding &amp; Registration</span></div>
                 <div class="mixtape-band">
                   <span class="reel"></span>
                   <span class="window"><i></i></span>
@@ -518,7 +499,28 @@
               <div class="mixtape-foot"><span class="mixtape-foot-surface"></span><span class="mixtape-foot-hardware"></span></div>
             </div>
             <div class="project-info">
-              <p class="meta">App Exp <span>*</span> 2022</p>
+              <p class="meta">Onboarding &amp; Registration <span>*</span> App Exp</p>
+              <h3>User Acquisition</h3>
+              <a href="onboarding-registration.html" class="see-btn">See Project</a>
+            </div>
+          </article>
+
+          <article class="project-item">
+            <div class="mixtape tone-dark">
+              <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
+              <div class="mixtape-inner">
+                <div class="mixtape-label"><span class="mixtape-title-paper">Foreign Account</span></div>
+                <div class="mixtape-band">
+                  <span class="reel"></span>
+                  <span class="window"><i></i></span>
+                  <span class="reel"></span>
+                </div>
+                <div class="mixtape-brand" aria-hidden="true"><img src="assets/dana-logo-badge.png" alt="" width="65" height="18" style="display:block;width:65px;height:18px;max-width:none;max-height:none;" /></div>
+              </div>
+              <div class="mixtape-foot"><span class="mixtape-foot-surface"></span><span class="mixtape-foot-hardware"></span></div>
+            </div>
+            <div class="project-info">
+              <p class="meta">Foreign Account <span>*</span> App Exp</p>
               <h3>Increase User Retention</h3>
               <a href="#" class="see-btn">See Project</a>
             </div>
@@ -539,7 +541,7 @@
               <div class="mixtape-foot"><span class="mixtape-foot-surface"></span><span class="mixtape-foot-hardware"></span></div>
             </div>
             <div class="project-info">
-              <p class="meta">App Exp <span>*</span> 2022</p>
+              <p class="meta">Highlight of the week <span>*</span> App Exp</p>
               <h3>Increase User Retention</h3>
               <a href="#" class="see-btn">See Project</a>
             </div>
@@ -547,6 +549,8 @@
         </div>
       </section>
     </div>
+
+    <div class="project-spotlight" data-project-spotlight aria-hidden="true" hidden></div>
 
     <footer class="site-footer">
       <div class="site-footer__links" aria-label="Footer contact links">
@@ -585,7 +589,7 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20260406-drag-smooth"></script>
+    <script src="script.js?v=20260531-hover-prototype-9"></script>
   </body>
 </html>
 

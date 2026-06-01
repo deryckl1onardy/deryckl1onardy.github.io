@@ -309,30 +309,60 @@
   margin-top: 14px;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 960px) {
+  .intro {
+    margin-top: 18px;
+    min-height: 0;
+    height: auto;
+    width: 100%;
+    padding: 16px 16px 0;
+    overflow: hidden;
+  }
+
+  .main-gate-page .intro-stage {
+    position: relative;
+    width: 100%;
+    height: auto;
+    transform: none !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
   .main-gate-page .intro-media {
+    position: relative;
+    order: 2;
     width: min(360px, calc(100% - 8px));
-    height: 320px;
+    height: 395px;
+    left: auto;
+    top: auto;
+    bottom: auto;
     margin: 8px auto 0;
+    transform: none;
+    overflow: visible;
+    z-index: 0;
   }
 
   .main-gate-page .intro-backdrop {
-    width: 280px;
-    height: 265px;
-    left: 50%;
-    top: 48px;
-    transform: translateX(-50%);
+    display: none;
   }
 
   .main-gate-page .intro-phone {
-    width: min(533px, calc(100% + 96px));
+    position: absolute;
+    width: min(440px, 92vw);
     left: 50%;
     top: -24px;
     transform: translateX(-50%);
   }
 
   .main-gate-page .intro-copy {
+    order: 1;
+    position: relative;
+    left: auto;
+    top: auto;
     width: 100%;
+    margin-top: 0;
   }
 
   .main-gate-page .intro-tags {
@@ -378,6 +408,10 @@
   }
 
   .main-gate-page .intro-phone {
-    width: min(468px, calc(100% + 56px));
+    width: min(360px, 88vw);
+  }
+
+  .main-gate-page .intro-media {
+    height: 340px;
   }
 }

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 580" fill="none">
+  <defs>
+    <radialGradient id="ob-bg" cx="42%" cy="36%" r="62%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3a3f4e"/>
+      <stop offset="58%" stop-color="#1e2330"/>
+      <stop offset="100%" stop-color="#0f1117" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ob-glow" cx="62%" cy="72%" r="52%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2c4a7c" stop-opacity="0.72"/>
+      <stop offset="100%" stop-color="#1a2640" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ob-ring" cx="50%" cy="50%" r="50%" gradientUnits="userSpaceOnUse">
+      <stop offset="66%" stop-color="#252b3a" stop-opacity="0"/>
+      <stop offset="86%" stop-color="#2e354a" stop-opacity="0.48"/>
+      <stop offset="100%" stop-color="#1c2130" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="286" cy="294" rx="272" ry="268" fill="url(#ob-bg)" opacity="0.88"/>
+  <ellipse cx="320" cy="338" rx="220" ry="216" fill="url(#ob-glow)" opacity="0.7"/>
+  <ellipse cx="286" cy="294" rx="272" ry="268" fill="url(#ob-ring)" opacity="0.6"/>
+  <ellipse cx="200" cy="190" rx="96" ry="88" fill="#1e2a42" opacity="0.22"/>
+  <ellipse cx="380" cy="400" rx="72" ry="68" fill="#243560" opacity="0.18"/>
+</svg>

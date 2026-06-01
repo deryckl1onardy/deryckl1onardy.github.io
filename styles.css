@@ -2496,23 +2496,9 @@ a {
   }
 }
 
-@media (max-width: 1439px) {
+@media (max-width: 1200px) {
   .landing {
     width: 100%;
-  }
-
-  .hero {
-    grid-template-columns: minmax(300px, 1fr) 214px minmax(300px, 1fr);
-  }
-
-  .about {
-    grid-template-columns: minmax(0, 1fr) minmax(380px, 520px);
-    gap: 24px;
-  }
-
-  .project-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: 18px;
   }
 
   .project-item {
@@ -2534,9 +2520,8 @@ a {
   .project-info {
     margin-left: 0;
   }
-}
 
-@media (max-width: 1200px) {
+  /* merged from 1439px block — 1200px rules below override where selectors overlap */
   .hero {
     grid-template-columns: 1fr 214px;
     row-gap: 24px;
@@ -2568,7 +2553,7 @@ a {
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .landing::before {
     height: 420px;
     background-size:
@@ -2811,5 +2796,12 @@ a {
     height: auto;
     min-height: 238px;
     padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects {
+    margin-left: 12px;
+    margin-right: 12px;
   }
 }

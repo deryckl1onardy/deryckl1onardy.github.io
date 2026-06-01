@@ -4,6 +4,52 @@ const overviewLinks = Array.from(
 const intro = document.querySelector(".intro");
 const introStage = document.querySelector(".intro-stage");
 
+function ensureFirstInitiativeImpact() {
+  const firstInitiative = document.querySelector(".initiative");
+  if (!firstInitiative || firstInitiative.querySelector(".initiative-impact")) {
+    return;
+  }
+
+  const whyHeading = firstInitiative.querySelector(".initiative-why");
+  if (!whyHeading) return;
+
+  const impactSection = document.createElement("section");
+  impactSection.className = "initiative-impact";
+  impactSection.setAttribute(
+    "aria-label",
+    "Impact of the icon treatment changes"
+  );
+  impactSection.innerHTML = `
+    <p class="initiative-impact__lead">
+      Even though it is a hard metric to track, the team could see
+      a significant improvement in how quickly users opened Pulsa
+      &amp; Data after the icon update.
+    </p>
+    <h4 class="initiative-impact__title">
+      Median time to reach the Pulsa landing page
+    </h4>
+    <div class="initiative-impact__stats">
+      <p class="initiative-impact__row">
+        <span class="initiative-impact__label">Old icon style (Sept 20)</span>
+        <strong class="initiative-impact__value">20 sec</strong>
+      </p>
+      <p class="initiative-impact__row">
+        <span class="initiative-impact__label">New icon style (March 21)</span>
+        <strong class="initiative-impact__value initiative-impact__value--positive">7 sec</strong>
+      </p>
+    </div>
+  `;
+
+  const whyCopy = whyHeading.nextElementSibling;
+  if (whyCopy) {
+    whyCopy.insertAdjacentElement("afterend", impactSection);
+  } else {
+    firstInitiative.appendChild(impactSection);
+  }
+}
+
+ensureFirstInitiativeImpact();
+
 const linkById = new Map(
   overviewLinks.map((link) => [link.dataset.target, link])
 );
