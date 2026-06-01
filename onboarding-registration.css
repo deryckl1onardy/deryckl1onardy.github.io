@@ -365,16 +365,9 @@
    Responsive
    ============================================================ */
 @media (max-width: 960px) {
-  /* Fix intro: image was position:absolute and floated over the copy text */
+  /* Hide the desktop composite image on mobile — it's not a standalone asset */
   .ob-intro-bg {
-    position: relative;
-    order: 2;
-    width: min(360px, calc(100% - 8px));
-    height: auto;
-    left: auto;
-    top: auto;
-    margin: 8px auto 0;
-    object-fit: contain;
+    display: none;
   }
 
   .onboarding-page .intro-copy {
