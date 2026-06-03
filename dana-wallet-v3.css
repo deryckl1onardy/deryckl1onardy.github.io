@@ -477,6 +477,11 @@ a {
     0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+.exploration-grid ~ .exploration-block .small-gallery img {
+  aspect-ratio: 147 / 262;
+  max-width: 136px;
+}
+
 .exploration-wide {
   margin-top: 16px;
 }
