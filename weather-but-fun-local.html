@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="weather-but-fun.css?v=4" />
     <link rel="stylesheet" href="footer.css" />
     <link rel="stylesheet" href="page-transition.css" />
+    <link rel="stylesheet" href="image-lightbox.css?v=2" />
     <script src="page-transition.js" defer></script>
+    <script src="image-lightbox.js?v=2" defer></script>
     <script src="footer.js" defer></script>
   </head>
   <body>
@@ -143,19 +145,19 @@
             </h3>
             <div class="weather-competitor-grid">
               <figure class="weather-competitor weather-competitor-windy">
-                <img src="assets/weather-live/competitor-windy.png" alt="Windy.com weather app" />
+                <img src="assets/weather-live/competitor-windy.png" alt="Windy.com weather app" data-lightbox="weather-competitors" />
                 <figcaption>Windy.com</figcaption>
               </figure>
               <figure class="weather-competitor weather-competitor-bmkg">
-                <img src="assets/weather-live/competitor-bmkg.png" alt="Info BMKG weather app" />
+                <img src="assets/weather-live/competitor-bmkg.png" alt="Info BMKG weather app" data-lightbox="weather-competitors" />
                 <figcaption>Info BMKG</figcaption>
               </figure>
               <figure class="weather-competitor weather-competitor-weawow">
-                <img src="assets/weather-live/competitor-weawow.png" alt="Weawow weather app" />
+                <img src="assets/weather-live/competitor-weawow.png" alt="Weawow weather app" data-lightbox="weather-competitors" />
                 <figcaption>Weawow</figcaption>
               </figure>
               <figure class="weather-competitor weather-competitor-wtf">
-                <img src="assets/weather-live/competitor-wtf.png" alt="What The Forecast app" />
+                <img src="assets/weather-live/competitor-wtf.png" alt="What The Forecast app" data-lightbox="weather-competitors" />
                 <figcaption>What The Forecast</figcaption>
               </figure>
             </div>
@@ -186,7 +188,7 @@
             <div class="goal-grid weather-goal-grid">
               <article class="goal-card weather-goal-card">
                 <div class="weather-goal-title-row">
-                  <img src="assets/weather-live/goal-understand.svg" alt="" aria-hidden="true" />
+                  <img src="assets/weather-live/goal-understand.svg" alt="" aria-hidden="true" data-lightbox="weather" />
                   <h3>Make it understandable at a glance</h3>
                 </div>
                 <p>
@@ -201,6 +203,7 @@
                     src="assets/weather-live/goal-visual-system.svg"
                     alt=""
                     aria-hidden="true"
+                    data-lightbox="weather"
                   />
                   <h3>Build a visual system that reflects real conditions</h3>
                 </div>
@@ -212,7 +215,7 @@
 
               <article class="goal-card weather-goal-card">
                 <div class="weather-goal-title-row">
-                  <img src="assets/weather-live/goal-support.svg" alt="" aria-hidden="true" />
+                  <img src="assets/weather-live/goal-support.svg" alt="" aria-hidden="true" data-lightbox="weather" />
                   <h3>Support decisions, not just browsing</h3>
                 </div>
                 <p>
@@ -227,6 +230,7 @@
                     src="assets/weather-live/goal-foundation.svg"
                     alt=""
                     aria-hidden="true"
+                    data-lightbox="weather"
                   />
                   <h3>Create a scalable foundation</h3>
                 </div>
@@ -250,6 +254,7 @@
               <img
                 src="assets/weather-live/exploration-hero.png"
                 alt="Early Weather - But Fun visual exploration"
+                data-lightbox="weather"
               />
               <p>
                 Early visual exploration started before the app was fully built.
@@ -266,17 +271,19 @@
                 moods.
               </p>
               <div class="weather-mood-grid">
-                <img src="assets/weather-live/mood-sunny.png" alt="Sunny visual exploration" />
+                <img src="assets/weather-live/mood-sunny.png" alt="Sunny visual exploration" data-lightbox="weather" />
                 <img
                   src="assets/weather-live/mood-thunderstorm.png"
                   alt="Thunderstorm visual exploration"
+                  data-lightbox="weather"
                 />
-                <img src="assets/weather-live/mood-overcast.png" alt="Overcast visual exploration" />
+                <img src="assets/weather-live/mood-overcast.png" alt="Overcast visual exploration" data-lightbox="weather" />
                 <img
                   src="assets/weather-live/mood-few-clouds.png"
                   alt="Few clouds visual exploration"
+                  data-lightbox="weather"
                 />
-                <img src="assets/weather-live/mood-clear-sky.png" alt="Clear sky visual exploration" />
+                <img src="assets/weather-live/mood-clear-sky.png" alt="Clear sky visual exploration" data-lightbox="weather" />
               </div>
               <ul>
                 <li>Sunny that felt bright but not harsh.</li>
@@ -307,6 +314,7 @@
                     <img
                       src="assets/weather-live/hierarchy-first.png"
                       alt="First hierarchy exploration"
+                      data-lightbox="weather"
                     />
                   </div>
                   <figcaption class="weather-hierarchy-caption">
@@ -315,7 +323,7 @@
                 </figure>
                 <figure class="weather-hierarchy-item weather-hierarchy-item-end">
                   <div class="weather-hierarchy-frame">
-                    <img src="assets/weather-live/hierarchy-end.png" alt="End result hierarchy" />
+                    <img src="assets/weather-live/hierarchy-end.png" alt="End result hierarchy" data-lightbox="weather" />
                   </div>
                   <figcaption class="weather-hierarchy-caption">End Result</figcaption>
                 </figure>
@@ -348,12 +356,12 @@
               <h3>3. Smart interpretation</h3>
                 <div class="smart-widget-row">
                   <div class="smart-widget-canvas" aria-hidden="true">
-                    <img class="smart-widget-image smart-widget-image-1" src="assets/weather-live/widget-card-1.png" alt="" />
-                    <img class="smart-widget-image smart-widget-image-2" src="assets/weather-live/widget-card-2.png" alt="" />
-                    <img class="smart-widget-image smart-widget-image-3" src="assets/weather-live/widget-card-3.png" alt="" />
-                    <img class="smart-widget-image smart-widget-image-4" src="assets/weather-live/widget-card-4.png" alt="" />
-                    <img class="smart-widget-image smart-widget-image-5" src="assets/weather-live/widget-card-5.png" alt="" />
-                    <img class="smart-widget-image smart-widget-image-6" src="assets/weather-live/widget-card-6.png" alt="" />
+                    <img class="smart-widget-image smart-widget-image-1" src="assets/weather-live/widget-card-1.png" alt="" data-lightbox="weather" />
+                    <img class="smart-widget-image smart-widget-image-2" src="assets/weather-live/widget-card-2.png" alt="" data-lightbox="weather" />
+                    <img class="smart-widget-image smart-widget-image-3" src="assets/weather-live/widget-card-3.png" alt="" data-lightbox="weather" />
+                    <img class="smart-widget-image smart-widget-image-4" src="assets/weather-live/widget-card-4.png" alt="" data-lightbox="weather" />
+                    <img class="smart-widget-image smart-widget-image-5" src="assets/weather-live/widget-card-5.png" alt="" data-lightbox="weather" />
+                    <img class="smart-widget-image smart-widget-image-6" src="assets/weather-live/widget-card-6.png" alt="" data-lightbox="weather" />
                   </div>
                   <p class="smart-widget-label">
                     Type of OS Widgets Available to choose
@@ -385,6 +393,7 @@
               <img
                 src="assets/weather-live/final-design.png"
                 alt="Final Weather - But Fun interface"
+                data-lightbox="weather"
               />
             </div>
           </section>
@@ -448,52 +457,62 @@
                 class="weather-reflection-summary"
                 src="assets/weather-live/reflection-summary.png"
                 alt="Weather - But Fun Play Store listing and user feedback summary"
+                data-lightbox="weather"
               />
               <div class="weather-reflection-mosaic">
                 <img
                   class="weather-reflection-card weather-reflection-card-2"
                   src="assets/weather-live/reflection-image-2.png"
                   alt="User feedback snippet"
+                  data-lightbox="weather"
                 />
                 <img
                   class="weather-reflection-card weather-reflection-card-3"
                   src="assets/weather-live/reflection-image-3.png"
                   alt="User feedback snippet"
+                  data-lightbox="weather"
                 />
                 <img
                   class="weather-reflection-card weather-reflection-card-4"
                   src="assets/weather-live/reflection-image-4.png"
                   alt="User feedback snippet"
+                  data-lightbox="weather"
                 />
                 <img
                   class="weather-reflection-card weather-reflection-card-1"
                   src="assets/weather-live/reflection-image-1.png"
                   alt="User feedback snippet"
+                  data-lightbox="weather"
                 />
                 <img
                   class="weather-reflection-card weather-reflection-card-9"
                   src="assets/weather-live/reflection-image-9.png"
                   alt="User feedback snippet"
+                  data-lightbox="weather"
                 />
                 <img
                   class="weather-reflection-card weather-reflection-card-5"
                   src="assets/weather-live/reflection-image-5.png"
                   alt="User feedback snippet"
+                  data-lightbox="weather"
                 />
                 <img
                   class="weather-reflection-card weather-reflection-card-7"
                   src="assets/weather-live/reflection-image-7.png"
                   alt="User feedback snippet"
+                  data-lightbox="weather"
                 />
                 <img
                   class="weather-reflection-card weather-reflection-card-8"
                   src="assets/weather-live/reflection-image-8.png"
                   alt="User feedback snippet"
+                  data-lightbox="weather"
                 />
                 <img
                   class="weather-reflection-card weather-reflection-card-6"
                   src="assets/weather-live/reflection-image-6.png"
                   alt="User feedback snippet"
+                  data-lightbox="weather"
                 />
               </div>
             </div>

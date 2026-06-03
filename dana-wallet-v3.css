@@ -100,6 +100,7 @@ a {
   flex: 1;
   height: 48px;
   border-radius: 40px;
+  border: 2px solid transparent;
   display: grid;
   place-items: center;
   color: #7f7f7f;
@@ -254,7 +255,7 @@ a {
   top: 24px;
   background: var(--panel);
   border: 3px solid var(--panel-border);
-  border-radius: 20px;
+  border-radius: 8px;
   box-shadow: var(--panel-shadow);
   padding: 24px 20px 32px;
   animation: float-up 700ms 60ms ease-out both;
@@ -413,7 +414,7 @@ a {
   width: 100%;
   aspect-ratio: 207 / 449;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 8px;
 }
 
 .two-col {
@@ -437,7 +438,7 @@ a {
 .goal-card {
   background: #f0f0f0;
   border: 2px solid #e1e1e1;
-  border-radius: 16px;
+  border-radius: 6px;
   box-shadow: var(--panel-shadow);
   padding: 24px 18px;
   color: #373737;
@@ -495,7 +496,7 @@ a {
 .wide-gallery img {
   width: 100%;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: 6px;
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.2),
     0 2px 6px rgba(0, 0, 0, 0.1);
@@ -523,7 +524,7 @@ a {
   width: 100%;
   aspect-ratio: 255 / 553;
   object-fit: cover;
-  border-radius: 19px;
+  border-radius: 8px;
 }
 
 .impact-layout {
@@ -625,10 +626,12 @@ a {
 }
 
 .research-learnings h3 {
-  font-size: 18px;
+  font-size: clamp(28px, 3vw, 32px);
   font-weight: 700;
   margin: 0 0 16px;
   color: #1a1a1a;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
 
 .research-learnings-grid {
@@ -639,13 +642,16 @@ a {
 
 .research-learning-card {
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .research-learning-title {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 
 .research-learning-icon {
@@ -679,6 +685,7 @@ a {
   padding: 6px 10px;
   font-size: 13px;
   color: #1a1a1a;
+  margin-top: auto;
 }
 
 .research-implication strong {
@@ -1026,7 +1033,7 @@ a {
   position: relative;
   z-index: 1;
   background: #1a1a1a;
-  border-radius: 16px;
+  border-radius: 6px;
   overflow: hidden;
   width: min(480px, calc(100vw - 32px));
   max-height: calc(100dvh - 32px);
