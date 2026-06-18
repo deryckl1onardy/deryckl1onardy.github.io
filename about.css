@@ -1241,28 +1241,28 @@
   min-height: 48px;
   padding: 0 16px;
   border-radius: 10px;
-  border: 1px solid rgba(91, 80, 66, 0.86);
-  background: linear-gradient(180deg, #322d27 0%, #1b1915 100%);
+  border: 1px solid #e1e1e1;
+  background: #f5f5f5;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 10px 18px rgba(43, 34, 23, 0.12);
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 .about-page .chat-input-label {
   flex: none;
-  color: rgba(245, 241, 231, 0.44);
+  color: #7a7a7a;
   font-family: "Inter", sans-serif;
   font-size: 16px;
   letter-spacing: -0.02em;
 }
 
 .about-page .chat-message-input {
-  color: #f7f3ea;
+  color: #2a2a2a;
   font-size: clamp(18px, 1.3vw, 20px);
 }
 
 .about-page .chat-message-input::placeholder {
-  color: rgba(247, 243, 234, 0.35);
+  color: #b0b0b0;
 }
 
 .about-page .chat-send {

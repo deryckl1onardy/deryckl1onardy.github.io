@@ -149,6 +149,10 @@
   align-items: start;
 }
 
+.initiative-media--two figure {
+  margin: 0;
+}
+
 .initiative-media--two img {
   border-radius: 19px;
   box-shadow: 0 14px 24px rgba(0, 0, 0, 0.14);
@@ -333,12 +337,12 @@
   .main-gate-page .intro-media {
     position: relative;
     order: 2;
-    width: min(360px, calc(100% - 8px));
-    height: 395px;
+    width: min(440px, 100%);
+    height: auto;
     left: auto;
     top: auto;
     bottom: auto;
-    margin: 8px auto 0;
+    margin: 4px auto 0;
     transform: none;
     overflow: visible;
     z-index: 0;
@@ -348,12 +352,17 @@
     display: none;
   }
 
+  /* Let the tilted hero composite flow and wrap tightly (no fixed-height
+     media box that leaves dead gray space below it), matching the prominence
+     of the phone heroes on the other case studies. */
   .main-gate-page .intro-phone {
-    position: absolute;
-    width: min(440px, 92vw);
-    left: 50%;
-    top: -24px;
-    transform: translateX(-50%);
+    position: static;
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    left: auto;
+    top: auto;
+    transform: none;
   }
 
   .main-gate-page .intro-copy {
@@ -383,8 +392,27 @@
     gap: 16px;
   }
 
+  /* Wallet v3 is an "A + B = C" formula of phone screens. Full-bleed stacking
+     made each phone ~760px tall; constrain + centre them so the relationship
+     stays readable at a comfortable size. */
+  .wallet-compare {
+    justify-items: center;
+    gap: 8px;
+  }
+
+  .wallet-compare__item {
+    width: min(230px, 78%);
+  }
+
   .wallet-compare__symbol {
     min-height: 0;
+    font-size: 48px;
+  }
+
+  /* The discoverability comparison shows UI crops (not phones); a smaller
+     radius reads cleaner than the phone-sized rounding. */
+  .initiative-media--two img {
+    border-radius: 12px;
   }
 
   .comparison-grid {
@@ -407,11 +435,194 @@
     width: min(285px, 100%);
   }
 
-  .main-gate-page .intro-phone {
-    width: min(360px, 88vw);
+  .main-gate-page .intro-media {
+    width: min(380px, 100%);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   IMPACT — dark metrics band + qualitative wins
+   (selectors scoped under #impact to beat the ID-level
+   `.main-gate-page #impact p/li/ul` base rules)
+   ═══════════════════════════════════════════════════════════ */
+.impact-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 26px 0 36px;
+  background: #141414;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.impact-metric {
+  padding: 30px 28px 32px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.impact-metric:last-child {
+  border-right: none;
+}
+
+.main-gate-page #impact .impact-metric__label {
+  margin: 0 0 18px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.3;
+}
+
+.main-gate-page #impact .impact-metric__change {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.impact-metric__from {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.impact-metric__arrow {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 16px;
+}
+
+.impact-metric__to {
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.main-gate-page #impact .impact-metric__note {
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.impact-metric__delta {
+  color: #7be09a;
+  font-weight: 600;
+}
+
+.main-gate-page #impact .impact-qual__title {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8378;
+}
+
+.main-gate-page #impact .impact-qual__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-gate-page #impact .impact-qual__list li {
+  position: relative;
+  margin: 0;
+  padding: 16px 0 16px 26px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: clamp(15px, 1.7vw, 17px);
+  line-height: 1.5;
+  color: #2a2a2a;
+}
+
+.main-gate-page #impact .impact-qual__list li:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.main-gate-page #impact .impact-qual__list li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 24px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #42ab00;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REFLECTION — lead statement + numbered jobs + closing quote
+   ═══════════════════════════════════════════════════════════ */
+/* Lead reads as normal body copy (inherits .study-section p sizing). */
+.main-gate-page .reflection .reflection-lead {
+  margin: 0 0 14px;
+}
+
+.reflection-lead em {
+  font-style: normal;
+  color: inherit;
+}
+
+.main-gate-page .reflection .reflection-subhead {
+  margin: 0 0 16px;
+}
+
+.reflection-jobs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+  gap: 12px;
+  margin: 0 0 30px;
+}
+
+.reflection-job {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 18px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.reflection-job__num {
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: #9a9387;
+}
+
+.main-gate-page .reflection .reflection-job p {
+  margin: 0;
+  font-size: clamp(15px, 1.7vw, 17px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: #111111;
+}
+
+.reflection-closing {
+  margin: 0;
+  padding: 16px 0 16px 22px;
+  border-left: 3px solid #111111;
+  font-size: clamp(16px, 1.9vw, 19px);
+  line-height: 1.6;
+  color: #373737;
+}
+
+@media (max-width: 700px) {
+  .impact-metrics {
+    grid-template-columns: 1fr;
   }
 
-  .main-gate-page .intro-media {
-    height: 340px;
+  .impact-metric {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .impact-metric:last-child {
+    border-bottom: none;
   }
 }

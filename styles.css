@@ -1,5 +1,5 @@
 :root {
-  --bg: #dddddd;
+  --bg: #d9d6d0;
   --text: #000000;
   --muted: #6c6c6c;
   --tile-1: #d1d1d1;
@@ -103,11 +103,11 @@ a {
 .pill-nav {
   width: 497px;
   height: 64px;
-  border: 2px solid #d0d0d0;
+  border: 2px solid #c6c2bb;
   border-radius: 200px;
   padding: 7px 8px;
-  background: #e0e0e0;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  background: #dedad4;
+  box-shadow: 0 8px 16px rgba(24, 21, 18, 0.11);
   display: flex;
   align-items: center;
   gap: 16px;
@@ -121,19 +121,19 @@ a {
   line-height: 1.5;
   letter-spacing: 0;
   text-align: center;
-  color: #7f7f7f;
+  color: #6e6a63;
   display: grid;
   place-items: center;
   font-weight: 400;
 }
 
 .nav-link.is-active {
-  background: #efefef;
-  border: 2px solid #dcdcdc;
+  background: #f3ede4;
+  border: 2px solid #ccc7be;
   box-shadow:
-    0 4px 4px rgba(0, 0, 0, 0.12),
-    inset 0 0 0 0.5px #bababa;
-  color: #000;
+    0 4px 4px rgba(0, 0, 0, 0.10),
+    inset 0 0 0 0.5px #b5b0a8;
+  color: #181512;
   font-weight: 500;
 }
 

@@ -46,9 +46,9 @@
 }
 
 .onboarding-page .study-section p {
-  font-size: 24px;
+  font-size: 17px;
   font-weight: 400;
-  color: #373737;
+  color: #444444;
   letter-spacing: -0.24px;
   line-height: 1.5;
   margin: 0;
@@ -84,7 +84,7 @@
 }
 
 .ob-blockquote p {
-  font-size: 32px !important;
+  font-size: 22px !important;
   font-weight: 700;
   color: #373737;
   letter-spacing: -0.32px;
@@ -94,9 +94,9 @@
 }
 
 .ob-bq-source {
-  font-size: 24px;
-  color: #373737;
-  letter-spacing: -0.24px;
+  font-size: 13px;
+  color: #888888;
+  letter-spacing: 0.02em;
   line-height: 1.5;
   margin: 0;
 }
@@ -118,18 +118,18 @@
 }
 
 .ob-card h3 {
-  font-size: 32px;
-  font-weight: 700;
-  color: #373737;
-  letter-spacing: -0.32px;
-  line-height: 1.5;
-  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111111;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin: 0 0 10px;
 }
 
 .ob-card p {
-  font-size: 24px !important;
-  color: #373737;
-  line-height: 1.5;
+  font-size: 16px !important;
+  color: #555555;
+  line-height: 1.65;
   margin: 0 !important;
 }
 
@@ -147,27 +147,27 @@
 .ob-timeline-full { grid-column: 1 / -1; }
 
 .ob-timeline-date {
-  font-size: 24px !important;
-  font-weight: 500 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
   color: #108ee9 !important;
-  letter-spacing: -0.24px;
-  line-height: 1.15;
-  margin: 0 0 8px !important;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 0 0 6px !important;
 }
 
 .ob-timeline-item h3 {
-  font-size: 24px;
+  font-size: 15px;
   font-weight: 600;
-  color: #000;
-  letter-spacing: -0.24px;
-  line-height: 1.15;
-  margin: 0 0 10px;
+  color: #111111;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin: 0 0 8px;
 }
 
 .ob-timeline-item p {
-  font-size: 24px !important;
-  color: #373737;
-  line-height: 1.5;
+  font-size: 14px !important;
+  color: #555555;
+  line-height: 1.6;
   margin: 0 !important;
 }
 
@@ -185,29 +185,31 @@
 }
 
 .ob-insight h3 {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 600;
-  color: #000;
-  letter-spacing: -0.28px;
-  line-height: 1.15;
+  color: #111111;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
   margin: 0;
 }
 
 .ob-insight p {
-  font-size: 24px !important;
-  color: #373737;
-  line-height: 1.5;
+  font-size: 16px !important;
+  color: #555555;
+  line-height: 1.65;
   margin: 0 !important;
   flex: 1;
 }
 
 .ob-insight-stat {
   background: var(--panel);
-  border-radius: 12px;
-  padding: 12px;
-  font-size: 24px;
-  color: #373737;
-  letter-spacing: -0.24px;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+  letter-spacing: -0.01em;
+  line-height: 1.55;
   line-height: 1.5;
 }
 
@@ -396,16 +398,16 @@
   .ob-blockquote { flex-wrap: wrap; }
   .ob-bq-open, .ob-bq-close { font-size: 56px; width: 36px; }
   .ob-blockquote p { font-size: 20px !important; }
-  .ob-card h3 { font-size: 20px; }
+  .ob-card h3 { font-size: 17px; }
   .ob-insight h3 { font-size: 18px; }
 
-  /* Scale down fixed font sizes for tablet */
-  .onboarding-page .study-section p { font-size: 18px; }
-  .ob-card p { font-size: 18px !important; }
-  .ob-insight p { font-size: 18px !important; }
-  .ob-insight-stat { font-size: 16px; }
-  .ob-timeline-item p { font-size: 18px !important; }
-  .ob-bq-source { font-size: 18px; }
+  /* Scale down for tablet */
+  .onboarding-page .study-section p { font-size: 16px; }
+  .ob-card p { font-size: 15px !important; }
+  .ob-insight p { font-size: 16px !important; }
+  .ob-insight-stat { font-size: 15px; }
+  .ob-timeline-item p { font-size: 13px !important; }
+  .ob-bq-source { font-size: 12px; }
 }
 
 @media (max-width: 640px) {
@@ -426,7 +428,7 @@
   .ob-card p { font-size: clamp(15px, 4.2vw, 17px) !important; }
   .ob-insight p { font-size: clamp(15px, 4.2vw, 17px) !important; }
   .ob-blockquote p { font-size: clamp(16px, 5vw, 20px) !important; }
-  .ob-card h3 { font-size: clamp(16px, 5vw, 20px); }
+  .ob-card h3 { font-size: clamp(15px, 4.5vw, 17px); }
   .ob-insight h3 { font-size: clamp(15px, 4.5vw, 18px); }
   .ob-insight-stat { font-size: clamp(13px, 3.5vw, 15px); }
   .ob-timeline-item p { font-size: clamp(14px, 4vw, 16px) !important; }
