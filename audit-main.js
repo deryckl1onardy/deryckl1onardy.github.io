@@ -280,8 +280,9 @@
       { xr: 0.42, y: 622, r: -4 },
       { xr: 0.71, y: 632, r: 2  }
     ];
+    var DRAG_THRESHOLD = 8;
     var zTop = 10, raf = null, animating = false;
-    var active = null, sx = 0, sy = 0, ox = 0, oy = 0, lastX = 0, vx = 0;
+    var active = null, pending = null, sx = 0, sy = 0, ox = 0, oy = 0, lastX = 0, vx = 0;
 
     function apply(p) {
       p.style.transform = "translate(" + p._x.toFixed(1) + "px," + p._y.toFixed(1) +
@@ -321,16 +322,26 @@
 
     function down(e) {
       var p = e.currentTarget;
-      active = p; p._dragged = true;
-      p.classList.add("is-grab");
       p.style.zIndex = ++zTop;
-      try { p.setPointerCapture(e.pointerId); } catch (err) {}
+      pending = { el: p, id: e.pointerId };
       sx = e.clientX; sy = e.clientY; ox = p._x; oy = p._y; lastX = e.clientX; vx = 0;
+      // Don't preventDefault yet — wait until we're sure it's a drag, not a scroll
+    }
+    function commitDrag(e) {
+      var p = pending.el;
+      active = p; pending = null;
+      p._dragged = true;
+      p.classList.add("is-grab");
+      try { p.setPointerCapture(e.pointerId); } catch (err) {}
       if (reduce) { p._scale = 1.03; apply(p); } else { startLoop(); }
-      e.preventDefault();
     }
     function move(e) {
+      if (pending && pending.el === e.currentTarget && pending.id === e.pointerId) {
+        var dx = e.clientX - sx, dy = e.clientY - sy;
+        if (dx * dx + dy * dy >= DRAG_THRESHOLD * DRAG_THRESHOLD) commitDrag(e);
+      }
       if (!active || active !== e.currentTarget) return;
+      e.preventDefault();
       var W = wall.clientWidth, H = wall.clientHeight, cw = active.offsetWidth, ch = active.offsetHeight;
       var nx = ox + (e.clientX - sx), ny = oy + (e.clientY - sy);
       active._x = Math.max(-cw * 0.45, Math.min(W - cw * 0.55, nx));
@@ -339,6 +350,7 @@
       if (reduce) apply(active);
     }
     function up(e) {
+      if (pending && pending.el === e.currentTarget) pending = null;
       if (!active) return;
       var p = active;
       p.classList.remove("is-grab");

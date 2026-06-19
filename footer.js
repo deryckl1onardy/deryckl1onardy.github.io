@@ -28,7 +28,7 @@
           <p class="site-footer__eyebrow">Let's connect</p>
 
           <nav class="site-footer__socials" aria-label="Social links">
-            <a class="site-footer__social-link" href="about.html" aria-label="LinkedIn">
+            <a class="site-footer__social-link" href="https://www.linkedin.com/in/derycklionardy/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M6.94 8.5a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12ZM5.6 9.75h2.68v8.65H5.6V9.75Zm4.36 0h2.57v1.18h.04c.36-.68 1.23-1.4 2.53-1.4 2.7 0 3.2 1.78 3.2 4.09v4.78h-2.67v-4.24c0-1.01-.02-2.31-1.41-2.31-1.41 0-1.62 1.1-1.62 2.24v4.31H9.96V9.75Z" fill="currentColor"></path>
               </svg>
