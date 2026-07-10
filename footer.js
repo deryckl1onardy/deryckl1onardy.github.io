@@ -5,7 +5,7 @@
     <div class="site-footer__inner">
       <div class="site-footer__grid">
         <section class="site-footer__brand" aria-label="Footer profile">
-          <img class="site-footer__avatar" src="avatar.svg" alt="Portrait illustration of Derrick" />
+          <img class="site-footer__avatar" src="/avatar.svg" alt="Portrait illustration of Derrick" />
 
           <div class="site-footer__brand-copy">
             <h2 class="site-footer__name">Derrick</h2>

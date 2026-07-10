@@ -193,7 +193,7 @@
     avatar.setAttribute("aria-hidden", "true");
 
     const avatarImg = document.createElement("img");
-    avatarImg.src = "avatar.svg";
+    avatarImg.src = "/avatar.svg";
     avatarImg.alt = "";
     avatar.appendChild(avatarImg);
 
