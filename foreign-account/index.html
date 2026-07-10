@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foreign Account | Derrick Portfolio</title>
+    <meta
+      name="description"
+      content="Initiative to enable foreign users to transact easily on DANA using their original phone number."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Caveat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="dana-wallet-v3.css?v=6" />
+    <link rel="stylesheet" href="../audit-styles.css" />
+    <link rel="stylesheet" href="foreign-account.css?v=5" />
+    <link rel="stylesheet" href="../footer.css" />
+    <link rel="stylesheet" href="../page-transition.css" />
+    <link rel="stylesheet" href="../image-lightbox.css?v=3" />
+    <script src="../page-transition.js" defer></script>
+    <script src="../image-lightbox.js?v=2" defer></script>
+    <script src="dana-wallet-v3.js" defer></script>
+    <script src="../footer.js" defer></script>
+    <script>
+    (function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      function reelArt() {
+        var teeth = "";
+        for (var i = 0; i < 6; i++) {
+          teeth += '<rect x="46.4" y="20.5" width="7.2" height="12" rx="2.4" fill="#e9e5da" transform="rotate(' + (i * 60) + ' 50 50)"/>';
+        }
+        return '<svg class="reel__art" viewBox="0 0 100 100" aria-hidden="true">'
+          + '<circle cx="50" cy="50" r="49.5" fill="#080605"/>'
+          + '<circle cx="50" cy="50" r="45.5" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.6"/>'
+          + '<circle cx="50" cy="50" r="36" fill="none" stroke="#e9e5da" stroke-width="13"/>'
+          + '<circle cx="50" cy="50" r="42.8" fill="none" stroke="rgba(0,0,0,0.38)" stroke-width="1.6"/>'
+          + '<circle cx="50" cy="50" r="29.4" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="1.2"/>'
+          + teeth
+          + '<circle cx="50" cy="50" r="17.5" fill="#0d0a08"/>'
+          + "</svg>";
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        var cards = Array.prototype.slice.call(document.querySelectorAll(".mixtape"));
+        if (!cards.length) return;
+        var running = false;
+        cards.forEach(function (card) {
+          var shell = card.querySelector(".mixtape__shell");
+          if (!shell) return;
+          var reelL = card.querySelector(".reel--left");
+          var reelR = card.querySelector(".reel--right");
+          if (reelL && !reelL.querySelector("svg")) reelL.insertAdjacentHTML("beforeend", reelArt());
+          if (reelR && !reelR.querySelector("svg")) reelR.insertAdjacentHTML("beforeend", reelArt());
+          var s = { shell: shell, spin: false, vel: 0,
+            rotL: Math.random() * 360, rotR: Math.random() * 360,
+            x: 0, y: 0, tx: 0, ty: 0, reelL: reelL, reelR: reelR };
+          card._cs = s;
+          if (!reduce) {
+            card.addEventListener("pointermove", function (e) {
+              var r = shell.getBoundingClientRect();
+              s.tx = (e.clientX - r.left) / r.width - 0.5;
+              s.ty = (e.clientY - r.top) / r.height - 0.5;
+              kick();
+            });
+            card.addEventListener("pointerenter", function () { s.spin = true; kick(); });
+            card.addEventListener("pointerleave", function () {
+              s.spin = false; s.tx = 0; s.ty = 0; kick();
+            });
+          }
+        });
+        function frame() {
+          var active = false;
+          cards.forEach(function (card) {
+            var s = card._cs; if (!s) return;
+            var dx = s.tx - s.x, dy = s.ty - s.y;
+            if (Math.abs(dx) > 0.0004 || Math.abs(dy) > 0.0004) {
+              s.x += dx * 0.16; s.y += dy * 0.16; active = true;
+              var st = s.shell.style;
+              st.setProperty("--ry", (s.x * 14).toFixed(2) + "deg");
+              st.setProperty("--rx", (-s.y * 14).toFixed(2) + "deg");
+              st.setProperty("--px-near", (s.x * 10).toFixed(1) + "px");
+              st.setProperty("--py-near", (s.y * 10).toFixed(1) + "px");
+              st.setProperty("--px-mid", (s.x * 6).toFixed(1) + "px");
+              st.setProperty("--py-mid", (s.y * 6).toFixed(1) + "px");
+              st.setProperty("--px-far", (s.x * -4).toFixed(1) + "px");
+              st.setProperty("--py-far", (s.y * -4).toFixed(1) + "px");
+            }
+            var target = s.spin ? 1 : 0;
+            s.vel += (target - s.vel) * 0.08;
+            if (s.spin || s.vel > 0.001) {
+              active = true;
+              s.rotL = (s.rotL + s.vel * 4.2) % 360;
+              s.rotR = (s.rotR + s.vel * 6.1) % 360;
+              if (s.reelL) s.reelL.style.setProperty("--reel-rot", s.rotL.toFixed(1) + "deg");
+              if (s.reelR) s.reelR.style.setProperty("--reel-rot", s.rotR.toFixed(1) + "deg");
+            }
+          });
+          if (active) { requestAnimationFrame(frame); } else { running = false; }
+        }
+        function kick() { if (!running && !reduce) { running = true; requestAnimationFrame(frame); } }
+      });
+    })();
+    </script>
+  </head>
+  <body class="foreign-account-page">
+    <div class="case-page">
+
+      <!-- NAV -->
+      <header class="case-header">
+        <nav class="pill-nav" aria-label="Primary">
+          <a class="nav-link" href="/#home">Home</a>
+          <a class="nav-link is-active" href="/#work">Work</a>
+          <a class="nav-link" href="/about/">About</a>
+        </nav>
+      </header>
+
+      <!-- INTRO -->
+      <section class="intro" id="summary">
+        <div class="intro-stage">
+          <div class="fa-intro-backdrop" aria-hidden="true"></div>
+          <div class="fa-intro-phone-wrap" aria-hidden="true">
+            <div class="fa-intro-phone">
+              <img src="../assets/foreign-account/intro-phone.png" alt="" />
+            </div>
+          </div>
+
+          <div class="intro-copy">
+            <h1>Foreign Account</h1>
+            <p>Initiative to enable foreign user to transact easily on DANA using their original phone number</p>
+            <p class="intro-tags">
+              <span>App Experience</span>
+              <span aria-hidden="true">&bull;</span>
+              <span>2025</span>
+              <span aria-hidden="true">&bull;</span>
+              <span>iOS &amp; Android</span>
+            </p>
+            <span class="prototype-btn wip-badge">Work in Progress</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SNEAK PEEK -->
+      <section class="fa-sneak-peek">
+        <span class="fa-sneak-tag">Sneak Peek</span>
+        <h2 class="fa-wip-heading">Case study under construction</h2>
+        <p class="fa-wip-sub">I haven't finished documenting this project yet, but i'm putting the pieces together. Check on others cases here:</p>
+      </section>
+
+      <!-- OTHER PROJECTS -->
+      <section class="fa-other-projects">
+        <div class="project-grid fa-project-grid">
+
+          <article class="project-item">
+            <div class="mixtape mixtape--tosca">
+              <div class="mixtape__shell">
+                <div class="mixtape__texture"></div>
+                <span class="mixtape__cta">Play ▸</span>
+                <div class="mixtape__sticker" style="--side:'B'">
+                  <span class="mixtape__kicker">Solo Project · B side</span>
+                  <span class="mixtape__title">Weather But Fun</span>
+                  <span class="mixtape__sub">a vibe-code experiment</span>
+                </div>
+                <div class="mixtape__deck"><div class="reel reel--left"></div><div class="reel reel--right"></div></div>
+                <div class="mixtape__base"><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="mixtape__foot mixtape__foot--l"></div><div class="mixtape__foot mixtape__foot--r"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-item">
+            <div class="mixtape mixtape--cream">
+              <div class="mixtape__shell">
+                <div class="mixtape__texture"></div>
+                <span class="mixtape__cta">Play ▸</span>
+                <div class="mixtape__sticker">
+                  <span class="mixtape__kicker">App Experience · 2022</span>
+                  <span class="mixtape__title">DANA Wallet</span>
+                  <span class="mixtape__sub">one place to manage it all</span>
+                </div>
+                <div class="mixtape__deck"><div class="reel reel--left"></div><div class="reel reel--right"></div></div>
+                <div class="mixtape__base"><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="mixtape__foot mixtape__foot--l"></div><div class="mixtape__foot mixtape__foot--r"></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-item">
+            <div class="mixtape mixtape--dark">
+              <div class="mixtape__shell">
+                <div class="mixtape__texture"></div>
+                <span class="mixtape__cta">Play ▸</span>
+                <div class="mixtape__sticker">
+                  <span class="mixtape__kicker">App Experience · 2023</span>
+                  <span class="mixtape__title">Onboarding</span>
+                  <span class="mixtape__sub">the first 60 seconds</span>
+                </div>
+                <div class="mixtape__deck"><div class="reel reel--left"></div><div class="reel reel--right"></div></div>
+                <div class="mixtape__base"><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="mixtape__foot mixtape__foot--l"></div><div class="mixtape__foot mixtape__foot--r"></div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </div>
+  </body>
+</html>

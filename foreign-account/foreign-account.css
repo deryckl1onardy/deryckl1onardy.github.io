@@ -111,10 +111,21 @@
 
 .fa-project-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: clamp(22px, 3vw, 38px);
   margin-top: 0;
-  justify-content: unset;
+}
+
+/* Beats image-lightbox.css's !important 2-class rule (higher specificity + !important) */
+.foreign-account-page .fa-other-projects .fa-project-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: clamp(22px, 3vw, 38px) !important;
+}
+
+/* Lone third cassette — sit it centered under the first two */
+.fa-project-grid .project-item:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: calc(50% - clamp(11px, 1.5vw, 19px));
+  justify-self: center;
 }
 
 /* Make the fixed-width items from styles.css fluid */
@@ -122,15 +133,32 @@
   width: 100%;
 }
 
+/* Reset old styles.css .mixtape geometry so the new shell design takes over */
 .fa-project-grid .mixtape {
   width: 100%;
+  height: auto;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+}
+.fa-project-grid .mixtape::before,
+.fa-project-grid .mixtape::after {
+  display: none;
+}
+
+/* Reset old styles.css .reel geometry; new SVG hub art comes from the inline script */
+.fa-project-grid .reel {
+  width: auto;
+  background-image: none;
+  box-shadow: none;
+  filter: none;
+  transition: none;
 }
 
 .fa-project-grid .project-info {
   width: 100%;
   margin-left: 0;
   height: auto;
-  min-height: 262px;
 }
 
 /* ============================================================
@@ -181,10 +209,16 @@
     height: 42px;
   }
 
-  /* Cards: 1 column on mobile, 2 on mid-range */
-  .fa-project-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+  /* Cards: 1 column on mobile */
+  .foreign-account-page .fa-other-projects .fa-project-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .fa-project-grid .project-item:last-child:nth-child(odd) {
+    grid-column: auto;
+    max-width: 100%;
+    justify-self: auto;
   }
 
   .fa-other-projects {
@@ -192,8 +226,3 @@
   }
 }
 
-@media (min-width: 560px) and (max-width: 960px) {
-  .fa-project-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}

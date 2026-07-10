@@ -32,7 +32,7 @@
   left: -134px;
   top: -45px;
   overflow: visible;
-  transform: none;
+  transform: translate3d(0, var(--px-phone, 0px), 0);
 }
 
 .main-gate-page .intro-phone img {

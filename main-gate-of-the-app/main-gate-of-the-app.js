@@ -117,3 +117,61 @@ function updateIntroScale() {
 
 window.addEventListener("resize", updateIntroScale);
 updateIntroScale();
+
+/* ---------- SCROLL PARALLAX: hero depth cue ----------
+   The hero backdrop trails the scroll well behind the phone in front
+   of it, the classic depth cue: things further back appear to move
+   less. Scoped to the hero only.
+
+   A shared IntersectionObserver decides whether the rAF loop runs at
+   all, so scrolling past the hero costs nothing once it's out of
+   frame (mirrors the cassette-tilt loop on the homepage). */
+(function () {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const narrow = window.matchMedia("(max-width: 980px)").matches;
+  if (reduce || narrow) return;
+
+  const backdrop = document.querySelector(".intro-backdrop");
+  const phone = document.querySelector(".intro-phone");
+  const heroTargets = [backdrop, phone].filter(Boolean);
+  if (!heroTargets.length) return;
+
+  const active = new Set();
+  let running = false;
+
+  function frame() {
+    if (!active.size) {
+      running = false;
+      return;
+    }
+
+    if (intro) {
+      const rect = intro.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, -rect.top / (rect.height * 0.6)));
+      if (backdrop) backdrop.style.setProperty("--px-backdrop", (progress * 260).toFixed(1) + "px");
+      if (phone) phone.style.setProperty("--px-phone", (progress * 40).toFixed(1) + "px");
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  function kick() {
+    if (!running) {
+      running = true;
+      requestAnimationFrame(frame);
+    }
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) active.add(entry.target);
+        else active.delete(entry.target);
+      });
+      kick();
+    },
+    { rootMargin: "20% 0px 20% 0px", threshold: 0 }
+  );
+
+  heroTargets.forEach((el) => observer.observe(el));
+})();

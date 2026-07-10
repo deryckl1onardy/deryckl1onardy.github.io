@@ -156,6 +156,7 @@ a {
   height: 338px;
   top: 93px;
   left: -52px;
+  transform: translate3d(0, var(--px-backdrop, 0px), 0);
 }
 
 .intro-backdrop img {
@@ -174,6 +175,7 @@ a {
   left: 0;
   top: 0;
   overflow: hidden;
+  transform: translate3d(0, var(--px-phone, 0px), 0);
 }
 
 .intro-phone img {
@@ -764,6 +766,19 @@ a {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   SCROLL PARALLAX — hero depth cue (JS-driven, see the page's
+   own .js file). The --px-* custom properties default to 0px so
+   the page is correct even before JS runs or when the controller
+   opts out (reduced motion, touch/mobile, narrow viewport).
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .intro-backdrop,
+  .intro-phone {
+    will-change: transform;
   }
 }
 

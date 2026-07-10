@@ -61,3 +61,56 @@ function updateIntroScale() {
 
 window.addEventListener("resize", updateIntroScale);
 updateIntroScale();
+
+/* ---------- SCROLL PARALLAX: hero drift ----------
+   The hero composite is a single flattened image (no separate
+   backdrop/phone layers like the other case studies), so it gets a
+   single, more moderate drift as it scrolls rather than a two-layer
+   depth cue. Scoped to the hero only.
+
+   A shared IntersectionObserver decides whether the rAF loop runs at
+   all, so scrolling past the hero costs nothing once it's out of
+   frame (mirrors the cassette-tilt loop on the homepage). */
+(function () {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const narrow = window.matchMedia("(max-width: 980px)").matches;
+  if (reduce || narrow) return;
+
+  const hero = document.querySelector(".ob-intro-bg");
+  if (!hero) return;
+
+  let active = false;
+  let running = false;
+
+  function frame() {
+    if (!active) {
+      running = false;
+      return;
+    }
+
+    if (intro) {
+      const rect = intro.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, -rect.top / (rect.height * 0.6)));
+      hero.style.setProperty("--px-hero", (progress * 100).toFixed(1) + "px");
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  function kick() {
+    if (!running) {
+      running = true;
+      requestAnimationFrame(frame);
+    }
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      active = entries[0].isIntersecting;
+      kick();
+    },
+    { rootMargin: "20% 0px 20% 0px", threshold: 0 }
+  );
+
+  observer.observe(hero);
+})();

@@ -14,6 +14,13 @@
   object-position: left center;
   pointer-events: none;
   z-index: 0;
+  transform: translate3d(0, var(--px-hero, 0px), 0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ob-intro-bg {
+    will-change: transform;
+  }
 }
 
 .onboarding-page .intro-copy {
