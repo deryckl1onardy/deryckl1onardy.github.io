@@ -14,7 +14,7 @@
      page it links to via a matching view-transition-name, so the tape
      physically flies off the wall into the case study — and back. */
   (function () {
-    function slug(s) { return (s || "").split("#")[0].replace(".html", "").replace(/[^a-z0-9-]/gi, ""); }
+    function slug(s) { return (s || "").split("#")[0].replace(/\.html$/, "").replace(/\/+$/, "").split("/").pop().replace(/[^a-z0-9-]/gi, ""); }
     document.querySelectorAll("a.mixtape[href]").forEach(function (a) {
       var s = slug(a.getAttribute("href"));
       var shell = a.querySelector(".mixtape__shell");
@@ -32,10 +32,14 @@
 
   /* ---------- NAV: mark current page ---------- */
   (function () {
-    var path = location.pathname.split("/").pop() || "index.html";
+    var pathParts = location.pathname.split("/").filter(function(p) { return p.length > 0; });
+    var currentPage = pathParts[pathParts.length - 1] || "";
     document.querySelectorAll(".nav__link").forEach(function (a) {
-      var href = (a.getAttribute("href") || "").split("#")[0];
-      if (href === path || (path === "index.html" && (href === "" || href === "index.html"))) {
+      var href = (a.getAttribute("href") || "").split("#")[0].replace(/\/$/, "");
+      var hrefParts = href.split("/").filter(function(p) { return p.length > 0; });
+      var hrefPage = hrefParts[hrefParts.length - 1] || "";
+      var isActive = (href === "/" && currentPage === "") || (href === currentPage) || (hrefPage === currentPage && hrefPage !== "");
+      if (isActive) {
         if (!a.dataset.section) a.classList.add("is-active");
       }
     });
