@@ -406,8 +406,17 @@ body::after {
   margin-top: 40px;
   display: inline-flex; align-items: center; gap: 10px;
   font-size: 14px; color: var(--ink-muted);
+  transition: color 160ms var(--ease), transform 160ms var(--ease);
 }
 .scroll-cue .chev { animation: bob 1.8s var(--ease) infinite; }
+@media (hover: hover) and (pointer: fine) {
+  .scroll-cue:hover { color: var(--ink); transform: translateY(-1px); }
+}
+.scroll-cue:active { transform: scale(0.97) translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue { transition: none; }
+  .scroll-cue:active { transform: none; }
+}
 @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 
 /* ---------- 7. SECTION HEADERS (LED PILL CHIPS) ---------- */

@@ -14,8 +14,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../dana-wallet-v3/dana-wallet-v3.css?v=6" />
-    <link rel="stylesheet" href="onboarding-registration.css?v=4" />
+    <link rel="stylesheet" href="../dana-wallet-v3/dana-wallet-v3.css?v=7" />
+    <link rel="stylesheet" href="onboarding-registration.css?v=8" />
     <link rel="stylesheet" href="../footer.css" />
     <link rel="stylesheet" href="../page-transition.css" />
     <link rel="stylesheet" href="../image-lightbox.css?v=3" />
@@ -276,7 +276,7 @@
                 <h3>Previous (v1 &amp; v2)</h3>
                 <p>Mixed intent — promotional copy and a phone input on the same screen split user attention before trust was established.</p>
               </div>
-              <div class="ob-card">
+              <div class="ob-card ob-card--current">
                 <h3>Current design rationale</h3>
                 <p>One message, one action. Deferred feature discovery to post registration, where it's actually relevant.</p>
               </div>
@@ -305,7 +305,7 @@
                 <h3>Previous (v1 &amp; v2)</h3>
                 <p>A merged +62/number field left users guessing about the correct format — a small friction that compounded into real drop off.</p>
               </div>
-              <div class="ob-card">
+              <div class="ob-card ob-card--current">
                 <h3>Current design rationale</h3>
                 <p>Structural separation of country code and number. Ambiguity resolved by layout, not copy.</p>
               </div>
@@ -334,7 +334,7 @@
                 <h3>Previous (v1 &amp; v2)</h3>
                 <p>No delivery channel stated, no time signal, and a buried resend action — three compounding uncertainties at the most critical step.</p>
               </div>
-              <div class="ob-card">
+              <div class="ob-card ob-card--current">
                 <h3>Current design rationale</h3>
                 <p>WhatsApp delivery stated upfront. Countdown timer as a trust signal. Always-visible resend link to prevent abandonment.</p>
               </div>
@@ -344,12 +344,12 @@
           <!-- FINAL FLOW / IMPACT -->
           <section class="study-section" id="impact">
             <div class="ob-img-panel ob-img-panel--gray ob-img-panel--6">
-              <div class="ob-img-panel__col"><img src="../assets/onboarding/final-flow-1.png" alt="Registration flow screen 1" /></div>
-              <div class="ob-img-panel__col"><img src="../assets/onboarding/final-flow-2.png" alt="Registration flow screen 2" /></div>
-              <div class="ob-img-panel__col"><img src="../assets/onboarding/final-flow-3.png" alt="Registration flow screen 3" /></div>
-              <div class="ob-img-panel__col"><img src="../assets/onboarding/final-flow-4.png" alt="Registration flow screen 4" /></div>
-              <div class="ob-img-panel__col"><img src="../assets/onboarding/final-flow-5.png" alt="Registration flow screen 5" /></div>
-              <div class="ob-img-panel__col"><img src="../assets/onboarding/final-flow-6.png" alt="Registration flow screen 6" /></div>
+              <div class="ob-img-panel__col"><img src="../assets/onboarding/final-flow-1.png" alt="Registration flow screen 1" /><p>Welcome</p></div>
+              <div class="ob-img-panel__col"><img src="../assets/onboarding/final-flow-2.png" alt="Registration flow screen 2" /><p>Phone Number</p></div>
+              <div class="ob-img-panel__col"><img src="../assets/onboarding/final-flow-3.png" alt="Registration flow screen 3" /><p>WhatsApp Confirmation</p></div>
+              <div class="ob-img-panel__col"><img src="../assets/onboarding/final-flow-4.png" alt="Registration flow screen 4" /><p>OTP Verification</p></div>
+              <div class="ob-img-panel__col"><img src="../assets/onboarding/final-flow-5.png" alt="Registration flow screen 5" /><p>PIN Creation</p></div>
+              <div class="ob-img-panel__col"><img src="../assets/onboarding/final-flow-6.png" alt="Registration flow screen 6" /><p>Welcome Back</p></div>
             </div>
             <h3 class="ob-change-title">Overall Onboarding Registration Journey</h3>
             <p>The flow treats every screen as an opportunity to answer the question the previous one raised. The welcome screen earns trust before asking anything. The phone input removes format ambiguity through structure rather than instructions. The WhatsApp confirmation sets delivery expectations explicitly, so users know exactly where to look for their code. The OTP screen restates those expectations and adds a countdown timer — converting a moment of silence into a visible signal that the system is working. PIN creation reframes a security requirement as a personal action. And the welcome screen closes the journey with a clear sense of arrival.</p>

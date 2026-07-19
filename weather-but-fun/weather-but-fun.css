@@ -84,6 +84,19 @@ a {
   padding-bottom: 8px;
 }
 
+.case-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw -20px -100vw;
+  z-index: -1;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(221, 221, 221, 0.7);
+  mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  pointer-events: none;
+}
+
 .pill-nav {
   width: 497px;
   height: 64px;
@@ -247,6 +260,11 @@ a {
 
 .prototype-btn:hover {
   transform: translateY(-1px);
+}
+
+.prototype-btn:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 100ms;
 }
 
 .study-shell {
@@ -861,10 +879,9 @@ a {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
-  padding: 20px;
-  border-radius: 16px;
-  background: #d6d6d6;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .weather-competitor-grid figure {
@@ -2009,16 +2026,21 @@ a {
 
 /* ── Prototype Modal ── */
 .prototype-modal {
-  display: none;
+  display: flex;
   position: fixed;
   inset: 0;
   z-index: 1000;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease-out, visibility 0s linear 200ms;
 }
 
 .prototype-modal.is-open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 200ms ease-out, visibility 0s linear 0s;
 }
 
 .prototype-modal__backdrop {
@@ -2038,6 +2060,25 @@ a {
   max-height: calc(100dvh - 32px);
   display: flex;
   flex-direction: column;
+  transform: scale(0.95);
+  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.prototype-modal.is-open .prototype-modal__dialog {
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prototype-modal {
+    transition: opacity 120ms ease-out, visibility 0s linear 120ms;
+  }
+  .prototype-modal.is-open {
+    transition: opacity 120ms ease-out, visibility 0s linear 0s;
+  }
+  .prototype-modal__dialog {
+    transform: none;
+    transition: none;
+  }
 }
 
 .prototype-modal__header {
@@ -2075,11 +2116,16 @@ a {
   padding: 6px 12px;
   cursor: pointer;
   font-family: inherit;
-  transition: background 0.15s;
+  transition: background 150ms ease, transform 90ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .prototype-modal__close:hover {
   background: rgba(255, 255, 255, 0.18);
+}
+
+.prototype-modal__close:active {
+  transform: scale(0.95);
+  transition-duration: 90ms;
 }
 
 .prototype-modal__video {
@@ -2096,11 +2142,8 @@ body.prototype-modal-open {
 
 /* ── Callout (blockquote with quote marks) ── */
 .weather-callout {
-  background: var(--panel);
-  border: 3px solid var(--panel-border);
-  border-radius: 20px;
-  box-shadow: var(--panel-shadow);
-  padding: 16px 24px;
+  border-left: 3px solid #108ee9;
+  padding: 8px 0 8px 24px;
   display: flex;
   align-items: center;
   gap: 0;
@@ -2109,12 +2152,12 @@ body.prototype-modal-open {
 
 .weather-callout-open,
 .weather-callout-close {
-  font-size: 92px;
+  font-size: 56px;
   font-weight: 700;
   color: #373737;
   line-height: 1.5;
   flex-shrink: 0;
-  width: 52px;
+  width: 32px;
 }
 
 .weather-callout-close {
@@ -2136,7 +2179,7 @@ body.prototype-modal-open {
 @media (max-width: 960px) {
   .weather-callout { flex-wrap: wrap; }
   .weather-callout-open,
-  .weather-callout-close { font-size: 56px; width: 36px; }
+  .weather-callout-close { font-size: 36px; width: 22px; }
   .weather-callout p { font-size: 20px !important; }
 }
 

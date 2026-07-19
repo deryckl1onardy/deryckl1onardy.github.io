@@ -53,6 +53,21 @@
   background: #1a1a1a;
 }
 
+.img-lightbox.is-open .img-lightbox__img {
+  animation: lightbox-img-in 240ms cubic-bezier(.22,.61,.36,1);
+}
+
+@keyframes lightbox-img-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .img-lightbox.is-open .img-lightbox__img {
+    animation: none;
+  }
+}
+
 .img-lightbox.is-zoomed .img-lightbox__img {
   cursor: grab;
 }

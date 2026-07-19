@@ -24,6 +24,18 @@
     padding-top: 24px;
     padding-bottom: 8px;
   }
+  .masthead::before {
+    content: "";
+    position: absolute;
+    inset: 0 -100vw -20px -100vw;
+    z-index: -1;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(217, 214, 208, 0.7);
+    mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+    pointer-events: none;
+  }
   .pill-nav {
     width: 497px;
     height: 64px;

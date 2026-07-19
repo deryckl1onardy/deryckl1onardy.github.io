@@ -84,6 +84,19 @@ a {
   padding-bottom: 8px;
 }
 
+.case-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw -20px -100vw;
+  z-index: -1;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(217, 214, 208, 0.7);
+  mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  pointer-events: none;
+}
+
 .pill-nav {
   width: 497px;
   height: 64px;
@@ -241,6 +254,11 @@ a {
 
 .prototype-btn:hover {
   transform: translateY(-1px);
+}
+
+.prototype-btn:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 100ms;
 }
 
 .study-shell {
@@ -1026,16 +1044,21 @@ a {
 
 /* ── Prototype Modal ── */
 .prototype-modal {
-  display: none;
+  display: flex;
   position: fixed;
   inset: 0;
   z-index: 1000;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease-out, visibility 0s linear 200ms;
 }
 
 .prototype-modal.is-open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 200ms ease-out, visibility 0s linear 0s;
 }
 
 .prototype-modal__backdrop {
@@ -1056,6 +1079,25 @@ a {
   display: flex;
   flex-direction: column;
   border: 1px solid #e1e1e1;
+  transform: scale(0.95);
+  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.prototype-modal.is-open .prototype-modal__dialog {
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prototype-modal {
+    transition: opacity 120ms ease-out, visibility 0s linear 120ms;
+  }
+  .prototype-modal.is-open {
+    transition: opacity 120ms ease-out, visibility 0s linear 0s;
+  }
+  .prototype-modal__dialog {
+    transform: none;
+    transition: none;
+  }
 }
 
 .prototype-modal__header {
@@ -1093,11 +1135,16 @@ a {
   padding: 6px 12px;
   cursor: pointer;
   font-family: inherit;
-  transition: background 0.15s;
+  transition: background 150ms ease, transform 90ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .prototype-modal__close:hover {
   background: rgba(0, 0, 0, 0.12);
+}
+
+.prototype-modal__close:active {
+  transform: scale(0.95);
+  transition-duration: 90ms;
 }
 
 .prototype-modal__video {
