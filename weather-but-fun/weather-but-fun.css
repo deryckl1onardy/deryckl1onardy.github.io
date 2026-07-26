@@ -41,31 +41,6 @@ a {
   position: relative;
 }
 
-.case-page::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  top: 0;
-  height: 480px;
-  opacity: 0.3;
-  background-image:
-    linear-gradient(90deg, var(--stroke) 1px, transparent 1px),
-    linear-gradient(var(--stroke) 1px, transparent 1px),
-    linear-gradient(
-      90deg,
-      #d1d1d1 0 80px,
-      #d9d9d9 80px 160px,
-      #f1f1f1 160px 240px,
-      #d9d9d9 240px 320px
-    );
-  background-size:
-    80px 80px,
-    80px 80px,
-    320px 80px;
-  pointer-events: none;
-}
 
 .case-header,
 .intro,
@@ -255,16 +230,24 @@ a {
   font-weight: 500;
   display: grid;
   place-items: center;
-  transition: transform 180ms ease;
-}
-
-.prototype-btn:hover {
-  transform: translateY(-1px);
+  transition: background 160ms ease, border-color 160ms ease;
 }
 
 .prototype-btn:active {
-  transform: translateY(0) scale(0.97);
+  transform: scale(0.97);
   transition-duration: 100ms;
+}
+
+.prototype-btn--primary {
+  border-color: #1a1a1a;
+  background: #1a1a1a;
+  color: #f5f5f5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.prototype-btn--primary:hover {
+  background: #2b2b2b;
+  border-color: #2b2b2b;
 }
 
 .study-shell {
@@ -879,9 +862,7 @@ a {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
-  padding: 20px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
 }
 
 .weather-competitor-grid figure {
@@ -2142,8 +2123,7 @@ body.prototype-modal-open {
 
 /* ── Callout (blockquote with quote marks) ── */
 .weather-callout {
-  border-left: 3px solid #108ee9;
-  padding: 8px 0 8px 24px;
+  padding: 8px 0;
   display: flex;
   align-items: center;
   gap: 0;
@@ -2200,16 +2180,11 @@ body.prototype-modal-open {
   display: flex;
   align-items: baseline;
   gap: 18px;
-  padding: 18px 0;
-  border-top: 1px solid #c1c1c1;
+  padding: 10px 0;
   font-size: clamp(16px, 1.9vw, 20px);
   line-height: 1.5;
   color: #373737;
   margin: 0;
-}
-
-.weather-hmw-list li:last-child {
-  border-bottom: 1px solid #c1c1c1;
 }
 
 .weather-hmw-list li::before {
@@ -2233,8 +2208,7 @@ body.prototype-modal-open {
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  padding: 14px 0;
-  border-bottom: 1px solid #c1c1c1;
+  padding: 8px 0;
   font-size: clamp(16px, 1.9vw, 20px);
   line-height: 1.5;
   color: #373737;
@@ -2260,14 +2234,9 @@ body.prototype-modal-open {
   display: grid;
   grid-template-columns: 56px minmax(0, 1fr);
   gap: 18px;
-  padding: 22px 0;
-  border-bottom: 1px solid #c1c1c1;
+  padding: 14px 0;
   align-items: baseline;
   margin: 0;
-}
-
-.weather-features-list li:first-child {
-  border-top: 1px solid #c1c1c1;
 }
 
 .weather-features-list li::before {
@@ -2310,16 +2279,11 @@ body.prototype-modal-open {
   display: flex;
   gap: 18px;
   align-items: baseline;
-  padding: 18px 0;
-  border-bottom: 1px solid #c1c1c1;
+  padding: 10px 0;
   font-size: clamp(16px, 1.9vw, 20px);
   line-height: 1.55;
   color: #373737;
   margin: 0;
-}
-
-.weather-learnings-list li:first-child {
-  border-top: 1px solid #c1c1c1;
 }
 
 .weather-learnings-list li::before {
@@ -2528,14 +2492,9 @@ body.prototype-modal-open {
   padding-left: 11px;
 }
 
-/* ── Sections — counter + chapter break ───────────────────── */
+/* ── Sections — chapter break ───────────────────── */
 .study-main {
   gap: 80px;
-  counter-reset: section-num;
-}
-
-.study-section + .study-section {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .study-section h2 {
@@ -2543,19 +2502,6 @@ body.prototype-modal-open {
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: #111111;
-  counter-increment: section-num;
-}
-
-.study-section h2::before {
-  content: counter(section-num, decimal-leading-zero);
-  display: block;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  color: #b0b0b0;
-  margin-bottom: 10px;
-  font-style: normal;
-  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .study-section p,
@@ -2576,20 +2522,15 @@ body.prototype-modal-open {
   counter-increment: goal-counter;
   background: transparent;
   border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0;
   box-shadow: none;
-  padding: 28px 0 28px 56px;
+  padding: 18px 0 18px 56px;
   color: #1a1a1a;
   font-size: clamp(16px, 1.9vw, 20px);
   line-height: 1.55;
   font-weight: 600;
   letter-spacing: -0.01em;
   position: relative;
-}
-
-.goal-card:last-child {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .goal-card::before {
@@ -2724,19 +2665,14 @@ body.prototype-modal-open {
 .weather-goal-card {
   background: transparent;
   border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0;
   box-shadow: none;
-  padding: 24px 0;
+  padding: 16px 0;
   counter-increment: none;
 }
 
 .weather-goal-card::before {
   display: none;
-}
-
-.weather-goal-card:last-child {
-  border-bottom: none;
 }
 
 /* ── Responsive overrides ─────────────────────────────────── */

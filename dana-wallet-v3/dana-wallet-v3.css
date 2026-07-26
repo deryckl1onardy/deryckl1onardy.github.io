@@ -613,11 +613,6 @@ a {
 
 .research-summary-item {
   padding: 16px 20px;
-  border-right: 1px solid #e1e1e1;
-}
-
-.research-summary-item:last-child {
-  border-right: none;
 }
 
 .research-summary-item h3 {
@@ -1212,14 +1207,9 @@ body.prototype-modal-open {
   padding-left: 11px;
 }
 
-/* ── Sections — counter + chapter break ───────────────────── */
+/* ── Sections — chapter break ───────────────────── */
 .study-main {
   gap: 80px;
-  counter-reset: section-num;
-}
-
-.study-section + .study-section {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .study-section h2 {
@@ -1227,19 +1217,6 @@ body.prototype-modal-open {
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: #111111;
-  counter-increment: section-num;
-}
-
-.study-section h2::before {
-  content: counter(section-num, decimal-leading-zero);
-  display: block;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  color: #b0b0b0;
-  margin-bottom: 10px;
-  font-style: normal;
-  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .study-section p,
@@ -1260,20 +1237,15 @@ body.prototype-modal-open {
   counter-increment: goal-counter;
   background: transparent;
   border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0;
   box-shadow: none;
-  padding: 28px 0 28px 56px;
+  padding: 18px 0 18px 56px;
   color: #1a1a1a;
   font-size: clamp(16px, 1.9vw, 20px);
   line-height: 1.55;
   font-weight: 600;
   letter-spacing: -0.01em;
   position: relative;
-}
-
-.goal-card:last-child {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .goal-card::before {
@@ -1303,15 +1275,12 @@ body.prototype-modal-open {
 .research-summary-card {
   background: transparent;
   border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0;
   overflow: visible;
 }
 
 .research-summary-item {
-  padding: 24px 24px 24px 0;
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 16px 24px 16px 0;
 }
 
 .research-summary-item:first-child {
@@ -1319,7 +1288,6 @@ body.prototype-modal-open {
 }
 
 .research-summary-item:last-child {
-  border-right: none;
   padding-right: 0;
 }
 
@@ -1345,8 +1313,7 @@ body.prototype-modal-open {
 }
 
 .research-learning-card {
-  padding: 28px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 18px 0;
   gap: 8px;
 }
 
@@ -1366,9 +1333,8 @@ body.prototype-modal-open {
 .research-implication {
   background: transparent;
   border: none;
-  border-top: 1.5px solid rgba(0, 0, 0, 0.1);
   border-radius: 0;
-  padding: 12px 0 0;
+  padding: 8px 0 0;
   font-size: 12.5px;
   color: #444444;
   width: 100%;
@@ -1388,11 +1354,6 @@ body.prototype-modal-open {
   background: transparent;
   border-radius: 0;
   padding: 44px 44px 40px;
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.reflection-metric-card:last-child {
-  border-right: none;
 }
 
 .reflection-metric-head {
@@ -1493,12 +1454,6 @@ body.prototype-modal-open {
 
   .reflection-metric-card {
     padding: 36px 32px;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .reflection-metric-card:last-child {
-    border-bottom: none;
   }
 
   .goal-card {
@@ -1525,8 +1480,6 @@ body.prototype-modal-open {
   }
 
   .research-summary-item {
-    border-right: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 18px 0;
   }
 
@@ -1535,7 +1488,6 @@ body.prototype-modal-open {
   }
 
   .research-summary-item:last-child {
-    border-bottom: none;
     padding-bottom: 0;
   }
 
