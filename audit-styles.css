@@ -1563,7 +1563,6 @@ body::after {
   box-shadow: var(--lift-1);
 }
 .compare__half { padding: 14px; position: relative; }
-.compare__half + .compare__half { border-left: 1px solid rgba(0,0,0,0.13); }
 .compare__half img { display: block; width: 100%; border-radius: 8px; cursor: zoom-in; }
 .compare__tag {
   position: absolute; top: 22px; left: 22px; z-index: 2;
@@ -1593,7 +1592,7 @@ body::after {
 .lightbox.is-open img { transform: scale(1); }
 
 /* next project */
-.cs-next { border-top: 1px solid rgba(0,0,0,0.1); margin-top: 30px; padding-top: 30px; }
+.cs-next { margin-top: 30px; padding-top: 30px; }
 
 /* ============================================================
    13. FOOTER
@@ -1761,7 +1760,6 @@ body::after {
 /* Chapter sections */
 .about-reel {
   padding-block: clamp(44px, 7vw, 80px);
-  border-top: 1px solid rgba(0,0,0,0.08);
 }
 .about-reel__hd {
   display: flex;
@@ -1792,8 +1790,7 @@ body::after {
 }
 .about-pullquote {
   margin: 0 0 28px;
-  padding: 0 0 0 22px;
-  border-left: 3px solid var(--led);
+  padding: 0;
   font-family: var(--font-hand);
   font-size: clamp(1.2rem, 3vw, 1.75rem);
   line-height: 1.3;
@@ -1879,10 +1876,8 @@ body::after {
   grid-template-columns: 110px 1fr auto;
   gap: 16px;
   align-items: center;
-  padding: 18px 0;
-  border-top: 1px solid rgba(0,0,0,0.07);
+  padding: 12px 0;
 }
-.about-track__row:last-child { border-bottom: 1px solid rgba(0,0,0,0.07); }
 .about-track__yr {
   font-family: var(--font-label);
   font-size: 12px;
@@ -1910,7 +1905,6 @@ body::after {
 /* Off the clock — polaroid wall section */
 .about-shots {
   padding-block: clamp(44px, 7vw, 80px);
-  border-top: 1px solid rgba(0,0,0,0.08);
 }
 .about-shots__hd {
   display: flex;
@@ -1966,7 +1960,6 @@ body::after {
   gap: 0 clamp(36px, 5vw, 64px);
   align-items: start;
   padding-block: clamp(48px, 8vw, 88px) clamp(40px, 6vw, 72px);
-  border-bottom: 1px solid rgba(0,0,0,0.07);
   margin-bottom: clamp(40px, 6vw, 64px);
 }
 

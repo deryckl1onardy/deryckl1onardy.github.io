@@ -95,8 +95,6 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 18px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(176, 163, 135, 0.4);
 }
 
 .about-page .experience-icon {
@@ -144,13 +142,11 @@
   grid-template-columns: 52px 18px 1fr auto;
   column-gap: 12px;
   row-gap: 2px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(176, 163, 135, 0.2);
+  padding: 6px 0;
   align-items: center;
 }
 
 .about-page .experience-item:last-child {
-  border-bottom: 0;
   padding-bottom: 0;
 }
 

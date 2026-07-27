@@ -63,8 +63,7 @@
 
 /* --- Blockquote ------------------------------------------- */
 .ob-blockquote {
-  border-left: 3px solid #108ee9;
-  padding: 6px 0 6px 22px;
+  padding: 6px 0;
   margin: 12px 0;
   display: flex;
   align-items: center;
@@ -115,8 +114,7 @@
 .ob-card-row .ob-card { flex: 1; }
 
 .ob-card {
-  border-left: 2px solid #cbc7bd;
-  padding: 0 0 0 16px;
+  padding: 0;
 }
 
 .ob-card h3 {
@@ -133,10 +131,6 @@
   color: #333333;
   line-height: 1.65;
   margin: 0 !important;
-}
-
-.ob-card--current {
-  border-left-color: #108ee9;
 }
 
 .ob-card--current h3 {
@@ -240,9 +234,7 @@
 
 /* --- Image panels ----------------------------------------- */
 .ob-img-panel {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 20px 0;
+  padding: 12px 0;
   margin: 12px 0;
 }
 
