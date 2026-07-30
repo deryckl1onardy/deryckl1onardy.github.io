@@ -1172,10 +1172,19 @@ canvas.addEventListener("pointermove", (e) => {
     dragAxis = movedY > movedX * 1.3 ? "y" : "x";
   }
   if (dragAxis === "x") {
-    travel.tx = startTx + dx;
+    const maxDrag = 300;
+    travel.tx = startTx + Math.max(-maxDrag, Math.min(dx, maxDrag));
   } else if (dragAxis === "y") {
     const min = shelfTy(0), max = shelfTy(shelves.length - 1);
-    travel.ty = Math.max(Math.min(startTy - dy, Math.max(min, max)), Math.min(min, max));
+    const target = startTy - dy;
+    // wrap-around: dragging up past top goes to bottom, dragging down past bottom goes to top
+    if (target > min) {
+      travel.ty = max;
+    } else if (target < max) {
+      travel.ty = min;
+    } else {
+      travel.ty = target;
+    }
   }
 });
 
