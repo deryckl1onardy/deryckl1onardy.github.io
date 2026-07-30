@@ -117,11 +117,14 @@ window.CAVE_CATALOG = (function () {
      ---------------------------------------------------------- */
   var toys = [
     { id: "steam-deck", name: "Steam Deck", maker: "Valve", year: "2022",
-      note: "The heavy one. Does everything, costs your wrists." },
+      note: "The heavy one. Does everything, costs your wrists.",
+      credit: "Model by wallmasterr" },
     { id: "switch-lite", name: "Switch Lite", maker: "Nintendo", year: "2019",
-      note: "Animal Crossing edition. Handheld only, and better for it." },
+      note: "Animal Crossing edition. Handheld only, and better for it.",
+      credit: "Model by eddakat" },
     { id: "gba-sp", name: "Game Boy Advance SP", maker: "Nintendo", year: "2003",
-      note: "The clamshell that fixed the original's biggest complaint: no backlight." }
+      note: "The clamshell that fixed the original's biggest complaint: no backlight.",
+      credit: "Model by synthetic worlds" }
   ];
 
   return { books: books, toys: toys, cloth: CLOTH };

@@ -35,7 +35,8 @@ const panel = {
   num: document.querySelector("[data-num]"),
   title: document.querySelector("[data-title]"),
   sub: document.querySelector("[data-sub]"),
-  note: document.querySelector("[data-note]")
+  note: document.querySelector("[data-note]"),
+  credit: document.querySelector("[data-credit]")
 };
 
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
@@ -972,7 +973,7 @@ function addToys(shelf) {
     });
 
     holder.userData = Object.assign(holder.userData || {}, {
-      kind: "toy", title: t.name, sub: t.maker + " · " + t.year, note: t.note || ""
+      kind: "toy", title: t.name, sub: t.maker + " · " + t.year, note: t.note || "", credit: t.credit || ""
     });
     register(shelf, holder);
   });
@@ -1068,6 +1069,7 @@ function paint(obj) {
   panel.title.textContent = obj.userData.title;
   panel.sub.textContent = obj.userData.sub;
   panel.note.textContent = obj.userData.note;
+  panel.credit.textContent = obj.userData.credit || "";
 }
 
 function step(d) {

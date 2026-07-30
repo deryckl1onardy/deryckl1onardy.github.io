@@ -283,6 +283,15 @@
 }
 .record__note:empty { display: none; }
 
+.record__credit {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #8a7f77;
+  line-height: 1.4;
+  text-shadow: 0 1px 8px rgba(217, 214, 208, 0.6);
+}
+.record__credit:empty { display: none; }
+
 .cave-intro__shelves, .hint { transition: opacity 260ms var(--ease); }
 
 /* ---------- 6. NO WEBGL ---------- */
