@@ -1175,7 +1175,7 @@ canvas.addEventListener("pointermove", (e) => {
     travel.tx = startTx + dx;
   } else if (dragAxis === "y") {
     const min = shelfTy(0), max = shelfTy(shelves.length - 1);
-    travel.ty = Math.max(Math.min(startTy + dy, Math.max(min, max)), Math.min(min, max));
+    travel.ty = Math.max(Math.min(startTy - dy, Math.max(min, max)), Math.min(min, max));
   }
 });
 
