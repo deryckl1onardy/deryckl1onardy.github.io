@@ -132,6 +132,15 @@
       }
     });
 
+    // The recorder card isn't a tape (no href, no tilt physics) but its
+    // cassette door uses the exact same drive-hub reels the tapes do —
+    // it should look like it belongs to the same set, not a lesser
+    // hand-drawn cousin of them. CSS spins them on its own (see
+    // .recorder .reel--left/right); this just needs to draw the hubs.
+    document.querySelectorAll(".recorder .reel--left, .recorder .reel--right").forEach(function (reel) {
+      if (!reel.querySelector("svg")) reel.insertAdjacentHTML("beforeend", reelArt());
+    });
+
     // One shared rAF loop, alive only while something is moving.
     // The tilt is lerped toward the pointer every frame (no CSS transition
     // fighting the input = zero judder), and the reels carry inertia.

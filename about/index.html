@@ -27,8 +27,13 @@
   .masthead::before {
     content: "";
     position: absolute;
-    top: 0;
-    bottom: -20px;
+    /* -12px, not 0: .masthead sits at top:12px (sticky), so a blur that
+       only covers its own box leaves that 12px strip of whatever's
+       scrolling underneath fully exposed right above the pill — the
+       "floating in the wrong place" look. This pulls the blur up to
+       the real viewport top. */
+    top: -12px;
+    bottom: -46px;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
@@ -37,8 +42,22 @@
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     background: rgba(217, 214, 208, 0.7);
-    mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+    /* long, many-stop fade instead of a 2-stop 60%→100% cliff, so the
+       blur dissolves into the page instead of ending in a line */
+    mask-image: linear-gradient(to bottom,
+      black 0%, black 55%,
+      rgba(0,0,0,0.94) 61%, rgba(0,0,0,0.82) 67%,
+      rgba(0,0,0,0.66) 73%, rgba(0,0,0,0.48) 78%,
+      rgba(0,0,0,0.32) 83%, rgba(0,0,0,0.19) 87%,
+      rgba(0,0,0,0.09) 91%, rgba(0,0,0,0.03) 95%,
+      transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom,
+      black 0%, black 55%,
+      rgba(0,0,0,0.94) 61%, rgba(0,0,0,0.82) 67%,
+      rgba(0,0,0,0.66) 73%, rgba(0,0,0,0.48) 78%,
+      rgba(0,0,0,0.32) 83%, rgba(0,0,0,0.19) 87%,
+      rgba(0,0,0,0.09) 91%, rgba(0,0,0,0.03) 95%,
+      transparent 100%);
     pointer-events: none;
   }
   .pill-nav {

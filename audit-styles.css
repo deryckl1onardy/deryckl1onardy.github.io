@@ -768,7 +768,7 @@ body::after {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(8px, 1.6vw, 14px);
+  gap: clamp(6px, 1.2vw, 10px);
   border-top: 1px solid #d7d9d8;
   border-left: 1px solid #d7d9d8;
   border-right: 1px solid #8a8f8e;
@@ -786,6 +786,15 @@ body::after {
     inset 0 -6px 12px rgba(0,0,0,0.16);
   transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
+/* the same glossy plastic sweep the tapes get — its absence is a big
+   part of why this unit used to read flatter than the shells beside
+   it, even though the base gradient underneath was already the same */
+.recorder__unit::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(122deg,
+    rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.09) 15%,
+    rgba(255,255,255,0) 32%, rgba(255,255,255,0) 72%, rgba(255,255,255,0.06) 100%);
+}
 .recorder:hover .recorder__unit {
   transform: translateY(-3px);
   box-shadow:
@@ -798,64 +807,60 @@ body::after {
   .recorder__unit { transition: none; }
 }
 
-/* the cassette door — a small dark window onto the two reels,
-   exactly where the real recorder shows the tape mid-play */
+/* the condenser mic up top — a real bezel + perforated mesh + rim
+   light, the same "hardware" language as the screws, instead of a
+   flat dot pattern with no bezel, no depth and nothing to catch light */
+.recorder__mic {
+  position: relative;
+  z-index: 2;
+  width: 15%;
+  aspect-ratio: 1;
+  margin-top: 3%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #7a7c7d 0%, #35373a 55%, #17181b 100%);
+  box-shadow:
+    0 2px 3px rgba(0,0,0,0.35),
+    inset 0 1px 1px rgba(255,255,255,0.25),
+    inset 0 -2px 3px rgba(0,0,0,0.5);
+}
+.recorder__mic::before {
+  content: "";
+  position: absolute; inset: 15%;
+  border-radius: 50%;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.55) 0.8px, transparent 1.2px);
+  background-size: 3px 3px;
+  background-position: center;
+}
+.recorder__mic::after {
+  content: "";
+  position: absolute; top: 12%; left: 20%;
+  width: 30%; height: 16%;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.32);
+  filter: blur(1.2px);
+  transform: rotate(-25deg);
+}
+
+/* the cassette door — a real toothed drive hub on each side (the
+   exact same reel__art the tapes use, so it isn't a lesser cousin of
+   them), not two flat circles standing in for "reel" */
 .recorder__window {
   position: relative;
-  width: 62%;
-  height: 26%;
-  border-radius: 6px;
+  z-index: 2;
+  width: 68%;
+  height: 42%;
+  border-radius: 7px;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 0 8%;
-  margin-top: 4%;
+  justify-content: space-between;
+  padding: 0 9%;
   background: linear-gradient(180deg, #201d18 0%, #0d0b09 100%);
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.65), 0 1px 0 rgba(255,255,255,0.08);
 }
-
-.recorder__reel {
-  display: block;
-  width: 30%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle at 38% 30%, #706f6c, #201f1d 72%);
-  box-shadow: inset 0 0 0 2px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.16);
-  animation: recorder-reel-spin 4.2s linear infinite;
-}
-.recorder__reel:last-child { animation-duration: 3s; }
-@keyframes recorder-reel-spin {
-  to { transform: rotate(360deg); }
-}
-
-/* tiny recording light, tucked at the window's corner */
-.recorder__led {
-  position: absolute;
-  top: -4px;
-  right: 10%;
-  width: 6px; height: 6px; border-radius: 50%;
-  background: #d8402c;
-  box-shadow: 0 0 5px rgba(216, 64, 44, 0.7);
-  animation: recorder-led-blink 1.3s ease-in-out infinite;
-}
-@keyframes recorder-led-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.15; }
-}
-
-/* the big perforated speaker grille, the dominant feature on the
-   real device's face, sized to the box's height (its limiting
-   dimension in landscape) rather than its width */
-.recorder__grille {
-  height: 42%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background-image: radial-gradient(circle, rgba(0,0,0,0.34) 1.1px, transparent 1.6px);
-  background-size: 6px 6px;
-  background-position: center;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.14);
-  opacity: 0.88;
-}
+/* this unit is always "recording" — no hover/idle gate needed, the
+   reels just turn */
+.recorder .reel--left { animation: reel-turn 5.6s linear infinite; }
+.recorder .reel--right { animation: reel-turn 3.8s linear infinite; }
 
 .recorder__base {
   width: 100%;
@@ -866,23 +871,63 @@ body::after {
   margin-top: auto;
 }
 
-/* the small switch row along the bottom edge */
-.recorder__switches {
-  width: 46%;
+/* three distinct transport buttons — rec / play / stop, each its own
+   shape and function — instead of three identical flat bars */
+.recorder__transport {
+  /* a definite width, not shrink-to-fit — .recorder__base centers its
+     children instead of stretching them, so without this the row had
+     no resolved width for its buttons' percentage sizing to resolve
+     against, and every button but the (fixed-px) play triangle
+     collapsed to invisible */
+  width: 56%;
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 14%;
+  gap: 9%;
 }
-.recorder__switch {
-  display: block;
-  width: 32%;
-  height: 5px;
-  border-radius: 3px;
+.recorder__btn {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 15%;
+  aspect-ratio: 1;
+  border-radius: 50%;
   background: linear-gradient(180deg, #eef0ef, #b7bab9);
   box-shadow:
     inset 0 1px 1px rgba(255,255,255,0.6),
     inset 0 -1px 1px rgba(0,0,0,0.22),
-    0 1px 1px rgba(0,0,0,0.3);
+    0 1px 2px rgba(0,0,0,0.3);
+}
+/* the record light lives right on the REC button, like it does on
+   the real hardware — not floating off at the tape window's corner */
+.recorder__btn--rec .recorder__led {
+  display: block;
+  width: 36%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #d8402c;
+  box-shadow: 0 0 5px rgba(216, 64, 44, 0.7);
+  animation: recorder-led-blink 1.3s ease-in-out infinite;
+}
+.recorder__btn--play i {
+  display: block;
+  width: 0; height: 0;
+  margin-left: 12%;
+  border-top: 4.5px solid transparent;
+  border-bottom: 4.5px solid transparent;
+  border-left: 7px solid #4a4a48;
+}
+.recorder__btn--stop i {
+  display: block;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 1.5px;
+  background: #4a4a48;
+}
+@keyframes recorder-led-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
 }
 
 .recorder__caption {
@@ -896,8 +941,8 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .recorder__led { animation: none; opacity: 0.85; }
-  .recorder__reel { animation: none; }
+  .recorder__btn--rec .recorder__led { animation: none; opacity: 0.85; }
+  .recorder .reel--left, .recorder .reel--right { animation: none; }
 }
 
 /* ============================================================

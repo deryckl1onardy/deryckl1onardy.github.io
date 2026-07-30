@@ -4,7 +4,7 @@ const path = require("path");
 
 const root = __dirname;
 const host = "127.0.0.1";
-const port = 4173;
+const port = process.env.PORT || 4173;
 
 const mimeTypes = {
   ".css": "text/css; charset=utf-8",

@@ -5,7 +5,8 @@
       "name": "portfolio",
       "runtimeExecutable": "node",
       "runtimeArgs": ["serve-local.js"],
-      "port": 4173
+      "port": 4173,
+      "autoPort": true
     }
   ]
 }

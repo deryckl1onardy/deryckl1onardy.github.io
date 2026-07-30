@@ -29,8 +29,13 @@
   .masthead::before {
     content: "";
     position: absolute;
-    top: 0;
-    bottom: -20px;
+    /* -12px, not 0: .masthead sits at top:12px (sticky), so a blur that
+       only covers its own box leaves that 12px strip of whatever's
+       scrolling underneath fully exposed right above the pill — the
+       "floating in the wrong place" look. This pulls the blur up to
+       the real viewport top. */
+    top: -12px;
+    bottom: -46px;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
@@ -39,8 +44,22 @@
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     background: rgba(217, 214, 208, 0.7);
-    mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+    /* long, many-stop fade instead of a 2-stop 60%→100% cliff, so the
+       blur dissolves into the page instead of ending in a line */
+    mask-image: linear-gradient(to bottom,
+      black 0%, black 55%,
+      rgba(0,0,0,0.94) 61%, rgba(0,0,0,0.82) 67%,
+      rgba(0,0,0,0.66) 73%, rgba(0,0,0,0.48) 78%,
+      rgba(0,0,0,0.32) 83%, rgba(0,0,0,0.19) 87%,
+      rgba(0,0,0,0.09) 91%, rgba(0,0,0,0.03) 95%,
+      transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom,
+      black 0%, black 55%,
+      rgba(0,0,0,0.94) 61%, rgba(0,0,0,0.82) 67%,
+      rgba(0,0,0,0.66) 73%, rgba(0,0,0,0.48) 78%,
+      rgba(0,0,0,0.32) 83%, rgba(0,0,0,0.19) 87%,
+      rgba(0,0,0,0.09) 91%, rgba(0,0,0,0.03) 95%,
+      transparent 100%);
     pointer-events: none;
   }
   .pill-nav {
@@ -139,7 +158,7 @@
   <header class="cave-intro wrap">
     <div class="cave-intro__lead">
       <p class="cave-intro__kicker">My cave</p>
-      <h1 class="cave-intro__title">A collection of things I keep coming back to.</h1>
+      <h1 class="cave-intro__title">A piece of my collection made digitally</h1>
     </div>
 
     <nav class="cave-intro__shelves" aria-label="Jump to a shelf">
@@ -152,7 +171,7 @@
           <span class="shelf-card__count" data-count="books">14 items</span>
         </span>
         <span class="shelf-card__mark" aria-hidden="true"></span>
-        <span class="shelf-card__desc">Stories and ideas that shaped how I think and build.</span>
+        <span class="shelf-card__desc">A lot of artbooks that i bought from Big Bad Wolf</span>
       </button>
 
       <button class="shelf-card" type="button" data-jump="games">
@@ -172,11 +191,11 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M9 19h6"/><circle cx="12" cy="8.5" r="0.6" fill="currentColor" stroke="none"/></svg>
         </span>
         <span class="shelf-card__row">
-          <span class="shelf-card__label">Handhelds</span>
+          <span class="shelf-card__label">Toys</span>
           <span class="shelf-card__count" data-count="toys">3 items</span>
         </span>
         <span class="shelf-card__mark" aria-hidden="true"></span>
-        <span class="shelf-card__desc">The consoles I actually still carry and use.</span>
+        <span class="shelf-card__desc">Portable Consoles that can play a lot of stuff</span>
       </button>
     </nav>
   </header>
@@ -209,49 +228,7 @@
     <p class="stage__fallback" data-fallback hidden></p>
   </section>
 
-  <!-- The whole collection in plain text. Present for search engines,
-       screen readers, no-JS, and any browser without WebGL — the 3D
-       scene is an enhancement on top of this, never a gate in front. -->
-  <section class="wrap ledger">
-    <details class="ledger__box">
-      <summary>The full list, in text</summary>
-      <div class="ledger__grid">
-        <div>
-          <h2>Books</h2>
-          <ul data-ledger-books>
-            <li>The Hunger Games Trilogy — Suzanne Collins</li>
-            <li>Marvel Year by Year: A Visual History</li>
-            <li>The Art and Making of Hogwarts Legacy — Jody Revenson</li>
-            <li>Articulating Design Decisions — Tom Greever</li>
-            <li>Ex Machina, Book One — Brian K. Vaughan</li>
-            <li>Valentino Rossi: The Autobiography</li>
-            <li>World of Warcraft: Dark Riders — Mike Costa</li>
-            <li>Black Star — Eric Anthony Glover</li>
-            <li>Assassin's Creed: The Secret Crusade — Oliver Bowden</li>
-            <li>Angry Birds: Hatching the Universe — Rovio</li>
-            <li>The Art of Madagascar — DreamWorks</li>
-            <li>Sherlock Holmes: The Penguin Complete — Arthur Conan Doyle</li>
-            <li>The Cuckoo's Calling — Robert Galbraith</li>
-            <li>The Art of Turbo — Robert Abele</li>
-          </ul>
-        </div>
-        <div>
-          <h2>Last played</h2>
-          <ul data-ledger-games><li>Synced from Steam.</li></ul>
-          <h2>Handhelds</h2>
-          <ul data-ledger-toys>
-            <li>Valve Steam Deck (2022)</li>
-            <li>Nintendo Switch Lite, Animal Crossing edition (2019)</li>
-            <li>Game Boy Advance SP (2003)</li>
-          </ul>
-        </div>
-      </div>
-    </details>
-  </section>
-
-  <p class="cave-note wrap">everything here is dusted by hand 🧹</p>
-
-  <!-- CC-BY-4.0 requires the author be credited wherever each model is
+<!-- CC-BY-4.0 requires the author be credited wherever each model is
        shared. Keep these lines as long as the models are on the shelf. -->
   <p class="credit wrap">
     3D models:
