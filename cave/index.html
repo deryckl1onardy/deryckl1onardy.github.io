@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cave — Derrick Lionardy</title>
+<meta name="description" content="An interactive shelf: books Derrick keeps, the games he's actually been playing, and the small machines he carries." />
+<meta property="og:title" content="Cave — Derrick Lionardy" />
+<meta property="og:description" content="Books I keep, games I actually played, and the small machines I carry." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23202020'/%3E%3Crect x='5' y='9' width='22' height='14' rx='2' fill='%23dddddd'/%3E%3Ccircle cx='12' cy='16' r='3' fill='%23202020'/%3E%3Ccircle cx='20' cy='16' r='3' fill='%23202020'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@500;600;700;800&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../audit-styles.css?v=8" />
+<link rel="stylesheet" href="cave.css?v=2" />
+<link rel="stylesheet" href="../footer.css" />
+<style>
+  /* ── Pill nav (shared with index/about) ── */
+  .masthead {
+    position: sticky;
+    top: 12px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    padding-top: 24px;
+    padding-bottom: 8px;
+  }
+  .masthead::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: -20px;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    z-index: -1;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(217, 214, 208, 0.7);
+    mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+    pointer-events: none;
+  }
+  .pill-nav {
+    width: 600px;
+    height: 64px;
+    border: 2px solid #c6c2bb;
+    border-radius: 200px;
+    padding: 7px 8px;
+    background: #dedad4;
+    box-shadow: 0 8px 16px rgba(24, 21, 18, 0.11);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-link {
+    flex: 1;
+    height: 48px;
+    border-radius: 40px;
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #6e6a63;
+    display: grid;
+    place-items: center;
+    font-weight: 400;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transform: scale(1);
+    transition: background 150ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      border-color 150ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      color 150ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 120ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .nav-link:active {
+    transform: scale(0.94);
+    transition-duration: 80ms;
+  }
+  .nav-link.is-active {
+    background: #f3ede4;
+    border: 2px solid #ccc7be;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.10), inset 0 0 0 0.5px #b5b0a8;
+    color: #181512;
+    font-weight: 500;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-link { transition: none; }
+    .nav-link:active { transform: none; }
+  }
+  @media (max-width: 960px) {
+    .masthead { top: 8px; padding-top: 10px; }
+    .pill-nav {
+      width: min(600px, calc(100% - 32px));
+      height: 58px;
+      padding: 6px;
+      gap: 6px;
+    }
+    .nav-link {
+      height: 44px;
+      font-size: clamp(15px, 3.6vw, 20px);
+    }
+  }
+</style>
+
+<!-- three.js is vendored into /vendor so the page has no external
+     runtime dependency: nothing here can break if a CDN goes down. -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "/vendor/three.module.js",
+    "three/addons/loaders/GLTFLoader.js": "/vendor/GLTFLoader.js",
+    "three/addons/utils/BufferGeometryUtils.js": "/vendor/BufferGeometryUtils.js"
+  }
+}
+</script>
+</head>
+<body class="cave-page">
+<div class="bg-grid" aria-hidden="true"></div>
+
+<header class="masthead">
+  <nav class="pill-nav" aria-label="Primary">
+    <a class="nav-link" href="/">Home</a>
+    <a class="nav-link" href="/#work">Work</a>
+    <a class="nav-link" href="/about/">About</a>
+    <a class="nav-link is-active" href="/cave/">Cave</a>
+  </nav>
+</header>
+
+<main class="page">
+  <!-- ══ INTRO ══ the page's real title, sitting in the same header
+       row as the shelf-jump nav so the two read as one section instead
+       of a heading floating over an unrelated control bar. The three
+       buttons still do exactly what the old tick row did (click or
+       data-jump to a shelf) — only the markup and styling changed. -->
+  <header class="cave-intro wrap">
+    <div class="cave-intro__lead">
+      <p class="cave-intro__kicker">My cave</p>
+      <h1 class="cave-intro__title">A collection of things I keep coming back to.</h1>
+    </div>
+
+    <nav class="cave-intro__shelves" aria-label="Jump to a shelf">
+      <button class="shelf-card is-active" type="button" data-jump="books">
+        <span class="shelf-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16M9 4v16M9 4c2 0 2 2 4 2s2-2 4-2v16c-2 0-2-2-4-2s-2 2-4 2"/></svg>
+        </span>
+        <span class="shelf-card__row">
+          <span class="shelf-card__label">Books</span>
+          <span class="shelf-card__count" data-count="books">14 items</span>
+        </span>
+        <span class="shelf-card__mark" aria-hidden="true"></span>
+        <span class="shelf-card__desc">Stories and ideas that shaped how I think and build.</span>
+      </button>
+
+      <button class="shelf-card" type="button" data-jump="games">
+        <span class="shelf-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7.5" width="19" height="10" rx="4"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="16" cy="10.8" r="1"/><circle cx="18.4" cy="13.2" r="1"/></svg>
+        </span>
+        <span class="shelf-card__row">
+          <span class="shelf-card__label">Last played</span>
+          <span class="shelf-card__count" data-count="games">— items</span>
+        </span>
+        <span class="shelf-card__mark" aria-hidden="true"></span>
+        <span class="shelf-card__desc">Synced from Steam — whatever I've actually had open lately.</span>
+      </button>
+
+      <button class="shelf-card" type="button" data-jump="toys">
+        <span class="shelf-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M9 19h6"/><circle cx="12" cy="8.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <span class="shelf-card__row">
+          <span class="shelf-card__label">Handhelds</span>
+          <span class="shelf-card__count" data-count="toys">3 items</span>
+        </span>
+        <span class="shelf-card__mark" aria-hidden="true"></span>
+        <span class="shelf-card__desc">The consoles I actually still carry and use.</span>
+      </button>
+    </nav>
+  </header>
+
+  <p class="hint wrap">Drag or use ← → to browse · drag down or scroll for the next shelf</p>
+
+  <!-- ══ THE SHELF ══ -->
+  <section class="stage" id="stage" aria-label="Interactive shelf">
+    <canvas id="shelf" class="stage__canvas"></canvas>
+
+    <!-- The record for whatever is centred on the shelf. Always
+         populated — there is always a selection, so this panel is
+         never an empty box waiting for a hover. -->
+    <div class="record">
+      <div class="record__nav">
+        <button class="stepper" type="button" data-prev aria-label="Previous">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="record__num" data-num>01 / 14</span>
+        <button class="stepper" type="button" data-next aria-label="Next">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <h2 class="record__title" data-title aria-live="polite"></h2>
+      <p class="record__sub" data-sub></p>
+      <p class="record__note" data-note></p>
+    </div>
+
+    <p class="stage__fallback" data-fallback hidden></p>
+  </section>
+
+  <!-- The whole collection in plain text. Present for search engines,
+       screen readers, no-JS, and any browser without WebGL — the 3D
+       scene is an enhancement on top of this, never a gate in front. -->
+  <section class="wrap ledger">
+    <details class="ledger__box">
+      <summary>The full list, in text</summary>
+      <div class="ledger__grid">
+        <div>
+          <h2>Books</h2>
+          <ul data-ledger-books>
+            <li>The Hunger Games Trilogy — Suzanne Collins</li>
+            <li>Marvel Year by Year: A Visual History</li>
+            <li>The Art and Making of Hogwarts Legacy — Jody Revenson</li>
+            <li>Articulating Design Decisions — Tom Greever</li>
+            <li>Ex Machina, Book One — Brian K. Vaughan</li>
+            <li>Valentino Rossi: The Autobiography</li>
+            <li>World of Warcraft: Dark Riders — Mike Costa</li>
+            <li>Black Star — Eric Anthony Glover</li>
+            <li>Assassin's Creed: The Secret Crusade — Oliver Bowden</li>
+            <li>Angry Birds: Hatching the Universe — Rovio</li>
+            <li>The Art of Madagascar — DreamWorks</li>
+            <li>Sherlock Holmes: The Penguin Complete — Arthur Conan Doyle</li>
+            <li>The Cuckoo's Calling — Robert Galbraith</li>
+            <li>The Art of Turbo — Robert Abele</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Last played</h2>
+          <ul data-ledger-games><li>Synced from Steam.</li></ul>
+          <h2>Handhelds</h2>
+          <ul data-ledger-toys>
+            <li>Valve Steam Deck (2022)</li>
+            <li>Nintendo Switch Lite, Animal Crossing edition (2019)</li>
+            <li>Game Boy Advance SP (2003)</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <p class="cave-note wrap">everything here is dusted by hand 🧹</p>
+
+  <!-- CC-BY-4.0 requires the author be credited wherever each model is
+       shared. Keep these lines as long as the models are on the shelf. -->
+  <p class="credit wrap">
+    3D models:
+    <a href="https://sketchfab.com/3d-models/steam-deck-console-46e0c05675a7442dbe73f261436e6819" target="_blank" rel="noopener noreferrer">“Steam Deck console”</a>
+    by <a href="https://sketchfab.com/wallmasterr" target="_blank" rel="noopener noreferrer">wallmasterr</a>;
+    <a href="https://sketchfab.com/3d-models/switch-lite-acnh-e98f78fc22f4456db93ec25b61752cde" target="_blank" rel="noopener noreferrer">“Switch Lite ACNH”</a>
+    by <a href="https://sketchfab.com/eddakat" target="_blank" rel="noopener noreferrer">eddakat</a>;
+    <a href="https://sketchfab.com/3d-models/nintendo-gameboy-advanced-sp-ff3ca9fc7c25443f90ca6423295663b3" target="_blank" rel="noopener noreferrer">“Nintendo Gameboy advanced sp”</a>
+    by <a href="https://sketchfab.com/syntheticworlds" target="_blank" rel="noopener noreferrer">synthetic worlds</a>.
+    All three licensed <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC-BY-4.0</a>.
+    Cover art via <a href="https://openlibrary.org" target="_blank" rel="noopener noreferrer">Open Library</a>.
+  </p>
+</main>
+
+<footer class="site-footer"></footer>
+
+<script src="catalog.js?v=2"></script>
+<script type="module" src="shelf-engine.js?v=2"></script>
+<script src="../footer.js" defer></script>
+</body>
+</html>

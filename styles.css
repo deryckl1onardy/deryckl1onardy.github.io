@@ -101,7 +101,7 @@ a {
 }
 
 .pill-nav {
-  width: 497px;
+  width: 600px;
   height: 64px;
   border: 2px solid #c6c2bb;
   border-radius: 200px;
@@ -110,7 +110,7 @@ a {
   box-shadow: 0 8px 16px rgba(24, 21, 18, 0.11);
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
 }
 
 .nav-link {
@@ -121,10 +121,18 @@ a {
   line-height: 1.5;
   letter-spacing: 0;
   text-align: center;
+  white-space: nowrap;
   color: #6e6a63;
   display: grid;
   place-items: center;
   font-weight: 400;
+  transform: scale(1);
+  transition: transform 120ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.nav-link:active {
+  transform: scale(0.94);
+  transition-duration: 80ms;
 }
 
 .nav-link.is-active {
@@ -2401,6 +2409,12 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .nav-link {
+    transition: none;
+  }
+  .nav-link:active {
+    transform: none;
+  }
   .hero-avatar,
   .hero-avatar::before,
   .hero-avatar::after,
@@ -2554,15 +2568,15 @@ a {
   }
 
   .pill-nav {
-    width: min(497px, calc(100% - 32px));
+    width: min(600px, calc(100% - 32px));
     height: 58px;
     padding: 6px;
-    gap: 10px;
+    gap: 6px;
   }
 
   .nav-link {
     height: 44px;
-    font-size: clamp(16px, 2.4vw, 20px);
+    font-size: clamp(15px, 3.6vw, 20px);
   }
 
   .hero {

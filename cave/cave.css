@@ -1,0 +1,458 @@
+/* ============================================================
+   THE CAVE — the room around the shelf
+   The shelf itself is a WebGL scene (shelf-engine.js). Everything
+   here is the furniture around it: the title, the rule of section
+   ticks along the shelf edge, the readout, and the record card
+   that appears while a volume is out.
+   ============================================================ */
+
+.cave-page {
+  /* The shelf stands in the same daylight as the rest of the site.
+     The WebGL clear colour and the scene fog are this exact value, so
+     there is no dark rectangle cut into the page. */
+  --room: #d9d6d0;
+  --room-warm: #e2ded6;
+}
+
+/* ---------- 1. INTRO ---------- */
+/* The page's real heading and the shelf-jump nav share one header row,
+   so the top of the page reads as a considered section — not a title
+   floating over an unrelated control bar, which is what the old
+   sr-only h1 + thin tick row amounted to. */
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.cave-intro {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.5fr) repeat(3, 1fr);
+  align-items: stretch;
+  column-gap: clamp(20px, 3vw, 34px);
+  padding-block: clamp(16px, 2.6vw, 26px) clamp(10px, 1.6vw, 16px);
+}
+
+.cave-intro__lead {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: clamp(16px, 2vw, 28px);
+}
+.cave-intro__kicker {
+  margin: 0 0 5px;
+  font-family: var(--font-label);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7d7669;
+}
+.cave-intro__title {
+  margin: 0;
+  font-family: var(--font-screen);
+  font-size: clamp(17px, 1.7vw, 22px);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+  color: #191713;
+}
+
+/* The nav wrapper itself takes no box — its three buttons sit as
+   direct grid items of .cave-intro, alongside .cave-intro__lead, so
+   all four columns share one row and one set of dividers. */
+.cave-intro__shelves { display: contents; }
+
+.shelf-card {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-left: 1px solid rgba(24, 21, 18, 0.13);
+  height: 100%;
+  padding: 2px 0 2px clamp(18px, 2.4vw, 28px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+}
+.shelf-card__icon svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  color: #8a8377;
+  transition: color 220ms var(--ease);
+}
+.shelf-card__row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.shelf-card__label {
+  font-family: var(--font-screen);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #3a352c;
+  transition: color 220ms var(--ease);
+}
+.shelf-card__count {
+  font-family: var(--font-label);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: #8a8377;
+  white-space: nowrap;
+}
+.shelf-card__mark {
+  height: 2px;
+  border-radius: 1px;
+  background: rgba(24, 21, 18, 0.14);
+  transition: background 220ms var(--ease);
+}
+.shelf-card__desc {
+  margin: 0;
+  max-width: 28ch;
+  font-family: var(--font-label);
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #7d7669;
+}
+.shelf-card:hover .shelf-card__label { color: #191713; }
+.shelf-card:hover .shelf-card__icon svg { color: #55504a; }
+.shelf-card.is-active .shelf-card__icon svg { color: #21201c; }
+.shelf-card.is-active .shelf-card__label { color: #191713; }
+.shelf-card.is-active .shelf-card__mark { background: #21201c; }
+
+/* ---------- 2. THE STAGE ---------- */
+
+.stage {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  height: clamp(460px, 72vh, 760px);
+  overflow: hidden;
+  /* one continuous surface with the page: no band, no seam, and a
+     single soft warm lift where the light comes from */
+  background:
+    radial-gradient(90% 70% at 24% 2%, var(--room-warm), transparent 62%),
+    var(--room);
+}
+
+/* Light falling off toward the left of the room, which is also what
+   keeps the record legible over the shelf, PLUS the same treatment
+   along the top edge so the canvas's own drawn content (the cabinet
+   crown, full-strength the instant the WebGL frame starts) doesn't
+   read as a photograph butted against the flat 2D nav above it. Many
+   stops and a long run on both, fully transparent well before either
+   meets the shelf itself, so there is no edge to see — a short scrim
+   here would read as a pasted-on panel. */
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg,
+      rgba(217, 214, 208, 0.97) 0%,
+      rgba(217, 214, 208, 0.92) 4%,
+      rgba(217, 214, 208, 0.8) 8%,
+      rgba(217, 214, 208, 0.62) 12%,
+      rgba(217, 214, 208, 0.44) 16%,
+      rgba(217, 214, 208, 0.28) 20%,
+      rgba(217, 214, 208, 0.15) 24%,
+      rgba(217, 214, 208, 0.07) 28%,
+      rgba(217, 214, 208, 0.02) 32%,
+      transparent 36%),
+    linear-gradient(90deg,
+      rgba(217, 214, 208, 0.97) 0%,
+      rgba(217, 214, 208, 0.94) 12%,
+      rgba(217, 214, 208, 0.86) 21%,
+      rgba(217, 214, 208, 0.72) 28%,
+      rgba(217, 214, 208, 0.54) 34%,
+      rgba(217, 214, 208, 0.36) 39%,
+      rgba(217, 214, 208, 0.21) 44%,
+      rgba(217, 214, 208, 0.1) 48%,
+      rgba(217, 214, 208, 0.03) 52%,
+      transparent 57%);
+}
+
+.stage__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.stage__canvas:active { cursor: grabbing; }
+
+/* ---------- 4. HINT ---------- */
+
+.hint {
+  margin: 0 auto clamp(10px, 1.6vw, 16px);
+  max-width: min(90vw, 680px);
+  text-align: center;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #55504a;
+}
+
+/* ---------- 5. THE RECORD ---------- */
+/* Sits over the left of the shelf and always reads out whatever is
+   centred. Not a floating card: no panel, no border, no shadow — the
+   type sits directly on the room, the way a label sits on a wall. */
+
+.record {
+  position: absolute;
+  left: clamp(20px, 5vw, 76px);
+  top: 50%;
+  transform: translateY(-52%);
+  z-index: 5;
+  width: min(360px, 40vw);
+  pointer-events: none;
+}
+.record > * { pointer-events: auto; }
+
+.record__nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.record__num {
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #55504a;
+  font-variant-numeric: tabular-nums;
+}
+
+.stepper {
+  appearance: none;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid #bdb7ab;
+  background: rgba(255, 253, 249, 0.5);
+  color: #2b2823;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 200ms var(--ease), border-color 200ms var(--ease);
+}
+.stepper svg { width: 17px; height: 17px; display: block; }
+.stepper:hover { background: #fffdf9; border-color: #8f887b; }
+
+.record__title {
+  margin: 0;
+  font-family: var(--font-screen);
+  font-size: clamp(28px, 4.4vw, 52px);
+  font-weight: 700;
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+  color: #191713;
+  /* the shelf can pass behind the type; a whisper of the room colour
+     keeps it legible without drawing a box around it */
+  text-shadow: 0 1px 14px rgba(217, 214, 208, 0.9);
+}
+.record__sub {
+  margin-top: 12px;
+  font-size: clamp(14px, 1.7vw, 17px);
+  line-height: 1.4;
+  color: #55504a;
+  text-shadow: 0 1px 10px rgba(217, 214, 208, 0.9);
+}
+.record__note {
+  margin-top: 14px;
+  max-width: 34ch;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #5d584f;
+  text-shadow: 0 1px 10px rgba(217, 214, 208, 0.9);
+}
+.record__note:empty { display: none; }
+
+.cave-intro__shelves, .hint { transition: opacity 260ms var(--ease); }
+
+/* ---------- 6. NO WEBGL ---------- */
+
+.stage--down { height: auto; padding: 40px 0; }
+.stage--down .stage__canvas,
+.stage--down .record,
+.stage--down .hint { display: none; }
+
+.stage__fallback {
+  position: relative;
+  z-index: 4;
+  margin: 0 auto;
+  max-width: 46ch;
+  padding: 0 24px;
+  text-align: center;
+  color: #46423b;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ---------- 7. THE LEDGER ---------- */
+
+.ledger { padding-block: clamp(34px, 6vw, 64px) 0; }
+
+.ledger__box {
+  border-top: 1px solid rgba(24, 21, 18, 0.16);
+  padding-top: 20px;
+}
+.ledger__box > summary {
+  cursor: pointer;
+  font-family: var(--font-label);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #545049;
+  list-style: none;
+}
+.ledger__box > summary::-webkit-details-marker { display: none; }
+.ledger__box > summary::after {
+  content: " +";
+  color: var(--ink-faint);
+}
+.ledger__box[open] > summary::after { content: " –"; }
+
+.ledger__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(20px, 4vw, 48px);
+  margin-top: 22px;
+}
+.ledger__grid h2 {
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 10px;
+}
+.ledger__grid h2 + ul + h2 { margin-top: 26px; }
+.ledger__grid ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #33302b;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+/* ---------- 8. CLOSING NOTE ---------- */
+
+.cave-note {
+  padding-block: 26px clamp(40px, 7vw, 80px);
+  text-align: right;
+  font-family: var(--font-hand);
+  font-size: clamp(17px, 2.2vw, 21px);
+  color: #57534b;
+  transform: rotate(-1.2deg);
+}
+
+/* ---------- 9. RESPONSIVE ---------- */
+
+@media (max-width: 860px) {
+  /* the record moves off the shelf and sits above it, so the type and
+     the objects stop competing for the same space — and the falloff
+     that existed to protect it is no longer needed */
+  .stage::before { display: none; }
+  .stage {
+    height: auto;
+    padding: clamp(18px, 4vw, 28px) 0 0;
+    display: flex;
+    flex-direction: column;
+  }
+  /* The shelf is what this page is actually for — on a small screen
+     there's no room to also show a full title block, three description
+     cards AND the record text before it, so the canvas moves straight
+     under the compact nav and everything else that reads out what's
+     already visible on it (the record panel) drops below the fold
+     instead of pushing the shelf down there. */
+  .stage__canvas {
+    order: 1;
+    height: clamp(360px, 58vh, 520px);
+  }
+  .record {
+    position: static;
+    order: 2;
+    transform: none;
+    width: auto;
+    padding: 14px clamp(16px, 5vw, 28px) 4px;
+  }
+  .record__note { max-width: none; }
+
+  .cave-intro {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+    padding-block: clamp(16px, 4vw, 22px) clamp(10px, 2vw, 14px);
+  }
+  .cave-intro__lead { padding-right: 0; }
+  .cave-intro__title { font-size: clamp(17px, 4.6vw, 20px); }
+
+  /* Three compact tabs instead of three description cards: label,
+     count and the active rule only — the "what is this shelf" copy
+     is what a tap-through screen has no room for and the canvas
+     itself answers that question better than a sentence can. */
+  .cave-intro__shelves {
+    display: flex;
+    gap: clamp(14px, 4vw, 24px);
+  }
+  .shelf-card {
+    flex: 1;
+    border-left: 0;
+    padding: 0;
+    gap: 5px;
+  }
+  .shelf-card__icon { display: none; }
+  .shelf-card__row { gap: 5px; }
+  .shelf-card__label { font-size: 12.5px; }
+  .shelf-card__count { font-size: 9.5px; }
+  .shelf-card__desc { display: none; }
+
+  .hint { margin: 0 auto 8px; max-width: none; padding: 0 16px; }
+  .cave-note { text-align: center; }
+}
+
+@media (max-width: 420px) {
+  .cave-intro__shelves { gap: 10px; }
+  .shelf-card__label { font-size: 11.5px; }
+  .hint { font-size: 10px; }
+  .stepper { width: 30px; height: 30px; }
+}
+
+/* ---------- 10. REDUCED MOTION ---------- */
+/* The engine reads this too: travel snaps instead of easing and the
+   pull-out is instant. Nothing here fades content in, so turning
+   motion off can never leave the shelf empty. */
+@media (prefers-reduced-motion: reduce) {
+  .shelf-card, .shelf-card__icon svg, .shelf-card__label, .shelf-card__mark,
+  .hint, .stepper { transition: none; }
+}
+
+/* ---------- 11. CREDIT ---------- */
+/* CC-BY on the Deck model requires attribution; Open Library asks for
+   the same courtesy on cover art. */
+.credit {
+  padding-bottom: clamp(30px, 5vw, 56px);
+  max-width: 70ch;
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: #55504a;
+}
+.credit a { color: #4a453d; text-decoration: underline; text-underline-offset: 2px; }
+.credit a:hover { color: #21201c; }

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Steam Deck console
+* source:	https://sketchfab.com/3d-models/steam-deck-console-46e0c05675a7442dbe73f261436e6819
+* author:	wallmasterr (https://sketchfab.com/wallmasterr)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Steam Deck console" (https://sketchfab.com/3d-models/steam-deck-console-46e0c05675a7442dbe73f261436e6819) by wallmasterr (https://sketchfab.com/wallmasterr) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

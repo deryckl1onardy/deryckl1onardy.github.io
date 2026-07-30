@@ -62,7 +62,12 @@ a {
 .case-header::before {
   content: "";
   position: absolute;
-  inset: 0 -100vw -20px -100vw;
+  top: 0;
+  bottom: -20px;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   z-index: -1;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -73,7 +78,7 @@ a {
 }
 
 .pill-nav {
-  width: 497px;
+  width: 600px;
   height: 64px;
   border: 2px solid #c6c2bb;
   border-radius: 200px;
@@ -81,7 +86,7 @@ a {
   background: #dedad4;
   box-shadow: 0 8px 16px rgba(24, 21, 18, 0.11);
   display: flex;
-  gap: 16px;
+  gap: 10px;
 }
 
 .nav-link {
@@ -93,6 +98,14 @@ a {
   color: #6e6a63;
   font-size: 20px;
   line-height: 1.5;
+  white-space: nowrap;
+  transform: scale(1);
+  transition: transform 120ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.nav-link:active {
+  transform: scale(0.94);
+  transition-duration: 80ms;
 }
 
 .nav-link.is-active {
@@ -103,6 +116,11 @@ a {
     inset 0 0 0 0.5px #b5b0a8;
   color: #181512;
   font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link { transition: none; }
+  .nav-link:active { transform: none; }
 }
 
 .intro {
@@ -303,6 +321,7 @@ a {
 
 .study-main {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 56px;
 }
 
@@ -312,6 +331,7 @@ a {
   border-radius: 0;
   box-shadow: none;
   padding: 0;
+  min-width: 0;
   animation: float-up 700ms ease-out both;
 }
 
@@ -349,13 +369,6 @@ a {
   line-height: 1.15;
   letter-spacing: -0.01em;
   color: #000000;
-}
-
-.study-section h3 {
-  margin: 16px 0 0;
-  font-size: clamp(28px, 3vw, 32px);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
 }
 
 .study-section p,
@@ -563,6 +576,15 @@ a {
   letter-spacing: -0.01em;
 }
 
+/* Feature-list headings inside #impact are short titles, not headline
+   stats — the 40-48px rule above is sized for a big single number/statement
+   and swamps a repeated list of short feature names. */
+#impact .impact-block h3,
+#impact .impact-bottom h3 {
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 700;
+}
+
 #impact p,
 #impact li {
   margin-top: 8px;
@@ -670,19 +692,20 @@ a {
   }
 
   .case-header {
-    padding-top: 16px;
+    top: 8px;
+    padding-top: 10px;
   }
 
   .pill-nav {
-    width: min(497px, calc(100% - 32px));
+    width: min(600px, calc(100% - 32px));
     height: 58px;
     padding: 6px;
-    gap: 10px;
+    gap: 6px;
   }
 
   .nav-link {
     height: 44px;
-    font-size: clamp(16px, 2.4vw, 20px);
+    font-size: clamp(15px, 3.6vw, 20px);
   }
 
   .intro {
@@ -1880,7 +1903,7 @@ a {
 .smart-widget-row {
   margin-top: 16px;
   display: grid;
-  grid-template-columns: 705px 234px;
+  grid-template-columns: minmax(0, 705px) minmax(0, 234px);
   gap: 26px;
   align-items: center;
 }
@@ -2769,13 +2792,13 @@ body.prototype-modal-open {
 
 /* ── Type scale — sub-section h3s ─────────────────────────── */
 .study-section h3 {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 700;
   letter-spacing: -0.01em;
   color: #111111;
-  line-height: 1.35;
-  margin-top: 28px;
-  margin-bottom: 8px;
+  line-height: 1.25;
+  margin-top: 32px;
+  margin-bottom: 10px;
 }
 
 /* Re-declare component h3s needing smaller sizes (same specificity —

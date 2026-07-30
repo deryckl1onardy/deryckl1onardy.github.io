@@ -1,0 +1,57 @@
+name: Sync Steam shelf
+
+# Refreshes assets/cave/steam.json so the Cave page shows what was
+# actually played recently. Commits only when the game list changes.
+#
+# One-time setup:
+#   1. Get a Steam Web API key: https://steamcommunity.com/dev/apikey
+#   2. Repo > Settings > Secrets and variables > Actions > New secret:
+#        STEAM_API_KEY  = the key
+#        STEAM_ID       = your SteamID64 (17 digits, from steamid.io)
+#   3. Steam profile > Privacy > "Game details" must be Public.
+#
+# Until those exist the script exits quietly and the committed
+# seed file keeps rendering.
+
+on:
+  schedule:
+    - cron: "17 4 * * *" # daily, 04:17 UTC
+  workflow_dispatch: # lets you run it by hand from the Actions tab
+
+# Least privilege: the job only needs to push the one JSON file.
+permissions:
+  contents: write
+
+# If a manual run overlaps the nightly one, let the newer win rather
+# than racing two commits against the same file.
+concurrency:
+  group: steam-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch recently played
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+          STEAM_ID: ${{ secrets.STEAM_ID }}
+        run: node scripts/fetch-steam.js
+
+      - name: Commit if changed
+        run: |
+          if [[ -z "$(git status --porcelain assets/cave/steam.json)" ]]; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/cave/steam.json
+          git commit -m "Update Steam shelf"
+          git push

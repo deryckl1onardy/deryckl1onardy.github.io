@@ -1,0 +1,76 @@
+{
+  "seed": true,
+  "updated": "2026-07-29T04:17:00Z",
+  "games": [
+    {
+      "appid": 1245620,
+      "name": "ELDEN RING",
+      "hours": 142.6,
+      "lastPlayed": "2026-07-28",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg"
+    },
+    {
+      "appid": 413150,
+      "name": "Stardew Valley",
+      "hours": 96.3,
+      "lastPlayed": "2026-07-27",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/413150/library_600x900.jpg"
+    },
+    {
+      "appid": 1086940,
+      "name": "Baldur's Gate 3",
+      "hours": 88.1,
+      "lastPlayed": "2026-07-25",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/library_600x900.jpg"
+    },
+    {
+      "appid": 1145360,
+      "name": "Hades",
+      "hours": 61.4,
+      "lastPlayed": "2026-07-22",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/library_600x900.jpg"
+    },
+    {
+      "appid": 292030,
+      "name": "The Witcher 3: Wild Hunt",
+      "hours": 54.9,
+      "lastPlayed": "2026-07-19",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg"
+    },
+    {
+      "appid": 275850,
+      "name": "No Man's Sky",
+      "hours": 47.2,
+      "lastPlayed": "2026-07-15",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/275850/library_600x900.jpg"
+    },
+    {
+      "appid": 1174180,
+      "name": "Red Dead Redemption 2",
+      "hours": 39.8,
+      "lastPlayed": "2026-07-11",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg"
+    },
+    {
+      "appid": 1817070,
+      "name": "Marvel's Spider-Man Remastered",
+      "hours": 28.5,
+      "lastPlayed": "2026-07-06",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1817070/library_600x900.jpg"
+    },
+    {
+      "appid": 1030300,
+      "name": "Hollow Knight: Silksong",
+      "hours": 22.1,
+      "lastPlayed": "2026-06-30",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1030300/library_600x900.jpg"
+    },
+    {
+      "appid": 646570,
+      "name": "Slay the Spire",
+      "hours": 18.7,
+      "lastPlayed": "2026-06-24",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/646570/library_600x900.jpg"
+    }
+  ]
+}
