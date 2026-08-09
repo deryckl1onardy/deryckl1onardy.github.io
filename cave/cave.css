@@ -283,6 +283,33 @@
 }
 .record__note:empty { display: none; }
 
+/* Plain text on a hairline border, the same weight as .stepper's own
+   outline — not a filled pill, no glow, so it reads as one more control
+   in this panel rather than a bolted-on call-to-action. */
+.record__open {
+  appearance: none;
+  display: inline-block;
+  margin-top: 16px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  border: 1px solid #bdb7ab;
+  background: rgba(255, 253, 249, 0.5);
+  font-family: var(--font-label);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #2b2823;
+  cursor: pointer;
+  transition: background 200ms var(--ease), border-color 200ms var(--ease), transform 100ms var(--ease);
+}
+.record__open:hover { background: #fffdf9; border-color: #8f887b; }
+/* :active fires on press, not on the click that only resolves after
+   release — the same "feedback belongs on pointer-down" rule the shelf's
+   own drag gesture follows. A small scale nudge, no glow, matching the
+   plain-hairline treatment the rest of this control already has. */
+.record__open:active { background: #f5f1e8; border-color: #8f887b; transform: scale(0.97); }
+.record__open[hidden] { display: none; }
+
 .record__credit {
   margin-top: 6px;
   font-size: 11px;
@@ -368,6 +395,7 @@
   padding-block: 26px clamp(40px, 7vw, 80px);
   text-align: right;
   font-family: var(--font-hand);
+  font-style: italic;
   font-size: clamp(17px, 2.2vw, 21px);
   color: #57534b;
   transform: rotate(-1.2deg);
@@ -450,7 +478,7 @@
    motion off can never leave the shelf empty. */
 @media (prefers-reduced-motion: reduce) {
   .shelf-card, .shelf-card__icon svg, .shelf-card__label, .shelf-card__mark,
-  .hint, .stepper { transition: none; }
+  .hint, .stepper, .record__open { transition: none; }
 }
 
 /* ---------- 11. CREDIT ---------- */
@@ -465,3 +493,119 @@
 }
 .credit a { color: #4a453d; text-decoration: underline; text-underline-offset: 2px; }
 .credit a:hover { color: #21201c; }
+
+/* ---------- 12. ART VIEWER ---------- */
+/* The full key art, opened from the booklet page inside an open case.
+   Sits above the canvas as plain DOM rather than anything in WebGL —
+   the image is already decoded in the browser's cache by the time this
+   opens (the booklet drew from the same URL), so it appears instantly. */
+.artview {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 48px);
+}
+.artview[hidden] { display: none; }
+
+/* Resting state is VISIBLE, and the entry animation is layered on via
+   @starting-style rather than by toggling a class after the fact.
+   That ordering matters: an earlier version sat at opacity 0 until JS
+   added an `is-open` class inside requestAnimationFrame, which meant a
+   dropped frame or a stranded rAF would leave this fixed, inset:0
+   element covering the whole viewport while completely invisible — a
+   full-screen click trap. Browsers without @starting-style simply show
+   it instantly, which is a fine outcome; being invisible never is. */
+.artview__scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  cursor: zoom-out;
+  background: rgba(28, 26, 23, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 1;
+  transition: opacity 180ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+@starting-style { .artview__scrim { opacity: 0; } }
+
+.artview__panel {
+  position: relative;
+  max-width: min(1100px, 100%);
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #14161a;
+  /* tight and directional, tinted to the panel rather than a black
+     bloom on every side */
+  box-shadow: 0 18px 40px rgba(20, 18, 15, 0.34);
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 180ms cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 180ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+@starting-style { .artview__panel { opacity: 0; transform: scale(0.985); } }
+
+/* Exit. Safe to animate because closeArtViewer() hides the element on a
+   timeout that fires whether or not this transition ever runs. */
+.artview.is-closing .artview__scrim { opacity: 0; }
+.artview.is-closing .artview__panel { opacity: 0; transform: scale(0.985); }
+
+.artview__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(70vh, 620px);
+  object-fit: cover;
+}
+
+.artview__bar {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 14px 18px 16px;
+  background: #14161a;
+}
+.artview__name {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ece7df;
+}
+.artview__meta {
+  margin: 0;
+  font-size: 12px;
+  color: #8b857c;
+  font-variant-numeric: tabular-nums;
+}
+.artview__close {
+  margin-left: auto;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ece7df;
+  font: inherit;
+  font-size: 12px;
+  padding: 7px 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+.artview__close:hover {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.26);
+}
+
+@media (max-width: 620px) {
+  .artview__bar { flex-wrap: wrap; gap: 6px 12px; }
+  .artview__close { margin-left: 0; width: 100%; text-align: center; }
+}
+
+/* No scale/fade in — the panel is simply there. Nothing is gated on the
+   transition running, so this only removes motion, never content. */
+@media (prefers-reduced-motion: reduce) {
+  .artview__scrim, .artview__panel { transition: none; }
+  .artview__panel { transform: none; }
+}

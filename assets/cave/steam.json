@@ -1,76 +1,144 @@
 {
-  "seed": true,
-  "updated": "2026-07-29T04:17:00Z",
+  "seed": false,
+  "updated": "2026-08-09T04:04:19.070Z",
   "games": [
     {
-      "appid": 1245620,
-      "name": "ELDEN RING",
-      "hours": 142.6,
-      "lastPlayed": "2026-07-28",
-      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg"
-    },
-    {
-      "appid": 413150,
-      "name": "Stardew Valley",
-      "hours": 96.3,
-      "lastPlayed": "2026-07-27",
-      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/413150/library_600x900.jpg"
-    },
-    {
-      "appid": 1086940,
-      "name": "Baldur's Gate 3",
-      "hours": 88.1,
-      "lastPlayed": "2026-07-25",
-      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/library_600x900.jpg"
-    },
-    {
-      "appid": 1145360,
-      "name": "Hades",
-      "hours": 61.4,
-      "lastPlayed": "2026-07-22",
-      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/library_600x900.jpg"
-    },
-    {
-      "appid": 292030,
-      "name": "The Witcher 3: Wild Hunt",
-      "hours": 54.9,
-      "lastPlayed": "2026-07-19",
-      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg"
-    },
-    {
-      "appid": 275850,
-      "name": "No Man's Sky",
-      "hours": 47.2,
-      "lastPlayed": "2026-07-15",
-      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/275850/library_600x900.jpg"
+      "appid": 1665460,
+      "name": "eFootball™",
+      "hours": 566.9,
+      "lastPlayed": "2026-08-08",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1665460/library_600x900.jpg",
+      "screenshot": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1665460/3464c8ce1e115a355493f82714343a1183fcc04b/ss_3464c8ce1e115a355493f82714343a1183fcc04b.1920x1080.jpg?t=1782314037"
     },
     {
       "appid": 1174180,
       "name": "Red Dead Redemption 2",
-      "hours": 39.8,
-      "lastPlayed": "2026-07-11",
-      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg"
+      "hours": 5.2,
+      "lastPlayed": "2026-08-07",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg",
+      "screenshot": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/ss_66b553f4c209476d3e4ce25fa4714002cc914c4f.1920x1080.jpg?t=1759502961",
+      "achievement": {
+        "name": "Breakout",
+        "description": "Red Dead Online: Complete the Intro.",
+        "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1174180/926ad55990bb91ebce118232aef4606e9fdd64e0.jpg",
+        "unlocked": "2026-07-04"
+      }
     },
     {
-      "appid": 1817070,
-      "name": "Marvel's Spider-Man Remastered",
-      "hours": 28.5,
-      "lastPlayed": "2026-07-06",
-      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1817070/library_600x900.jpg"
+      "appid": 2238040,
+      "name": "Tiny Terry's Turbo Trip",
+      "hours": 0.4,
+      "lastPlayed": "2026-07-22",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/2238040/library_600x900.jpg",
+      "screenshot": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2238040/ss_c3d64de4d9338539fbeb67a249cb6ee5251f7c93.1920x1080.jpg?t=1783069296",
+      "achievement": {
+        "name": "... 1",
+        "description": "Call Grony",
+        "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/2238040/8d4121fc8fd6d36f04ad7e6a61c08e151352eccf.jpg",
+        "unlocked": "2024-12-31"
+      }
     },
     {
-      "appid": 1030300,
-      "name": "Hollow Knight: Silksong",
-      "hours": 22.1,
-      "lastPlayed": "2026-06-30",
-      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1030300/library_600x900.jpg"
+      "appid": 1952920,
+      "name": "Strikers Club",
+      "hours": 0.5,
+      "lastPlayed": "2026-07-19",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1952920/library_600x900.jpg",
+      "screenshot": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1952920/4a3127635014cb5a9f740a6ca712c5b6dc04ad5c/ss_4a3127635014cb5a9f740a6ca712c5b6dc04ad5c.1920x1080.jpg?t=1785778983"
     },
     {
-      "appid": 646570,
-      "name": "Slay the Spire",
-      "hours": 18.7,
-      "lastPlayed": "2026-06-24",
-      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/646570/library_600x900.jpg"
+      "appid": 2842040,
+      "name": "Star Wars Outlaws",
+      "hours": 17.5,
+      "lastPlayed": "2026-07-12",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/2842040/library_600x900.jpg",
+      "screenshot": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2842040/ss_c3846aaa56623e0088cc6d3465eafc8a0f6c7696.1920x1080.jpg?t=1773407100",
+      "achievement": {
+        "name": "Into the main frame",
+        "description": "Slice 10 advanced terminals",
+        "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/2842040/a6f7af42429ea23a89b4504410357c89ae770d28.jpg",
+        "unlocked": "2026-07-12"
+      }
+    },
+    {
+      "appid": 50300,
+      "name": "Spec Ops: The Line",
+      "hours": 4.3,
+      "lastPlayed": "2026-06-23",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/50300/library_600x900.jpg",
+      "screenshot": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/50300/ss_b239dccadf2d067e1e3d894b932207f925e647fb.1920x1080.jpg?t=1706567828",
+      "achievement": {
+        "name": "Damned if You Do",
+        "description": "Follow your orders.",
+        "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/50300/f733d7cb9114a2aa698f684cc2ac915efe4ceca9.jpg",
+        "unlocked": "2025-11-16"
+      }
+    },
+    {
+      "appid": 1771300,
+      "name": "Kingdom Come: Deliverance II",
+      "hours": 86.9,
+      "lastPlayed": "2026-06-21",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1771300/library_600x900.jpg",
+      "screenshot": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/ss_935ddb59f90bc2c21c706132cb9b446fe7851c19.1920x1080.jpg?t=1777975568",
+      "achievement": {
+        "name": "The End",
+        "description": "",
+        "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1771300/7ecaf11e842434ef80103087a89eefc645380dcf.jpg",
+        "unlocked": "2026-06-21"
+      }
+    },
+    {
+      "appid": 1378990,
+      "name": "Crash Bandicoot™ 4: It’s About Time",
+      "hours": 0.5,
+      "lastPlayed": "2026-06-20",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/1378990/library_600x900.jpg",
+      "screenshot": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1378990/ss_ca4b4d3b1dfc069e8742388d27cad924a19dc496.1920x1080.jpg?t=1755191015",
+      "achievement": {
+        "name": "Reality-Shattering Proportions",
+        "description": "",
+        "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1378990/041049035a1d8867dc385bc4ba4c370ea743d19a.jpg",
+        "unlocked": "2026-06-20"
+      }
+    },
+    {
+      "appid": 214510,
+      "name": "LEGO® The Lord of the Rings™",
+      "hours": 0.1,
+      "lastPlayed": "2026-06-14",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/214510/library_600x900.jpg",
+      "screenshot": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/214510/ss_a814931146da2dc9fdca7144aed54942dd581ae7.1920x1080.jpg?t=1780599831"
+    },
+    {
+      "appid": 44350,
+      "name": "GRID 2",
+      "hours": 19.2,
+      "lastPlayed": "2026-06-06",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/44350/library_600x900.jpg",
+      "screenshot": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/44350/ss_860483b888be640c3fe858d21a3f344b5d40d485.1920x1080.jpg?t=1571948291",
+      "achievement": {
+        "name": "Imma Let You Finish",
+        "description": "You amassed more fans than Taylor Swift has Twitter followers. That's 23.5 million, by the way.",
+        "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/44350/e7482bbc59ff416c3c4bebc8e3489b8e407065ff.jpg",
+        "unlocked": "2024-05-02"
+      }
+    },
+    {
+      "appid": 598550,
+      "name": "Huntdown",
+      "hours": 1.2,
+      "lastPlayed": "2026-06-06",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/598550/library_600x900.jpg",
+      "screenshot": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/598550/ss_4317056a3f90399e6d18242a0beeebedd6ecd912.1920x1080.jpg?t=1723637797"
+    },
+    {
+      "appid": 24880,
+      "name": "The Saboteur™",
+      "hours": 3.5,
+      "lastPlayed": "2026-05-24",
+      "capsule": "https://cdn.cloudflare.steamstatic.com/steam/apps/24880/library_600x900.jpg",
+      "screenshot": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/24880/ss_28ee471cc1639d599485e5729758063208117562.1920x1080.jpg?t=1777484749"
     }
   ]
 }

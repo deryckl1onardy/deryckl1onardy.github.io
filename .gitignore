@@ -3,3 +3,4 @@
 .edge-headless-check/
 .chrome-headless/
 .claude/
+.env.steam
