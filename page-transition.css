@@ -14,14 +14,19 @@ html.page-transition.page-ready body {
   filter: none;
 }
 
+/* Exit mirrors the entrance path exactly (same translateY/blur amounts)
+   instead of a different distance — spatial consistency: it should look
+   like the reverse of how the page arrived, not a different motion. The
+   easing is the time-reversed curve of the entrance's, so the outbound
+   path visually matches the inbound one played backwards. */
 html.page-transition.page-exit body {
   opacity: 0;
-  transform: translateY(4px);
-  filter: blur(0.8px);
+  transform: translateY(8px);
+  filter: blur(0.5px);
   transition:
-    opacity 170ms ease-out,
-    transform 170ms ease-out,
-    filter 170ms ease-out;
+    opacity 170ms cubic-bezier(0.64, 0, 0.78, 0.39),
+    transform 170ms cubic-bezier(0.64, 0, 0.78, 0.39),
+    filter 170ms cubic-bezier(0.64, 0, 0.78, 0.39);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -6,6 +6,13 @@
    ============================================================ */
 (function () {
   "use strict";
+  // Content must be visible by default. .reveal (and a few other scroll-
+  // triggered bits) start hidden in CSS ONLY when this class is present —
+  // set here, synchronously, before anything else runs — so a blocked or
+  // erroring script never leaves a whole section stuck at opacity:0 with
+  // nothing left to reveal it. See the "html.js .reveal" rule in
+  // audit-styles.css.
+  document.documentElement.classList.add("js");
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var hasVT = typeof CSS !== "undefined" && CSS.supports && CSS.supports("view-transition-name: none");
 
@@ -141,6 +148,19 @@
       if (!reel.querySelector("svg")) reel.insertAdjacentHTML("beforeend", reelArt());
     });
 
+    // will-change is only worth its GPU-layer cost while the shared loop
+    // is actually running — set once when it wakes, cleared once every
+    // card has settled back to rest, not left standing on nine idle
+    // shells + reels for the rest of the page's life.
+    function setWillChange(on) {
+      cards.forEach(function (card) {
+        var s = card._cs, v = on ? "transform" : "";
+        s.shell.style.willChange = v;
+        if (s.reelL) s.reelL.style.willChange = v;
+        if (s.reelR) s.reelR.style.willChange = v;
+      });
+    }
+
     // One shared rAF loop, alive only while something is moving.
     // The tilt is lerped toward the pointer every frame (no CSS transition
     // fighting the input = zero judder), and the reels carry inertia.
@@ -178,9 +198,9 @@
           }
         }
       });
-      if (active) { requestAnimationFrame(frame); } else { running = false; }
+      if (active) { requestAnimationFrame(frame); } else { running = false; setWillChange(false); }
     }
-    function kick() { if (!running && !reduce) { running = true; requestAnimationFrame(frame); } }
+    function kick() { if (!running && !reduce) { running = true; setWillChange(true); requestAnimationFrame(frame); } }
   })();
 
   /* ---------- ANIMATED AVATAR ---------- */
@@ -294,12 +314,62 @@
       { xr: 0.71, y: 632, r: 2  }
     ];
     var DRAG_THRESHOLD = 8;
-    var zTop = 10, raf = null, animating = false;
+    var zTop = 10, raf = null, animating = false, lastFrameT = null;
     var active = null, pending = null, sx = 0, sy = 0, ox = 0, oy = 0, lastX = 0, vx = 0;
+    var velSamples = []; // {x, y, t} — a short window for a real release velocity
+
+    /* Soft boundary instead of a hard stop: the further past the edge the
+       drag goes, the less of the extra distance actually gets through.
+       Same formula/constant as cave/shelf-engine.js and image-lightbox.js
+       so every drag surface in this pass feels like one house style. */
+    function rubberband(overshoot, dimension, constant) {
+      constant = constant || 0.55;
+      if (dimension <= 0) return 0;
+      return (overshoot * dimension * constant) / (dimension + constant * Math.abs(overshoot));
+    }
+    function withRubberband(value, min, max, dimension) {
+      if (value > max) return max + rubberband(value - max, dimension, 0.55);
+      if (value < min) return min - rubberband(min - value, dimension, 0.55);
+      return value;
+    }
+    // Apple's exponential-decay momentum projection (Designing Fluid
+    // Interfaces, WWDC 2018) — where a flick at this velocity would
+    // actually coast to a stop, not the physics-textbook v²/(2·decel) form.
+    function project(velocity, decelerationRate) {
+      decelerationRate = decelerationRate || 0.998;
+      return (velocity / 1000) * decelerationRate / (1 - decelerationRate);
+    }
+    function bounds(p) {
+      var W = wall.clientWidth, H = wall.clientHeight, cw = p.offsetWidth, ch = p.offsetHeight;
+      return { minX: -cw * 0.45, maxX: W - cw * 0.55, minY: -ch * 0.3, maxY: H - ch * 0.4, W: W, H: H };
+    }
+    function pushVelSample(x, y, t) {
+      velSamples.push({ x: x, y: y, t: t });
+      if (velSamples.length > 6) velSamples.shift();
+    }
+    // px/second, read from the recent samples rather than just the last
+    // two points — one stalled frame right at release shouldn't decide
+    // the whole throw.
+    function releaseVelocity() {
+      if (velSamples.length < 2) return { vx: 0, vy: 0 };
+      var first = velSamples[0], last = velSamples[velSamples.length - 1];
+      var dt = (last.t - first.t) / 1000;
+      if (dt <= 0) return { vx: 0, vy: 0 };
+      return { vx: (last.x - first.x) / dt, vy: (last.y - first.y) / dt };
+    }
 
     function apply(p) {
       p.style.transform = "translate(" + p._x.toFixed(1) + "px," + p._y.toFixed(1) +
         "px) rotate(" + p._rot.toFixed(2) + "deg) scale(" + p._scale.toFixed(3) + ")";
+    }
+    // will-change is only worth paying for while a photo is actually
+    // mid-gesture or still settling — not for nine static prints sitting
+    // on the wall the rest of the time.
+    function beginMotion(p) { p.style.willChange = "transform"; }
+    function endMotionIfSettled(p) {
+      if (p === active || p._settlingPos) return;
+      if (p._rot !== p._baseRot || p._scale !== 1) return;
+      p.style.willChange = "";
     }
     function layout() {
       var W = wall.clientWidth;
@@ -312,13 +382,24 @@
         apply(p);
       });
     }
-    pols.forEach(function (p) { p._x = 0; p._y = 0; p._rot = 0; p._baseRot = 0; p._scale = 1; });
+    pols.forEach(function (p) {
+      p._x = 0; p._y = 0; p._rot = 0; p._baseRot = 0; p._scale = 1;
+      p._settlingPos = false; p._tx = 0; p._ty = 0; p._velX = 0; p._velY = 0;
+    });
     layout();
     var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(layout, 120); });
 
+    // Critically-damped spring constants for the post-release position
+    // settle — same values as image-lightbox.js's springTo, so a flung
+    // photo and a flung zoomed photo decelerate with the same feel.
+    var SPRING_K = 210, SPRING_D = 28;
+
     function startLoop() {
-      if (animating || reduce) return; animating = true;
-      (function loop() {
+      if (animating || reduce) return; animating = true; lastFrameT = null;
+      function loop(now) {
+        if (lastFrameT === null) lastFrameT = now;
+        var dt = Math.min((now - lastFrameT) / 1000, 0.032);
+        lastFrameT = now;
         var live = false;
         pols.forEach(function (p) {
           var tRot = (p === active) ? p._baseRot + Math.max(-15, Math.min(15, vx * 1.1)) : p._baseRot;
@@ -326,11 +407,31 @@
           var dr = tRot - p._rot, ds = tScale - p._scale, changed = false;
           if (Math.abs(dr) > 0.04) { p._rot += dr * 0.2; changed = true; } else if (p._rot !== tRot) { p._rot = tRot; changed = true; }
           if (Math.abs(ds) > 0.002) { p._scale += ds * 0.25; changed = true; } else if (p._scale !== tScale) { p._scale = tScale; changed = true; }
-          if (changed) { apply(p); live = true; }
+
+          // Momentum settle: a critically-damped spring (no overshoot,
+          // per the apple-design default for a settle rather than a
+          // flick) carries the release velocity toward the momentum-
+          // projected landing point. Starts from wherever the photo
+          // actually IS and whatever velocity it actually has, so a
+          // re-grab mid-settle (see down()) redirects it instantly
+          // instead of finishing the old animation first.
+          if (p._settlingPos) {
+            var ax = -SPRING_K * (p._x - p._tx) - SPRING_D * p._velX;
+            var ay = -SPRING_K * (p._y - p._ty) - SPRING_D * p._velY;
+            p._velX += ax * dt; p._velY += ay * dt;
+            p._x += p._velX * dt; p._y += p._velY * dt;
+            changed = true;
+            var settled = Math.abs(p._x - p._tx) < 0.3 && Math.abs(p._y - p._ty) < 0.3 &&
+              Math.abs(p._velX) < 4 && Math.abs(p._velY) < 4;
+            if (settled) { p._x = p._tx; p._y = p._ty; p._velX = 0; p._velY = 0; p._settlingPos = false; }
+          }
+
+          if (changed) { apply(p); live = true; } else { endMotionIfSettled(p); }
         });
         vx *= 0.82;
         if (active || live || Math.abs(vx) > 0.1) { raf = requestAnimationFrame(loop); } else { animating = false; }
-      })();
+      }
+      raf = requestAnimationFrame(loop);
     }
 
     function down(e) {
@@ -338,13 +439,21 @@
       p.style.zIndex = ++zTop;
       pending = { el: p, id: e.pointerId };
       sx = e.clientX; sy = e.clientY; ox = p._x; oy = p._y; lastX = e.clientX; vx = 0;
+      velSamples.length = 0;
+      pushVelSample(e.clientX, e.clientY, performance.now());
       // Don't preventDefault yet — wait until we're sure it's a drag, not a scroll
     }
     function commitDrag(e) {
       var p = pending.el;
       active = p; pending = null;
       p._dragged = true;
+      // Grabbing a photo that's still coasting home from the last release
+      // has to continue from its live on-screen position, not snap to
+      // wherever the settle spring was heading — cancel the momentum
+      // target outright so this drag starts clean from the real spot.
+      p._settlingPos = false;
       p.classList.add("is-grab");
+      beginMotion(p);
       try { p.setPointerCapture(e.pointerId); } catch (err) {}
       if (reduce) { p._scale = 1.03; apply(p); } else { startLoop(); }
     }
@@ -355,12 +464,24 @@
       }
       if (!active || active !== e.currentTarget) return;
       e.preventDefault();
-      var W = wall.clientWidth, H = wall.clientHeight, cw = active.offsetWidth, ch = active.offsetHeight;
+      var b = bounds(active);
       var nx = ox + (e.clientX - sx), ny = oy + (e.clientY - sy);
-      active._x = Math.max(-cw * 0.45, Math.min(W - cw * 0.55, nx));
-      active._y = Math.max(-ch * 0.3, Math.min(H - ch * 0.4, ny));
+      if (reduce) {
+        active._x = Math.max(b.minX, Math.min(b.maxX, nx));
+        active._y = Math.max(b.minY, Math.min(b.maxY, ny));
+      } else {
+        active._x = withRubberband(nx, b.minX, b.maxX, b.W);
+        active._y = withRubberband(ny, b.minY, b.maxY, b.H);
+      }
+      // Position tracks the pointer 1:1 on every move, applied here
+      // directly rather than left to piggyback on the shared tilt/scale
+      // loop — once that spring converges (tilt settled, scale at 1.05)
+      // it stops calling apply() on its own, which would otherwise freeze
+      // the photo mid-drag the instant the pointer stops moving in X
+      // (e.g. a pure vertical drag, where the tilt's vx input is ~0).
+      apply(active);
       vx = e.clientX - lastX; lastX = e.clientX;
-      if (reduce) apply(active);
+      pushVelSample(e.clientX, e.clientY, performance.now());
     }
     function up(e) {
       if (pending && pending.el === e.currentTarget) pending = null;
@@ -369,7 +490,28 @@
       p.classList.remove("is-grab");
       try { p.releasePointerCapture(e.pointerId); } catch (err) {}
       active = null;
-      if (reduce) { p._scale = 1; apply(p); } else { startLoop(); }
+      if (reduce) {
+        var rb = bounds(p);
+        p._scale = 1;
+        p._x = Math.max(rb.minX, Math.min(rb.maxX, p._x));
+        p._y = Math.max(rb.minY, Math.min(rb.maxY, p._y));
+        apply(p);
+        p.style.willChange = "";
+      } else {
+        // Project the release velocity forward (§6) rather than just
+        // dropping the photo where the pointer happened to let go, then
+        // land it inside the TRUE (non-rubber-banded) bounds — an edge
+        // always springs back, a flick across open space keeps coasting.
+        var b = bounds(p);
+        var rv = releaseVelocity();
+        var targetX = Math.max(b.minX, Math.min(b.maxX, p._x + project(rv.vx)));
+        var targetY = Math.max(b.minY, Math.min(b.maxY, p._y + project(rv.vy)));
+        p._tx = targetX; p._ty = targetY;
+        p._velX = rv.vx; p._velY = rv.vy;
+        p._settlingPos = !(targetX === p._x && targetY === p._y && Math.abs(rv.vx) < 30 && Math.abs(rv.vy) < 30);
+        velSamples.length = 0;
+        startLoop();
+      }
     }
     pols.forEach(function (p) {
       p.addEventListener("pointerdown", down);

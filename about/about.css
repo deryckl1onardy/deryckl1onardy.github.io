@@ -1398,3 +1398,38 @@
     gap: 10px;
   }
 }
+
+/* ---------- REDUCED MOTION ---------- */
+/* The walkman reels and the now-playing marquee are both continuous,
+   unbounded loops (a spin that never stops, text scrolling forever)
+   gated only on the user explicitly pressing play — exactly the kind
+   of sustained motion prefers-reduced-motion exists to opt out of.
+   Reduced motion doesn't mean the play state stops working, just that
+   it stops moving: the reels hold their frame and the full track name
+   is readable without needing the scroll (an ellipsis takes over,
+   since the marquee's own mask assumed the text would always keep
+   sliding past it). The control-button press flash is a single short,
+   non-looping cue rather than a sustained animation, so it's left
+   alone — the same distinction the cave shelf's own reduced-motion
+   pass draws between "keeps spinning forever" and "one quick flash". */
+@media (prefers-reduced-motion: reduce) {
+  .about-page .walkman-reel:first-child::before,
+  .about-page .walkman-reel:nth-child(2)::before,
+  .about-page .track-marquee-inner {
+    animation: none;
+  }
+  .about-page .track-marquee-inner {
+    width: auto;
+  }
+  .about-page .track-marquee-copy:nth-child(n + 2) {
+    display: none;
+  }
+  .about-page .track-marquee {
+    text-overflow: ellipsis;
+  }
+  .about-page .track-marquee-copy {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

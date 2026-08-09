@@ -35,6 +35,16 @@
   transform: translate3d(0, var(--px-phone, 0px), 0);
 }
 
+/* Frame-level smoothness hint for the rAF-driven parallax transform (see
+   main-gate-of-the-app.js) — only while motion is actually enabled, so the
+   browser doesn't reserve a compositor layer for nothing under reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .main-gate-page .intro-backdrop,
+  .main-gate-page .intro-phone {
+    will-change: transform;
+  }
+}
+
 .main-gate-page .intro-phone img {
   position: static;
   width: 100%;
@@ -56,7 +66,7 @@
 .main-gate-page .intro-tags {
   display: block;
   margin-top: 19px;
-  font-size: clamp(14px, 1.9vw, 18px);
+  font-size: clamp(17px, 1.9vw, 18px);
   line-height: 1.5;
 }
 
@@ -110,13 +120,16 @@
   margin-top: 18px;
 }
 
+/* The five numbered initiatives are the primary subheads of this
+   page, so they sit on the shared 26px subhead rung — at 24px
+   they rendered smaller than the generic h3s around them. */
 .main-gate-page .study-section h3.initiative-title {
   margin: 0;
   color: #000000;
-  font-size: clamp(22px, 2.5vw, 24px);
-  line-height: 1.15;
+  font-size: clamp(21px, 2.2vw, 26px);
+  line-height: 1.28;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 .initiative-copy {
@@ -124,11 +137,14 @@
   gap: 0;
 }
 
+/* "Why it mattered" is a label introducing a one-line takeaway, so
+   it sits on the component rung — at 24px it read almost as loud as
+   the 26px initiative title it follows. */
 .main-gate-page .study-section p.initiative-why {
-  margin: 8px 0 0;
+  margin: 12px 0 0;
   color: #000000;
-  font-size: clamp(22px, 2.5vw, 24px);
-  line-height: 1.15;
+  font-size: 20px;
+  line-height: 1.35;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -299,9 +315,9 @@
 .main-gate-page #impact li {
   margin-top: 14px;
   color: #373737;
-  font-size: clamp(14px, 1.9vw, 18px);
+  font-size: clamp(17px, 1.9vw, 18px);
   line-height: 1.5;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .main-gate-page #impact ul {
@@ -375,7 +391,7 @@
   }
 
   .main-gate-page .intro-tags {
-    font-size: clamp(14px, 1.9vw, 18px);
+    font-size: clamp(17px, 1.9vw, 18px);
   }
 
   .phone-pair,

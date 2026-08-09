@@ -14,8 +14,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../dana-wallet-v3/dana-wallet-v3.css?v=12" />
-    <link rel="stylesheet" href="onboarding-registration.css?v=9" />
+    <link rel="stylesheet" href="../dana-wallet-v3/dana-wallet-v3.css?v=15" />
+    <link rel="stylesheet" href="onboarding-registration.css?v=10" />
     <link rel="stylesheet" href="../footer.css" />
     <link rel="stylesheet" href="../page-transition.css" />
     <link rel="stylesheet" href="../image-lightbox.css?v=3" />
@@ -43,7 +43,7 @@
 
           <div class="intro-copy">
             <h1>DANA Onboarding</h1>
-            <p>Redesigning the first time registration experience to help users complete setup and clarify DANA's value</p>
+            <p>Five studies across four years into why new users stalled at sign-up — and the redesign that finally acted on all of it.</p>
             <p class="intro-tags">
               <span>Onboarding</span>
               <span aria-hidden="true">&bull;</span>
@@ -204,8 +204,10 @@
 
             <p>The first design iteration explored a structural shift: moving the phone input field below the carousel so it's always reachable without completing the intro. Richer, more specific illustrations replaced the original abstract graphics. Messaging was rewritten in plain language based on exact user vocabulary from the usability sessions. In the end, we want it to be less clutter as it can be and chose the third design</p>
 
+            <p>OTP was the single largest friction point in registration — either the SMS was too slow or it never arrived at all. That pointed to a design question, not just a technical one: could a faster, more reliable delivery channel change how the whole verification step felt?</p>
+
             <div class="ob-img-panel ob-img-panel--blue">
-              <p class="ob-img-panel__heading">The initiatives to speed up OTP Process</p>
+              <p class="ob-img-panel__heading">Exploring faster OTP delivery channels</p>
               <div class="ob-otp-row">
                 <div class="ob-otp-group">
                   <div class="ob-otp-screens">
@@ -229,8 +231,6 @@
                 </div>
               </div>
             </div>
-
-            <p>We also notice that there is a lot of opportunity on cutting down steps and cost cutting for OTP. From our research, OTP is the largest friction points when user wants to register, either its because the OTP SMS is so slow or they don't receive at all. so there's an opportunity for us to explore other alternatives that has a better success rate and also better experience.</p>
 
             <div class="ob-img-panel ob-img-panel--blue">
               <p class="ob-img-panel__heading">Helping User on inputting their phone number</p>
@@ -354,6 +354,7 @@
             </div>
             <h3 class="ob-change-title">Overall Onboarding Registration Journey</h3>
             <p>The flow treats every screen as an opportunity to answer the question the previous one raised. The welcome screen earns trust before asking anything. The phone input removes format ambiguity through structure rather than instructions. The WhatsApp confirmation sets delivery expectations explicitly, so users know exactly where to look for their code. The OTP screen restates those expectations and adds a countdown timer — converting a moment of silence into a visible signal that the system is working. PIN creation reframes a security requirement as a personal action. And the welcome screen closes the journey with a clear sense of arrival.</p>
+            <p>Every change above traces back to a specific drop-off point the five studies surfaced — this wasn't a redesign for its own sake, it was a fix mapped directly to where the ~51.3% conversion baseline was leaking users.</p>
           </section>
 
         </main>

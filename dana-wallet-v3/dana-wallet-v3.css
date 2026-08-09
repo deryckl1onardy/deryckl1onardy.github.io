@@ -87,7 +87,13 @@ a {
 .case-header::before {
   content: "";
   position: absolute;
-  top: 0;
+  /* -12px, not 0: .case-header sits at top: 12px (sticky), so its own
+     box already starts 12px below the real viewport edge. A blur that
+     only covers ITS box leaves that 12px strip of whatever's scrolling
+     underneath fully exposed, unblurred, right above the pill — the
+     "cut off glow" hard seam. Extending to -12px pulls the blur up to
+     the actual viewport top (same fix as the homepage masthead). */
+  top: -12px;
   bottom: -20px;
   left: 50%;
   right: 50%;
@@ -97,9 +103,44 @@ a {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   background: rgba(217, 214, 208, 0.7);
-  mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  /* Long, many-stop fade instead of a 2-stop 60%→100% cliff, so the
+     blur dissolves into the page instead of ending in a visible line. */
+  mask-image: linear-gradient(to bottom,
+    black 0%, black 55%,
+    rgba(0,0,0,0.94) 61%, rgba(0,0,0,0.82) 67%,
+    rgba(0,0,0,0.66) 73%, rgba(0,0,0,0.48) 78%,
+    rgba(0,0,0,0.32) 83%, rgba(0,0,0,0.19) 87%,
+    rgba(0,0,0,0.09) 91%, rgba(0,0,0,0.03) 95%,
+    transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom,
+    black 0%, black 55%,
+    rgba(0,0,0,0.94) 61%, rgba(0,0,0,0.82) 67%,
+    rgba(0,0,0,0.66) 73%, rgba(0,0,0,0.48) 78%,
+    rgba(0,0,0,0.32) 83%, rgba(0,0,0,0.19) 87%,
+    rgba(0,0,0,0.09) 91%, rgba(0,0,0,0.03) 95%,
+    transparent 100%);
   pointer-events: none;
+}
+
+/* Translucent nav backdrop goes frostier/solid when the user has asked
+   for less transparency, and gains a defined edge under high contrast. */
+@media (prefers-reduced-transparency: reduce) {
+  .case-header::before {
+    background: var(--bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .case-header::before {
+    background: var(--bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    mask-image: none;
+    -webkit-mask-image: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  }
 }
 
 .pill-nav {
@@ -229,26 +270,34 @@ a {
 .intro-copy h1 {
   margin: 0;
   font-size: 64px;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  line-height: 1.08;
+  letter-spacing: -0.022em;
   font-weight: 700;
 }
 
 .intro-copy p {
   margin: 16px 0 0;
-  font-size: clamp(14px, 1.9vw, 18px);
+  /* Floors at 17px (the iOS body size) rather than 14px — the old
+     clamp bottomed out at caption size on phones. */
+  font-size: clamp(17px, 1.9vw, 18px);
   line-height: 1.5;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   color: #373737;
 }
 
-.intro-tags {
-  margin-top: 16px;
+/* Category · year · platform. This is metadata, so it steps
+   down to the meta rung — it used to render at 18px/400,
+   pixel-identical to the lead paragraph above it, which put
+   a label and the sentence it annotates on the same level. */
+.intro-copy p.intro-tags {
+  margin-top: 14px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 24px;
+  gap: 8px 18px;
   align-items: center;
-  font-size: clamp(14px, 1.9vw, 18px);
+  font-size: 15px;
+  font-weight: 500;
+  color: #6e6a63;
 }
 
 .prototype-btn {
@@ -267,16 +316,23 @@ a {
   font-weight: 500;
   display: grid;
   place-items: center;
-  transition: transform 180ms ease;
+  transition: background 150ms ease, border-color 150ms ease,
+    transform 100ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .prototype-btn:hover {
-  transform: translateY(-1px);
+  background: #e4e4e4;
+  border-color: #cbcbcb;
 }
 
 .prototype-btn:active {
-  transform: translateY(0) scale(0.97);
-  transition-duration: 100ms;
+  transform: scale(0.97);
+  transition-duration: 90ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prototype-btn { transition: background 150ms ease, border-color 150ms ease; }
+  .prototype-btn:active { transform: none; }
 }
 
 .study-shell {
@@ -391,9 +447,11 @@ a {
 .study-section li {
   margin: 14px 0 0;
   color: #373737;
-  font-size: clamp(14px, 1.9vw, 18px);
+  /* Long-form body: floors at 17px so phone reading stays
+     comfortable (was bottoming out at 14px). */
+  font-size: clamp(17px, 1.9vw, 18px);
   line-height: 1.5;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .study-section ul {
@@ -410,11 +468,14 @@ a {
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* All screenshot galleries share one 24px gutter — these were
+   three different values (20 / 24 / 10) for what reads as the
+   same component. */
 .problem-gallery {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  padding: 24px 20px 20px;
+  gap: 24px;
+  padding: 24px 24px 20px;
 }
 
 .problem-gallery figure,
@@ -548,12 +609,14 @@ a {
   aspect-ratio: 197 / 400;
 }
 
+/* No panel behind this one, so drop the padding too and let the
+   screens align flush with the text column above them. */
 .solution-gallery {
-  margin-top: 20px;
-  padding: 10px;
+  margin-top: 24px;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  gap: 24px;
   background: transparent;
   box-shadow: none;
 }
@@ -800,6 +863,23 @@ a {
   }
 }
 
+/* Entrance animations degrade to a short cross-fade under reduced motion —
+   no translate, content is never hidden if the animation is skipped since
+   these elements carry no other opacity/transform styling. */
+@media (prefers-reduced-motion: reduce) {
+  .intro,
+  .overview-card,
+  .study-section {
+    animation-name: fade-only;
+    animation-duration: 200ms;
+  }
+}
+
+@keyframes fade-only {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* ============================================================
    SCROLL PARALLAX — hero depth cue (JS-driven, see the page's
    own .js file). The --px-* custom properties default to 0px so
@@ -949,14 +1029,14 @@ a {
   }
 
   .intro-copy p {
-    font-size: clamp(14px, 1.9vw, 18px);
+    font-size: clamp(17px, 1.9vw, 18px);
     margin-top: 12px;
   }
 
-  .intro-tags {
+  .intro-copy p.intro-tags {
     margin-top: 12px;
-    gap: 8px 14px;
-    font-size: clamp(14px, 1.9vw, 18px);
+    gap: 6px 14px;
+    font-size: 14px;
   }
 
   .prototype-btn {
@@ -1021,12 +1101,15 @@ a {
 }
 
 @media (max-width: 640px) {
+  /* Phone display sizes. h1 keeps a clear step above the 26–36px
+     h2 below it, and the lead paragraph holds the 17px body floor
+     instead of collapsing to 14px. */
   .intro-copy h1 {
-    font-size: clamp(28px, 9vw, 40px);
+    font-size: clamp(34px, 10vw, 44px);
   }
 
   .intro-copy p {
-    font-size: clamp(14px, 4vw, 18px);
+    font-size: clamp(17px, 4vw, 18px);
   }
 
   .intro-media {
@@ -1199,7 +1282,10 @@ body.prototype-modal-open {
   font-size: 10px;
   line-height: 1;
   letter-spacing: 0.22em;
-  color: #b0b0b0;
+  /* #b0b0b0 measured 1.5:1 against this beige page background —
+     effectively invisible. #6e6a63 is the site's own muted-label
+     tone (used for nav nav-link text elsewhere) and clears 3.7:1. */
+  color: #6e6a63;
   text-transform: uppercase;
   font-weight: 600;
 }
@@ -1208,22 +1294,64 @@ body.prototype-modal-open {
   display: none;
 }
 
+/* A persistent rail runs the full height of the list (links stack
+   with no gap, so each one's border-left joins into a single line),
+   with a short, rounded, animated tab marking the current section —
+   not a flat border that swaps on/off per item, which is the same
+   sidebar every docs site ships. Padding stays constant between
+   states, so activating a link never shifts its text. */
 .overview-link {
-  padding: 5px 0 5px 11px;
-  color: #b0b0b0;
+  position: relative;
+  padding: 6px 0 6px 16px;
+  /* #b0b0b0 measured 1.5:1 against this page's beige background —
+     effectively unreadable. #56534d clears 5.4:1. */
+  color: #56534d;
   font-size: 12px;
   line-height: 1.4;
   font-weight: 400;
   letter-spacing: 0.01em;
-  border-left: 1.5px solid transparent;
-  transition: color 140ms ease, border-color 140ms ease;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  transition: color 140ms ease;
+}
+
+.overview-link:hover {
+  color: #302e2a;
+}
+
+.overview-link::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  width: 2px;
+  height: 0;
+  border-radius: 2px;
+  background: #111111;
+  transform: translateY(-50%);
+  transition: height 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .overview-link.is-active {
   color: #111111;
   font-weight: 500;
-  border-left: 1.5px solid #111111;
-  padding-left: 11px;
+  /* Explicit, not inherited: an earlier, higher-specificity rule
+     (.overview-link.is-active further up this file, from a draft
+     pass superseded by this one) sets a 1.5px black border-left and
+     11px padding-left. Equal-specificity rules resolve per property,
+     not per block, so these have to be repeated here to actually
+     override it rather than falling through from the base rule. */
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  padding-left: 16px;
+}
+
+.overview-link.is-active::before {
+  height: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overview-link::before {
+    transition: none;
+  }
 }
 
 /* ── Sections — chapter break ───────────────────── */
@@ -1236,6 +1364,9 @@ body.prototype-modal-open {
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: #111111;
+  /* Paragraphs carry margin-top: 14px, which alone sat too
+     tight under a 42px chapter heading. */
+  margin-bottom: 8px;
 }
 
 .study-section p,
@@ -1310,16 +1441,22 @@ body.prototype-modal-open {
   padding-right: 0;
 }
 
+/* These three cards carry the study sample sizes — the hardest
+   evidence on the page — and were rendering at 13.5/12.5px in a
+   393px-wide column, i.e. as fine print. Raised to the component
+   rung so the numbers actually read. */
 .research-summary-item h3 {
-  margin: 0 0 6px;
-  font-size: 13.5px;
+  margin: 0 0 8px;
+  font-size: 20px;
   font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
   color: #111111;
 }
 
 .research-summary-item p,
 .research-summary-item li {
-  font-size: 12.5px;
+  font-size: 15px;
   color: #666666;
   line-height: 1.6;
   margin: 0 0 3px;
@@ -1336,16 +1473,22 @@ body.prototype-modal-open {
   gap: 8px;
 }
 
+/* The four "What we learned" cards are ~580px wide but were set
+   at 14/13/12.5px — the page's key research findings rendered
+   smaller than everything around them. Raised to the component
+   rung (20/16/15) to match the card width they sit in. */
 .research-learning-card > p {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.65;
   color: #555555;
   margin: 0;
 }
 
 .research-learning-title h4 {
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
   color: #111111;
 }
 
@@ -1353,8 +1496,8 @@ body.prototype-modal-open {
   background: transparent;
   border: none;
   border-radius: 0;
-  padding: 8px 0 0;
-  font-size: 12.5px;
+  padding: 10px 0 0;
+  font-size: 15px;
   color: #444444;
   width: 100%;
 }
@@ -1405,11 +1548,20 @@ body.prototype-modal-open {
   filter: brightness(0) invert(1);
 }
 
+.reflection-metric-note {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.4);
+}
+
 .reflection-copy {
   font-size: 15px;
   line-height: 1.8;
   color: #555555;
   margin: 0;
+}
+
+.reflection-copy + .reflection-copy {
+  margin-top: 14px;
 }
 
 /* ── Responsive overrides ─────────────────────────────────── */
@@ -1451,12 +1603,19 @@ body.prototype-modal-open {
     display: none;
   }
 
+  /* Mobile switches the rail from vertical (left edge) to horizontal
+     (bottom edge) — the animated ::before tab is a vertical mark, so
+     it's dropped here in favor of a plain border-bottom swap. */
   .overview-link {
     font-size: 11.5px;
     padding: 5px 14px 5px 0;
     border-left: none;
     border-bottom: 1.5px solid transparent;
-    color: #b0b0b0;
+    color: #56534d;
+  }
+
+  .overview-link::before {
+    display: none;
   }
 
   .overview-link.is-active {
@@ -1516,26 +1675,49 @@ body.prototype-modal-open {
   }
 }
 
-/* ── Type scale — sub-section h3s ─────────────────────────── */
+/* ── Type scale ────────────────────────────────────────────
+   One scale across every case study page:
+
+     64 · page title   lh 1.08   ls -0.022em
+     42 · section h2   lh 1.10   ls -0.02em
+     26 · subhead h3   lh 1.28   ls -0.015em
+     20 · component    lh 1.35   ls -0.01em
+     18 · body         lh 1.75   ls 0
+     16 · card body    lh 1.6    ls 0
+     14 · meta / stat  lh 1.5    ls 0
+     11 · micro caps   lh 1      ls +0.2em
+
+   Tracking tightens as size grows (large type reads too
+   loose at 0) and leading opens as size shrinks — long-form
+   body wants air, display type does not.
+
+   The 26px subhead is the load-bearing fix: it used to sit
+   at 18px, exactly equal to body copy, so only font-weight
+   separated a subhead from a paragraph and the middle of
+   the scale had collapsed. Component-scoped h3s (cards,
+   metrics, summaries) re-declare their own size BELOW this
+   rule and still win on source order. ─────────────────── */
 .study-section h3 {
-  font-size: 18px;
+  /* Fluid so it keeps clear of h2, which floors at 28px on
+     phones — a fixed 26px would sit almost on top of it. */
+  font-size: clamp(21px, 2.2vw, 26px);
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   color: #111111;
-  line-height: 1.35;
-  margin-top: 28px;
-  margin-bottom: 8px;
+  line-height: 1.28;
+  margin-top: 40px;
+  margin-bottom: 12px;
 }
 
 /* Re-declare component h3s that need smaller sizes (same specificity —
    must appear after .study-section h3 to win via cascade order) */
 .research-summary-item h3 {
-  margin: 0 0 6px;
-  font-size: 13.5px;
+  margin: 0 0 8px;
+  font-size: 20px;
   font-weight: 700;
   color: #111111;
   line-height: 1.3;
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
 }
 
 .reflection-metric-head h3 {
@@ -1569,10 +1751,10 @@ body.prototype-modal-open {
 /* Onboarding change-section chapter titles (.ob-change-title) —
    higher specificity than plain .study-section h3 so it wins */
 .study-section h3.ob-change-title {
-  font-size: 22px;
+  font-size: clamp(21px, 2.2vw, 26px);
   font-weight: 600;
   letter-spacing: -0.015em;
-  line-height: 1.25;
+  line-height: 1.28;
   color: #111111;
   margin-top: 40px;
   margin-bottom: 12px;

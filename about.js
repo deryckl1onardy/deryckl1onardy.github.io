@@ -91,7 +91,6 @@
       return;
     }
 
-    triggerControlButtonPress(pauseButton);
     pauseButton.classList.toggle("is-active");
     syncPlaybackState();
   }
@@ -317,6 +316,17 @@
   syncPlaybackState();
 
   if (pauseButton) {
+    // The visual press has to land on pointerdown, not wait for the
+    // full click cycle (down+up+click) to resolve — otherwise the
+    // button reads as unresponsive for the ~100ms+ a real press takes,
+    // exactly the latency the interface should never introduce.
+    // togglePlayback() itself (the actual state change) still runs on
+    // click, since that's the point a tap is genuinely committed and
+    // cancelable by dragging off the button beforehand.
+    pauseButton.addEventListener("pointerdown", () => {
+      triggerControlButtonPress(pauseButton);
+    });
+
     pauseButton.addEventListener("click", (event) => {
       event.preventDefault();
       togglePlayback();
@@ -327,6 +337,7 @@
         return;
       }
       event.preventDefault();
+      triggerControlButtonPress(pauseButton);
       togglePlayback();
     });
   }
@@ -336,9 +347,15 @@
       return;
     }
 
+    // Same reasoning as the pause button above: the mechanical "press"
+    // feedback fires the instant contact happens, not after the click
+    // has fully resolved.
+    button.addEventListener("pointerdown", () => {
+      triggerControlButtonPress(button);
+    });
+
     button.addEventListener("click", (event) => {
       event.preventDefault();
-      triggerControlButtonPress(button);
     });
 
     button.addEventListener("keydown", (event) => {

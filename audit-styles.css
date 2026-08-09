@@ -61,7 +61,15 @@
   /* type */
   --font-screen: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-label: "Inter", system-ui, sans-serif;
-  --font-hand: "Caveat", "Comic Sans MS", cursive;
+  /* No script/handwriting webfont at all now — that whole category
+     (Caveat, Homemade Apple, every "cute note" Google Font) reads as
+     a costume the moment it carries real UI, not just a decorative
+     flourish. The "personal annotation" feel now comes from the
+     site's own display face set in italic (see every consumer of
+     this variable, which also sets font-style: italic) plus the
+     existing rotation/color treatment — considered emphasis instead
+     of a font pretending to be a pen. */
+  --font-hand: var(--font-screen);
 }
 
 /* ---------- 2. RESET / BASE ---------- */
@@ -84,7 +92,13 @@ body {
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 button { font-family: inherit; cursor: pointer; }
-h1, h2, h3, h4 { margin: 0; font-weight: 700; letter-spacing: -0.02em; overflow-wrap: break-word; }
+/* tracking is size-specific, not one value for every heading level — the
+   big display sizes (h1/h2) want negative tracking, but h3/h4 render as
+   small as 16-18px in practice (.prose h3, .card h4) where that same
+   -0.02em reads too tight; they get a near-zero value instead. */
+h1, h2, h3, h4 { margin: 0; font-weight: 700; overflow-wrap: break-word; }
+h1, h2 { letter-spacing: -0.02em; }
+h3, h4 { letter-spacing: -0.006em; }
 p { margin: 0; }
 
 ::selection { background: #2b2b2b; color: var(--bg); }
@@ -165,7 +179,7 @@ body::after {
   display: grid; place-items: center;
   background: linear-gradient(160deg, var(--dark), #000);
   color: var(--bg);
-  font-family: var(--font-hand);
+  font-family: var(--font-hand); font-style: italic;
   font-size: 19px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 1px 2px rgba(0,0,0,0.3);
 }
@@ -275,7 +289,7 @@ body::after {
 }
 @keyframes develop-milk { 0% { opacity: 0.97; } 40% { opacity: 0.72; } 72% { opacity: 0.22; } 100% { opacity: 0; } }
 .photo__cap {
-  font-family: var(--font-hand); text-align: center; font-size: 22px; color: #3a342a;
+  font-family: var(--font-hand); font-style: italic; text-align: center; font-size: 22px; color: #3a342a;
   padding: 13px 8px 15px; line-height: 1.2; transform: rotate(-0.8deg);
 }
 
@@ -341,7 +355,7 @@ body::after {
 }
 .hero__device-note {
   margin-top: 300px; text-align: center; /* clears the hanging print */
-  font-family: var(--font-hand); font-size: clamp(17px, 1.9vw, 20px);
+  font-family: var(--font-hand); font-style: italic; font-size: clamp(17px, 1.9vw, 20px);
   color: #5d564a; transform: rotate(-0.8deg);
 }
 @media (prefers-reduced-motion: reduce) {
@@ -410,7 +424,7 @@ body::after {
 }
 .scroll-cue .chev { animation: bob 1.8s var(--ease) infinite; }
 @media (hover: hover) and (pointer: fine) {
-  .scroll-cue:hover { color: var(--ink); transform: translateY(-1px); }
+  .scroll-cue:hover { color: var(--ink); }
 }
 .scroll-cue:active { transform: scale(0.97) translateY(0); }
 @media (prefers-reduced-motion: reduce) {
@@ -478,7 +492,10 @@ body::after {
   /* transform is driven per-frame by a JS spring — a CSS transition here
      would fight the input and judder */
   transition: box-shadow var(--dur) var(--ease);
-  will-change: transform;
+  /* will-change is set inline by JS only while the tilt spring is
+     actually running (pointer over the card / still easing back to
+     rest) — see the cassette IIFE in audit-main.js — not left on
+     permanently for a shell that mostly just sits still */
   /* directional beveled edges — light from top-left */
   border-top: 1px solid var(--edge-light);
   border-left: 1px solid var(--edge-light);
@@ -615,7 +632,7 @@ body::after {
 /* the title, handwritten in pen on the ruled lines */
 .mixtape__title {
   display: block;
-  font-family: var(--font-hand);
+  font-family: var(--font-hand); font-style: italic;
   font-size: clamp(21px, 2.9vw, 30px);
   line-height: 0.95;
   color: #34302a;
@@ -624,7 +641,7 @@ body::after {
 }
 .mixtape__sub {
   display: block;
-  font-family: var(--font-hand);
+  font-family: var(--font-hand); font-style: italic;
   font-size: clamp(13px, 1.6vw, 16px);
   color: #5d564a;
   padding: 0.5% 17% 0 17.5%;
@@ -676,15 +693,18 @@ body::after {
   position: relative; z-index: 2;
   height: 86%; aspect-ratio: 1; border-radius: 50%;
   transform: rotate(var(--reel-rot, 0deg));
-  will-change: transform;
+  /* will-change is set inline by JS for the spring-driven reels (see
+     the cassette IIFE), and by CSS below for the idle ones — those spin
+     continuously via a CSS animation for the life of the page, so the
+     hint genuinely belongs there permanently */
 }
 .reel__art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .reel--right { --reel-rot: 0deg; }
 
 /* idle playback — the hero tape and case-study tapes turn on their own;
    the take-up reel (less tape on the pack) spins faster, like real life */
-.mixtape[data-idle] .reel--left  { animation: reel-turn 5.6s linear infinite; }
-.mixtape[data-idle] .reel--right { animation: reel-turn 3.8s linear infinite; }
+.mixtape[data-idle] .reel--left  { animation: reel-turn 5.6s linear infinite; will-change: transform; }
+.mixtape[data-idle] .reel--right { animation: reel-turn 3.8s linear infinite; will-change: transform; }
 @keyframes reel-turn { to { transform: rotate(360deg); } }
 
 /* the molded bottom transport section — that iconic trapezoid, flush with
@@ -1099,7 +1119,7 @@ body::after {
 .about-aside { align-self: start; }
 .about-aside > .chip { margin-bottom: 14px; }
 .about-aside__hint {
-  font-family: var(--font-hand); font-size: 16px; color: var(--ink-faint);
+  font-family: var(--font-hand); font-style: italic; font-size: 16px; color: var(--ink-faint);
   margin: 0 0 4px 2px;
 }
 /* loose photos scattered on a surface — JS positions + drags them freely */
@@ -1119,7 +1139,9 @@ body::after {
   user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
   touch-action: none;
   transition: box-shadow 200ms var(--ease);
-  will-change: transform;
+  /* will-change is set inline by JS only for the duration of an actual
+     drag + its momentum settle (see the polaroid-wall IIFE) — nine
+     photos sitting motionless don't need a standing GPU layer each */
 }
 .pol__img {
   position: relative; aspect-ratio: 1 / 1; border-radius: 2px; overflow: hidden;
@@ -1151,7 +1173,7 @@ body::after {
     linear-gradient(180deg, rgba(255,228,180,0.05), rgba(118,162,202,0.07));
 }
 .pol__cap {
-  font-family: var(--font-hand); font-size: 19px; line-height: 1.05; color: #534d43;
+  font-family: var(--font-hand); font-style: italic; font-size: 19px; line-height: 1.05; color: #534d43;
   text-align: center; padding: 9px 4px 13px;
 }
 .pol.is-grab { cursor: grabbing; }
@@ -1432,7 +1454,7 @@ body::after {
 .about-id { display: flex; gap: 20px; align-items: center; margin-bottom: 30px; }
 .about-id__txt b { font-size: 20px; }
 .about-id__txt span { display: block; color: var(--ink-muted); font-size: 14px; }
-.about-id__txt .tagline { font-family: var(--font-hand); font-size: 21px; color: var(--ink); margin-top: 6px; }
+.about-id__txt .tagline { font-family: var(--font-hand); font-style: italic; font-size: 21px; color: var(--ink); margin-top: 6px; }
 
 /* ============================================================
    11. BUTTONS / LINKS (physical)
@@ -1445,10 +1467,12 @@ body::after {
   color: var(--ink);
   background: linear-gradient(180deg, #ece9e3, #d4d1ca);
   box-shadow: var(--lift-1);
-  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), filter var(--dur) var(--ease);
 }
-.btn:hover { transform: translateY(-2px); box-shadow: var(--lift-2); }
-.btn:active { transform: translateY(1px) scale(0.99); box-shadow: var(--press); }
+/* tonal hover, not a lift — the boop is banned; depth reads through the
+   shadow deepening and the fill brightening in place instead of moving */
+.btn:hover { box-shadow: var(--lift-2); filter: brightness(1.04); }
+.btn:active { transform: translateY(1px) scale(0.99); box-shadow: var(--press); filter: none; }
 .btn--dark { color: var(--bg); background: linear-gradient(180deg, #2e2e2e, #161616);
   box-shadow: 0 8px 16px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.18); }
 .btn--dark:hover { box-shadow: 0 12px 22px rgba(0,0,0,0.34), inset 0 1px 0 rgba(255,255,255,0.2); }
@@ -1536,7 +1560,7 @@ body::after {
   background: linear-gradient(180deg, #e7e4de, #dad7d0);
   box-shadow: var(--lift-1);
 }
-.card .n { font-family: var(--font-hand); font-size: 26px; line-height: 1; color: #3a3322; }
+.card .n { font-family: var(--font-hand); font-style: italic; font-size: 26px; line-height: 1; color: #3a3322; }
 .card h4 { font-size: 16px; margin: 6px 0 6px; }
 .card p { font-size: 15px; color: var(--ink-muted); line-height: 1.55; }
 .card .impl { margin-top: 10px; font-size: 13px; color: var(--ink); }
@@ -1577,7 +1601,7 @@ body::after {
   background: repeating-linear-gradient(45deg, #e7e2cf 0 16px, #ddd8c4 16px 32px);
   box-shadow: var(--lift-1);
 }
-.wip .tape-strip { font-family: var(--font-hand); font-size: 28px; color: #3a3322; }
+.wip .tape-strip { font-family: var(--font-hand); font-style: italic; font-size: 28px; color: #3a3322; }
 .wip p { color: var(--ink-muted); margin-top: 8px; }
 
 /* ---------- real work imagery — one framing system everywhere ---------- */
@@ -1629,6 +1653,12 @@ body::after {
   transition: opacity 200ms var(--ease);
 }
 .lightbox.is-open { opacity: 1; pointer-events: auto; }
+@media (prefers-reduced-transparency: reduce) {
+  .lightbox { background: rgba(20,17,13,0.97); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (prefers-contrast: more) {
+  .lightbox { background: #0e0c0a; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
 .lightbox img {
   max-width: 94vw; max-height: 92vh; border-radius: 10px;
   box-shadow: 0 36px 90px rgba(0,0,0,0.55);
@@ -1655,7 +1685,7 @@ body::after {
 .footer p { color: var(--ink-muted); margin-top: 14px; max-width: 46ch; font-size: 17px; }
 .footer__actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
 .footer__meta { margin-top: 34px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--ink-muted); }
-.footer__hand { font-family: var(--font-hand); font-size: 20px; color: var(--ink); }
+.footer__hand { font-family: var(--font-hand); font-style: italic; font-size: 20px; color: var(--ink); }
 
 /* --- minimal sign-off: confident type, one hairline + amber LED, breathing room --- */
 .footer { padding: clamp(72px, 10vw, 130px) 0 64px; }
@@ -1690,9 +1720,9 @@ body::after {
 .signoff__email {
   font-size: clamp(21px, 2.7vw, 30px); font-weight: 700; letter-spacing: -0.015em; color: var(--ink);
   padding-bottom: 5px; border-bottom: 2px solid rgba(0,0,0,0.18);
-  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease);
 }
-.signoff__email:hover { border-bottom-color: var(--led); transform: translateY(-1px); }
+.signoff__email:hover { border-bottom-color: var(--led); }
 .signoff__x {
   font-family: var(--font-label); font-size: 14px; font-weight: 600; letter-spacing: 0.03em;
   color: var(--ink-muted); transition: color var(--dur) var(--ease);
@@ -1732,9 +1762,17 @@ body::after {
 .vt-in .page { animation: none; }
 
 /* reveal on scroll — transform composes with the per-card --tilt so the
-   cassettes keep their hand-placed rotation while sliding in */
-.reveal { opacity: 0; transform: translateY(18px) rotate(var(--tilt, 0deg)); transition: opacity 650ms var(--ease), transform 650ms var(--ease); }
-.reveal.is-in { opacity: 1; transform: translateY(0) rotate(var(--tilt, 0deg)); }
+   cassettes keep their hand-placed rotation while sliding in.
+   Content must be visible by default: the hidden starting state only
+   applies once html.js confirms the reveal script is actually running
+   (set synchronously at the top of audit-main.js). If that script never
+   loads or errors out, .reveal elements simply render in place — never
+   a section stuck at opacity:0 with nothing left to trigger it. */
+html.js .reveal { opacity: 0; transform: translateY(18px) rotate(var(--tilt, 0deg)); transition: opacity 650ms var(--ease), transform 650ms var(--ease); }
+/* same "html.js" prefix as the hidden state above, purely so this wins
+   the specificity match (0,2,1 vs 0,2,1) — .is-in is only ever added by
+   the same script anyway, so the guard costs nothing here */
+html.js .reveal.is-in { opacity: 1; transform: translateY(0) rotate(var(--tilt, 0deg)); }
 
 /* ============================================================
    15a. ABOUT PAGE — "The B-Side" editorial redesign
@@ -1791,7 +1829,7 @@ body::after {
 }
 .about-hd__circle .avatar { width: 100%; height: 100%; }
 .about-hd__note {
-  font-family: var(--font-hand);
+  font-family: var(--font-hand); font-style: italic;
   font-size: 15px;
   color: var(--ink-muted);
   margin-top: 12px;
@@ -1826,7 +1864,7 @@ body::after {
   margin-top: 9px;
 }
 .about-reel__title {
-  font-family: var(--font-hand);
+  font-family: var(--font-hand); font-style: italic;
   font-size: clamp(2rem, 5.5vw, 4rem);
   font-weight: 700;
   line-height: 1;
@@ -1836,7 +1874,7 @@ body::after {
 .about-pullquote {
   margin: 0 0 28px;
   padding: 0;
-  font-family: var(--font-hand);
+  font-family: var(--font-hand); font-style: italic;
   font-size: clamp(1.2rem, 3vw, 1.75rem);
   line-height: 1.3;
   color: var(--ink);
@@ -1889,7 +1927,7 @@ body::after {
 }
 .about-dark__quote {
   margin: 0;
-  font-family: var(--font-hand);
+  font-family: var(--font-hand); font-style: italic;
   font-size: clamp(1.8rem, 5.5vw, 3.6rem);
   font-weight: 700;
   line-height: 1.08;
@@ -1958,14 +1996,14 @@ body::after {
   margin-bottom: 4px;
 }
 .about-shots__title {
-  font-family: var(--font-hand);
+  font-family: var(--font-hand); font-style: italic;
   font-size: clamp(2rem, 5.5vw, 4rem);
   font-weight: 700;
   color: var(--ink);
   transform: rotate(-0.5deg);
 }
 .about-shots__hint {
-  font-family: var(--font-hand);
+  font-family: var(--font-hand); font-style: italic;
   font-size: 16px;
   color: var(--ink-faint);
   margin-bottom: 0;
@@ -2069,7 +2107,7 @@ body::after {
 }
 
 .brief__cursor {
-  font-family: var(--font-hand);
+  font-family: var(--font-hand); font-style: italic;
   font-size: 12px;
   color: var(--ink-faint);
   display: block;
@@ -2101,36 +2139,49 @@ body::after {
   padding-left: 58px;
 }
 
-/* dashed vertical connector between entries */
+/* Perforated connector between entries — a generic dashed hairline
+   read as a default "timeline rule," so this borrows the site's own
+   tape/sprocket vocabulary instead: a column of small punched dots,
+   like the perforation strip along a film or tape edge. */
 .tl-entry:not(:last-child) .tl-content::after {
   content: '';
   position: absolute;
-  left: 19px;
+  left: 15.5px;
   top: 52px;
   bottom: -64px;
-  width: 1px;
-  border-left: 1.5px dashed rgba(0,0,0,0.13);
+  width: 3px;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.18) 1.1px, transparent 1.3px);
+  background-size: 3px 9px;
+  background-repeat: repeat-y;
 }
 
-/* circle with hand-written number */
+/* Track-number stamp — reuses the exact dark printed-label badge
+   from the homepage mixtape shells (.mixtape__sticker::after, the
+   "A"/"B" side stamp) instead of a generic handwritten-number
+   circle, so the about page's timeline reads as the same object
+   language as the work, not a separate template. */
 .tl-num {
   position: absolute;
   left: 0;
   top: 10px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(0,0,0,0.12);
-  background: var(--bg);
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: #1d1812;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    0 1px 2px rgba(0,0,0,0.24),
+    0 0 0 5px var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-hand);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--ink-muted);
+  font-family: var(--font-label);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #f1ecdf;
   z-index: 2;
-  box-shadow: 0 0 0 5px var(--bg);
+  transform: rotate(-2deg);
 }
 
 /* category label + date */
@@ -2262,7 +2313,7 @@ body::after {
 
 /* handwritten annotation beside image */
 .tl-note {
-  font-family: var(--font-hand);
+  font-family: var(--font-hand); font-style: italic;
   font-size: 13px;
   color: var(--ink-faint);
   display: inline-block;
@@ -2274,6 +2325,7 @@ body::after {
 /* ── Right col: Cassette liner-note insert ── */
 
 .cass-panel {
+  position: relative;
   border-radius: 5px;
   overflow: hidden;
   background: var(--paper);
@@ -2284,13 +2336,55 @@ body::after {
     0 2px 5px rgba(0,0,0,0.07);
 }
 
+/* Fine paper grain, dithered rather than a flat tint — the cream
+   fill on its own read as a solid CSS color block instead of card
+   stock. Kept just barely visible per the "you should feel it, not
+   see it" rule. */
+.cass-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(138,112,78,0.5) 0.55px, transparent 0.6px);
+  background-size: 3px 3px;
+  opacity: 0.15;
+  mix-blend-mode: multiply;
+}
+
 /* Amber header — artist credit bar, pure paper language */
 .cass-header {
+  position: relative;
+  z-index: 1;
   background: var(--led);
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  padding: 8px 14px;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+}
+.cass-header__group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* Side stamp — the exact "A"/"B" printed side-letter box from the
+   homepage mixtape shells (.mixtape__sticker::after), reused here
+   so the liner note reads as the same object language as the work
+   itself, not a separate one-off component. */
+.cass-header__stamp {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  background: #1d1812;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 1px 1px rgba(0,0,0,0.22);
+  font-family: var(--font-label);
+  font-weight: 800;
+  font-size: 9px;
+  color: #f1ecdf;
 }
 .cass-header__spec {
   font-family: var(--font-label);
@@ -2309,9 +2403,22 @@ body::after {
   color: rgba(24,21,18,0.55);
 }
 
-/* Paper body */
+/* Paper body — faint ruled lines behind the tracklist, the same
+   "printed on ruled label stock" cue as the mixtape sticker's
+   ::before writing lines, so the liner note and the shell it lives
+   inside share one material instead of two unrelated surfaces. */
 .cass-body {
+  position: relative;
+  z-index: 1;
   padding: 10px 14px 12px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 20px,
+    var(--paper-rule) 20px,
+    var(--paper-rule) 21px
+  );
+  background-position: 0 4px;
 }
 
 /* Printed tracklist with dot leaders */
@@ -2422,7 +2529,7 @@ body::after {
 .about-shots .chip { margin-bottom: 10px; }
 
 .about-aside__hint {
-  font-family: var(--font-hand);
+  font-family: var(--font-hand); font-style: italic;
   font-size: 15px;
   color: var(--ink-faint);
   margin: 0 0 clamp(20px, 3vw, 32px);
@@ -2514,14 +2621,16 @@ body::after {
 }
 
 /* Deeper entrance — cassettes slide in from 36px below
-   with a spring-y cubic for the reveal (was 18px default) */
-.mixtapes .reveal {
+   with a spring-y cubic for the reveal (was 18px default). Same visible-
+   by-default guarantee as the base .reveal rule: only offsets once
+   html.js confirms the script that clears it is actually running. */
+html.js .mixtapes .reveal {
   transform: translateY(36px) rotate(var(--tilt, 0deg));
   transition:
     opacity   700ms var(--ease),
     transform 820ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-.mixtapes .reveal.is-in {
+html.js .mixtapes .reveal.is-in {
   transform: translateY(0) rotate(var(--tilt, 0deg));
 }
 

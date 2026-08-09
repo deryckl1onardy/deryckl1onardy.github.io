@@ -9,6 +9,8 @@
   --motion-soft-duration: 220ms;
   --motion-soft-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --motion-sweep-duration: 240ms;
+  --motion-track-duration: 90ms;
+  --motion-track-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --asset-reel-base: url("https://www.figma.com/api/mcp/asset/883ce1fe-5f31-444f-8f93-db5e712225ee");
   --asset-reel-overlay: url("https://www.figma.com/api/mcp/asset/85c12458-1132-49dc-a11f-3c05b7e92107");
   --asset-screw: url("https://www.figma.com/api/mcp/asset/c5c6460e-ec7d-4329-9553-9cd6042ee023");
@@ -157,7 +159,7 @@ a {
   margin: 0;
   font-size: 68px;
   line-height: 1.15;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   font-weight: 700;
 }
 
@@ -166,7 +168,7 @@ a {
   color: var(--muted);
   font-size: 24px;
   line-height: 1.5;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
 }
 
 .hero-left strong,
@@ -201,8 +203,13 @@ a {
   transform-origin: 50% 58%;
   isolation: isolate;
   will-change: transform, box-shadow;
+  /* Transform tracks the pointer continuously, so it gets a short, near-
+     direct duration (interruptible, ~1:1 feel); box-shadow/border-color
+     only change on discrete hover enter/leave, so they keep the softer
+     settle timing. Splitting these avoids the "laggy chase" that a single
+     220ms transition would put on live pointer tracking. */
   transition:
-    transform var(--motion-soft-duration) var(--motion-soft-ease),
+    transform var(--motion-track-duration) var(--motion-track-ease),
     box-shadow var(--motion-soft-duration) var(--motion-soft-ease),
     border-color var(--motion-soft-duration) var(--motion-soft-ease);
 }
@@ -220,7 +227,7 @@ a {
 .avatar-features,
 .avatar-pupils {
   transform-box: fill-box;
-  transition: transform 190ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: transform var(--motion-track-duration) var(--motion-track-ease);
   will-change: transform;
 }
 
@@ -260,7 +267,7 @@ a {
   pointer-events: none;
   transition:
     opacity var(--motion-soft-duration) var(--motion-soft-ease),
-    transform var(--motion-soft-duration) var(--motion-soft-ease);
+    transform var(--motion-track-duration) var(--motion-track-ease);
 }
 
 .hero-avatar::before {
@@ -310,7 +317,7 @@ a {
   font-size: 24px;
   line-height: 1.5;
   color: var(--muted);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
 }
 
 .hero-right p {
@@ -333,7 +340,7 @@ a {
   margin: 0 0 8px;
   font-size: clamp(46px, 6vw, 64px);
   line-height: 1.15;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   font-weight: 700;
 }
 
@@ -420,7 +427,7 @@ a {
   padding: 0 0 8px;
   font-size: clamp(16px, 2.2vw, 24px);
   line-height: 1.5;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.004em;
   color: #505050;
 }
 
@@ -915,6 +922,18 @@ a {
   filter: brightness(1.03);
 }
 
+/* Real :active feedback so the button responds the instant it's pressed,
+   even where nothing wires up the .is-pressed class in JS — feedback must
+   never depend on a script running to fire on pointer-down. */
+.control-btn:active {
+  transform: translateY(1px) scale(0.985);
+  box-shadow:
+    inset 0 3px 6px rgba(0, 0, 0, 0.42),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.28);
+  filter: brightness(0.96);
+  transition-duration: 60ms;
+}
+
 .control-btn:focus-visible {
   outline: 2px solid rgba(248, 239, 166, 0.7);
   outline-offset: -2px;
@@ -1216,6 +1235,8 @@ a {
   display: grid;
   place-items: center;
   cursor: pointer;
+  transform: scale(1);
+  transition: transform 80ms var(--motion-track-ease), color 140ms ease, background 140ms ease;
 }
 
 .chat-shortcut:hover,
@@ -1223,6 +1244,10 @@ a {
   color: #676d76;
   background: rgba(255, 255, 255, 0.48);
   outline: none;
+}
+
+.chat-shortcut:active {
+  transform: scale(0.88);
 }
 
 .chat-shortcut[aria-disabled="true"] {
@@ -1269,7 +1294,7 @@ a {
   color: #454a52;
   font-size: clamp(20px, 1.7vw, 28px);
   line-height: 1.1;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.004em;
   font-family: inherit;
 }
 
@@ -1307,8 +1332,12 @@ a {
 .chat-send:hover,
 .chat-send:focus-visible {
   filter: brightness(0.96);
-  transform: translateY(-1px);
   outline: none;
+}
+
+.chat-send:active {
+  transform: scale(0.93);
+  transition-duration: 80ms;
 }
 
 .chat-send:disabled {
@@ -1323,7 +1352,7 @@ a {
   color: #7f858d;
   font-size: clamp(16px, 1.1vw, 18px);
   line-height: 1.2;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.005em;
 }
 
 .chat-status[data-state="success"] {
@@ -1346,7 +1375,7 @@ a {
   margin: 0;
   font-size: 56px;
   line-height: 1.15;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.018em;
   font-weight: 700;
   text-align: center;
 }
@@ -2352,7 +2381,11 @@ a {
     0 6px 8px rgba(0, 0, 0, 0.12),
     inset 0 0 0 0.5px #aeaeae;
   color: #262626;
-  transform: translateY(-1px);
+}
+
+.see-btn:active {
+  transform: scale(0.97);
+  transition-duration: 80ms;
 }
 
 @media (hover: hover) and (pointer: fine) {

@@ -62,7 +62,10 @@ a {
 .case-header::before {
   content: "";
   position: absolute;
-  top: 0;
+  /* -12px, not 0: .case-header sits at top: 12px (sticky), so its own
+     box already starts 12px below the real viewport edge — see the
+     matching fix + comment in dana-wallet-v3.css. */
+  top: -12px;
   bottom: -20px;
   left: 50%;
   right: 50%;
@@ -72,9 +75,42 @@ a {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   background: rgba(221, 221, 221, 0.7);
-  mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom,
+    black 0%, black 55%,
+    rgba(0,0,0,0.94) 61%, rgba(0,0,0,0.82) 67%,
+    rgba(0,0,0,0.66) 73%, rgba(0,0,0,0.48) 78%,
+    rgba(0,0,0,0.32) 83%, rgba(0,0,0,0.19) 87%,
+    rgba(0,0,0,0.09) 91%, rgba(0,0,0,0.03) 95%,
+    transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom,
+    black 0%, black 55%,
+    rgba(0,0,0,0.94) 61%, rgba(0,0,0,0.82) 67%,
+    rgba(0,0,0,0.66) 73%, rgba(0,0,0,0.48) 78%,
+    rgba(0,0,0,0.32) 83%, rgba(0,0,0,0.19) 87%,
+    rgba(0,0,0,0.09) 91%, rgba(0,0,0,0.03) 95%,
+    transparent 100%);
   pointer-events: none;
+}
+
+/* Translucent nav backdrop goes frostier/solid when the user has asked
+   for less transparency. (Matches the house pattern in dana-wallet-v3.css.) */
+@media (prefers-reduced-transparency: reduce) {
+  .case-header::before {
+    background: var(--bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .case-header::before {
+    background: var(--bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    mask-image: none;
+    -webkit-mask-image: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  }
 }
 
 .pill-nav {
@@ -203,26 +239,29 @@ a {
 .intro-copy h1 {
   margin: 0;
   font-size: 64px;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  line-height: 1.08;
+  letter-spacing: -0.022em;
   font-weight: 700;
 }
 
 .intro-copy p {
   margin: 16px 0 0;
-  font-size: clamp(14px, 1.9vw, 18px);
+  font-size: clamp(17px, 1.9vw, 18px);
   line-height: 1.5;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   color: #373737;
 }
 
-.intro-tags {
-  margin-top: 16px;
+/* Metadata rung — was 18px/400, identical to the lead paragraph. */
+.intro-copy p.intro-tags {
+  margin-top: 14px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 24px;
+  gap: 8px 18px;
   align-items: center;
-  font-size: clamp(14px, 1.9vw, 18px);
+  font-size: 15px;
+  font-weight: 500;
+  color: #6e6a63;
 }
 
 .intro-btn-row {
@@ -375,9 +414,9 @@ a {
 .study-section li {
   margin: 14px 0 0;
   color: #373737;
-  font-size: clamp(14px, 1.9vw, 18px);
+  font-size: clamp(17px, 1.9vw, 18px);
   line-height: 1.5;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .study-section ul {
@@ -572,8 +611,8 @@ a {
 #impact h3 {
   margin: 0;
   font-size: clamp(40px, 3.2vw, 48px);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 /* Feature-list headings inside #impact are short titles, not headline
@@ -618,6 +657,24 @@ a {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Entrance animations degrade to a short cross-fade under reduced motion —
+   no translate, content is never hidden if the animation is skipped since
+   these elements carry no other opacity/transform styling. (Matches the
+   house pattern already used in dana-wallet-v3.css.) */
+@media (prefers-reduced-motion: reduce) {
+  .intro,
+  .overview-card,
+  .study-section {
+    animation-name: fade-only;
+    animation-duration: 200ms;
+  }
+}
+
+@keyframes fade-only {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* ============================================================
@@ -773,14 +830,14 @@ a {
   }
 
   .intro-copy p {
-    font-size: clamp(14px, 1.9vw, 18px);
+    font-size: clamp(17px, 1.9vw, 18px);
     margin-top: 12px;
   }
 
-  .intro-tags {
+  .intro-copy p.intro-tags {
     margin-top: 12px;
-    gap: 8px 14px;
-    font-size: clamp(14px, 1.9vw, 18px);
+    gap: 6px 14px;
+    font-size: 14px;
   }
 
   .intro-btn-row {
@@ -1991,11 +2048,12 @@ a {
 
 @media (max-width: 640px) {
   .weather-case-page .intro-copy h1 {
-    font-size: clamp(28px, 9vw, 40px);
+    font-size: clamp(34px, 10vw, 44px);
+    letter-spacing: -0.015em;
   }
 
   .weather-case-page .intro-copy p {
-    font-size: clamp(14px, 4vw, 18px);
+    font-size: clamp(17px, 4vw, 18px);
   }
 
   .intro-btn-row {
@@ -2190,16 +2248,19 @@ body.prototype-modal-open {
   .weather-callout p { font-size: clamp(16px, 5vw, 20px) !important; }
 }
 
-/* ── HMW numbered list ─────────────── */
+/* ── HMW list ─────────────────────────
+   These three lines are literally "How Might We" design-thinking
+   prompts, so the marker says that instead of counting them —
+   "01 / 02 / 03" is the generic numbered-steps list used for every
+   "how it works" column on the internet; a label that names what
+   the content actually is reads as considered instead of templated. */
 .weather-hmw-list {
   list-style: none;
   margin: 22px 0 0;
   padding: 0;
-  counter-reset: hmw;
 }
 
 .weather-hmw-list li {
-  counter-increment: hmw;
   display: flex;
   align-items: baseline;
   gap: 18px;
@@ -2211,13 +2272,14 @@ body.prototype-modal-open {
 }
 
 .weather-hmw-list li::before {
-  content: "0" counter(hmw);
-  font-style: italic;
-  font-weight: 500;
-  color: #7a7a7a;
+  content: "HMW";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  color: #9a9488;
   flex-shrink: 0;
   min-width: 36px;
-  font-size: 1.05em;
 }
 
 /* ── Friction bullet list ──────────── */
@@ -2290,15 +2352,18 @@ body.prototype-modal-open {
 }
 
 /* ── Reflection learnings list ─────── */
+/* These three learnings are parallel, not sequential — numbering
+   them "01/02/03" (the same counted-steps marker as the HMW list
+   above) implied an order that isn't there. A small mark instead
+   of a number, same gutter width so the paragraph column still
+   lines up with the HMW list above it. */
 .weather-learnings-list {
   list-style: none;
   padding: 0;
   margin: 20px 0 0;
-  counter-reset: learn;
 }
 
 .weather-learnings-list li {
-  counter-increment: learn;
   display: flex;
   gap: 18px;
   align-items: baseline;
@@ -2310,12 +2375,16 @@ body.prototype-modal-open {
 }
 
 .weather-learnings-list li::before {
-  content: "0" counter(learn);
-  font-style: italic;
-  color: #7a7a7a;
+  content: "";
+  width: 7px;
+  height: 7px;
+  /* 7px dot + 29px margin = 36px, the same gutter width as the HMW
+     list's marker above it, so both lists' text columns align. */
+  margin: 0.55em 29px 0 0;
+  border-radius: 2px;
+  background: #9a9488;
   flex-shrink: 0;
-  min-width: 36px;
-  font-size: 1.05em;
+  align-self: flex-start;
 }
 
 @media (max-width: 640px) {
@@ -2330,9 +2399,13 @@ body.prototype-modal-open {
     gap: 12px;
   }
 
-  .weather-hmw-list li::before,
-  .weather-learnings-list li::before {
+  .weather-hmw-list li::before {
     min-width: 28px;
+  }
+
+  .weather-learnings-list li::before {
+    /* same logic as the desktop rule: dot width + margin = gutter */
+    margin-right: 21px;
   }
 }
 
@@ -2488,7 +2561,10 @@ body.prototype-modal-open {
   font-size: 10px;
   line-height: 1;
   letter-spacing: 0.22em;
-  color: #b0b0b0;
+  /* #b0b0b0 measured 1.5:1 against this beige page background —
+     effectively invisible. #6e6a63 is the site's own muted-label
+     tone and clears 3.7:1. */
+  color: #6e6a63;
   text-transform: uppercase;
   font-weight: 600;
 }
@@ -2497,22 +2573,62 @@ body.prototype-modal-open {
   display: none;
 }
 
+/* Persistent rail + animated tab marker — see the matching fix and
+   comment in dana-wallet-v3.css (this page ships its own copy of
+   the case-study shell instead of importing the shared stylesheet). */
 .overview-link {
-  padding: 5px 0 5px 11px;
-  color: #b0b0b0;
+  position: relative;
+  padding: 6px 0 6px 16px;
+  /* #b0b0b0 measured 1.5:1 against this page's beige background —
+     effectively unreadable. #56534d clears 5.4:1. */
+  color: #56534d;
   font-size: 12px;
   line-height: 1.4;
   font-weight: 400;
   letter-spacing: 0.01em;
-  border-left: 1.5px solid transparent;
-  transition: color 140ms ease, border-color 140ms ease;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  transition: color 140ms ease;
+}
+
+.overview-link:hover {
+  color: #302e2a;
+}
+
+.overview-link::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  width: 2px;
+  height: 0;
+  border-radius: 2px;
+  background: #111111;
+  transform: translateY(-50%);
+  transition: height 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .overview-link.is-active {
   color: #111111;
   font-weight: 500;
-  border-left: 1.5px solid #111111;
-  padding-left: 11px;
+  /* Explicit, not inherited: an earlier, higher-specificity rule
+     (.overview-link.is-active further up this file, from a draft
+     pass this page never fully replaced) sets a 7px green
+     border-left. Two rules with equal specificity means the later
+     one wins per property — but only for properties it actually
+     redeclares, so these two have to be repeated here rather than
+     left to fall through from the base .overview-link rule. */
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  padding-left: 16px;
+}
+
+.overview-link.is-active::before {
+  height: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overview-link::before {
+    transition: none;
+  }
 }
 
 /* ── Sections — chapter break ───────────────────── */
@@ -2742,7 +2858,11 @@ body.prototype-modal-open {
     padding: 5px 14px 5px 0;
     border-left: none;
     border-bottom: 1.5px solid transparent;
-    color: #b0b0b0;
+    color: #56534d;
+  }
+
+  .overview-link::before {
+    display: none;
   }
 
   .overview-link.is-active {
@@ -2822,11 +2942,13 @@ body.prototype-modal-open {
   line-height: 1;
 }
 
-/* Restore: weather goal card titles (same specificity — must come after) */
+/* Restore: weather goal card titles (same specificity — must come after).
+   Capped at the 26px subhead rung; at 28px these card titles outranked
+   the section subheads around them. */
 .weather-goal-title-row h3 {
-  font-size: clamp(18px, 1.9vw, 28px);
-  line-height: 1.25;
-  letter-spacing: -0.01em;
+  font-size: clamp(18px, 1.9vw, 26px);
+  line-height: 1.28;
+  letter-spacing: -0.015em;
   margin: 0;
 }
 

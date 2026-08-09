@@ -52,12 +52,15 @@
   gap: 16px;
 }
 
+/* Body matches the 18px/1.75 used on every other case study —
+   this page was the odd one out at 17px/1.5, which made it read
+   denser and slightly smaller than its neighbours. */
 .onboarding-page .study-section p {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 400;
   color: #444444;
-  letter-spacing: -0.24px;
-  line-height: 1.5;
+  letter-spacing: 0;
+  line-height: 1.75;
   margin: 0;
 }
 
@@ -118,7 +121,7 @@
 }
 
 .ob-card h3 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: #111111;
   letter-spacing: -0.01em;
@@ -174,17 +177,19 @@
   margin: 0 0 6px !important;
 }
 
+/* Was 15px over 14px body — a heading barely larger than the text
+   it heads. Both step up to the component rung (20 / 16). */
 .ob-timeline-item h3 {
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 600;
   color: #111111;
   letter-spacing: -0.01em;
-  line-height: 1.3;
+  line-height: 1.35;
   margin: 0 0 8px;
 }
 
 .ob-timeline-item p {
-  font-size: 14px !important;
+  font-size: 16px !important;
   color: #555555;
   line-height: 1.6;
   margin: 0 !important;
@@ -389,13 +394,15 @@
   margin: 0 !important;
 }
 
-/* --- Sub-heading for change sections ---------------------- */
+/* --- Sub-heading for change sections ----------------------
+   These are true subheads ("From feature showcase to first
+   impression"), so they take the shared 26px subhead rung. */
 .ob-change-title {
-  font-size: 24px;
+  font-size: clamp(21px, 2.2vw, 26px);
   font-weight: 600;
   color: #000;
-  letter-spacing: -0.24px;
-  line-height: 1.15;
+  letter-spacing: -0.015em;
+  line-height: 1.28;
   margin: 0;
 }
 
@@ -434,15 +441,16 @@
   .ob-blockquote { flex-wrap: wrap; }
   .ob-bq-open, .ob-bq-close { font-size: 36px; width: 22px; }
   .ob-blockquote p { font-size: 20px !important; }
-  .ob-card h3 { font-size: 17px; }
-  .ob-insight h3 { font-size: 18px; }
 
-  /* Scale down for tablet */
-  .onboarding-page .study-section p { font-size: 16px; }
-  .ob-card p { font-size: 15px !important; }
-  .ob-insight p { font-size: 16px !important; }
+  /* Tablet: one step down the scale, headings stay clear of body */
+  .ob-card h3 { font-size: 19px; }
+  .ob-insight h3 { font-size: 19px; }
+  .ob-timeline-item h3 { font-size: 19px; }
+  .onboarding-page .study-section p { font-size: 17px; }
+  .ob-card p { font-size: 15.5px !important; }
+  .ob-insight p { font-size: 15.5px !important; }
   .ob-insight-stat { font-size: 15px; }
-  .ob-timeline-item p { font-size: 13px !important; }
+  .ob-timeline-item p { font-size: 15.5px !important; }
   .ob-bq-source { font-size: 12px; }
 }
 
@@ -459,15 +467,16 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Scale down further for phones */
-  .onboarding-page .study-section p { font-size: clamp(15px, 4.2vw, 17px); }
-  .ob-card p { font-size: clamp(15px, 4.2vw, 17px) !important; }
-  .ob-insight p { font-size: clamp(15px, 4.2vw, 17px) !important; }
-  .ob-blockquote p { font-size: clamp(16px, 5vw, 20px) !important; }
-  .ob-card h3 { font-size: clamp(15px, 4.5vw, 17px); }
-  .ob-insight h3 { font-size: clamp(15px, 4.5vw, 18px); }
+  /* Phones: body holds at 16px minimum — below that long-form
+     reading suffers — and headings keep a real step above it. */
+  .onboarding-page .study-section p { font-size: clamp(16px, 4.2vw, 17px); }
+  .ob-card p { font-size: clamp(15px, 4.2vw, 16px) !important; }
+  .ob-insight p { font-size: clamp(15px, 4.2vw, 16px) !important; }
+  .ob-blockquote p { font-size: clamp(17px, 5vw, 20px) !important; }
+  .ob-card h3 { font-size: clamp(17px, 4.8vw, 19px); }
+  .ob-insight h3 { font-size: clamp(17px, 4.8vw, 19px); }
+  .ob-timeline-item h3 { font-size: clamp(17px, 4.8vw, 19px); }
   .ob-insight-stat { font-size: clamp(13px, 3.5vw, 15px); }
-  .ob-timeline-item p { font-size: clamp(14px, 4vw, 16px) !important; }
+  .ob-timeline-item p { font-size: clamp(15px, 4vw, 16px) !important; }
   .ob-bq-source { font-size: clamp(13px, 3.5vw, 16px); }
-  .ob-change-title { font-size: clamp(16px, 5vw, 20px); }
 }
