@@ -10,10 +10,18 @@
    and description from the game's schema. Both are omitted — never
    invented — when Steam has nothing real to report.
 
-   Reads STEAM_API_KEY and STEAM_ID from .env.steam (gitignored — never
-   commit real credentials). STEAM_ID may be a numeric SteamID64 or a
-   vanity profile name (the part after /id/ in a profile URL); either
-   works, vanity names get resolved automatically.
+   Reads STEAM_API_KEY and STEAM_ID from real environment variables
+   first — that's what .github/workflows/steam.yml sets from repo
+   secrets in CI — and only falls back to a local .env.steam file
+   (gitignored — never commit real credentials) so it's also runnable
+   by hand. STEAM_ID may be a numeric SteamID64 or a vanity profile
+   name (the part after /id/ in a profile URL); either works, vanity
+   names get resolved automatically.
+
+   Every failure path here exits 0, not 1: a missing secret, a Steam
+   outage, or an empty response must not fail the scheduled workflow
+   or overwrite the last good committed file — the page just keeps
+   rendering whatever's already there. See main()'s try/catch.
 
    Usage: node scripts/fetch-steam.js [howMany=12]
 */
@@ -33,6 +41,21 @@ function loadEnv(file) {
     if (m) out[m[1]] = m[2];
   }
   return out;
+}
+
+// CI (steam.yml) exports these as real env vars from repo secrets —
+// that always wins. .env.steam is purely a local-run convenience for
+// whichever of the two isn't already set, and its absence is normal
+// (it's gitignored) rather than an error.
+function loadCredentials() {
+  let key = process.env.STEAM_API_KEY;
+  let id = process.env.STEAM_ID;
+  if ((!key || !id) && fs.existsSync(ENV_PATH)) {
+    const fileEnv = loadEnv(ENV_PATH);
+    key = key || fileEnv.STEAM_API_KEY;
+    id = id || fileEnv.STEAM_ID;
+  }
+  return { key, id };
 }
 
 async function resolveSteamId(key, id) {
@@ -110,31 +133,34 @@ async function fetchLatestAchievement(key, steamid, appid) {
   }
 }
 
+// Exit 0 on purpose everywhere in here — see the header comment. A
+// script that hard-fails a scheduled workflow over a Steam hiccup is
+// worse than one that just leaves the last good file in place.
+function soft(msg) {
+  console.error("steam-sync: " + msg);
+  process.exit(0);
+}
+
 async function main() {
-  if (!fs.existsSync(ENV_PATH)) {
-    console.error(`Missing ${ENV_PATH}. Create it with STEAM_API_KEY and STEAM_ID.`);
-    process.exit(1);
-  }
-  const env = loadEnv(ENV_PATH);
-  const key = env.STEAM_API_KEY;
-  const rawId = env.STEAM_ID;
+  const { key, id: rawId } = loadCredentials();
   if (!key || !rawId) {
-    console.error("STEAM_API_KEY and STEAM_ID must both be set in .env.steam");
-    process.exit(1);
+    return soft("STEAM_API_KEY or STEAM_ID not set (env or .env.steam) — leaving existing file untouched.");
   }
 
   const howMany = parseInt(process.argv[2], 10) || 12;
 
-  const steamid = await resolveSteamId(key, rawId);
-  const games = await fetchOwnedGames(key, steamid);
+  let steamid, games;
+  try {
+    steamid = await resolveSteamId(key, rawId);
+    games = await fetchOwnedGames(key, steamid);
+  } catch (err) {
+    return soft("request failed — " + err.message);
+  }
 
   if (!games.length) {
-    console.error(
-      "Steam returned zero games. Your profile/game-details privacy is probably set to " +
-      "Private — set it to Public (or Friends Only won't work either) at " +
-      "steamcommunity.com/my/edit/settings, then re-run this script."
+    return soft(
+      "no games in response. Check that Steam profile > Privacy > 'Game details' is set to Public."
     );
-    process.exit(1);
   }
 
   const played = games.filter((g) => g.rtime_last_played && g.playtime_forever > 0);
@@ -177,11 +203,30 @@ async function main() {
     picked.push(entry);
   }
 
+  if (!picked.length) {
+    return soft("no played games survived the capsule-art check — leaving existing file untouched.");
+  }
+
   const out = {
     seed: false,
     updated: new Date().toISOString(),
     games: picked,
   };
+
+  // Compare on the games array only — `updated` always differs, and
+  // committing that alone (steam.yml's job) would make a pointless
+  // commit every single day this runs with no real change.
+  let unchanged = false;
+  try {
+    const prev = JSON.parse(fs.readFileSync(OUT_PATH, "utf8"));
+    unchanged = JSON.stringify(prev.games) === JSON.stringify(out.games);
+  } catch (_) {
+    /* no previous file, or it's malformed — write a fresh one */
+  }
+  if (unchanged) {
+    console.log(`steam-sync: no change (${out.games.length} games).`);
+    return;
+  }
 
   fs.writeFileSync(OUT_PATH, JSON.stringify(out, null, 2) + "\n");
   console.log(`Wrote ${out.games.length} real games to ${path.relative(ROOT, OUT_PATH)}`);
@@ -192,7 +237,10 @@ async function main() {
   });
 }
 
+// Only a genuine bug should exit 1 here — every expected failure mode
+// (missing secret, Steam down, empty response) is already handled
+// above via soft(), which exits 0 itself.
 main().catch((err) => {
-  console.error(err.message);
+  console.error("steam-sync: unexpected error — " + err.message);
   process.exit(1);
 });
